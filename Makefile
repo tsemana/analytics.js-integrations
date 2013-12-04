@@ -1,4 +1,5 @@
 
+tests ?= *
 test = http://localhost:4202
 component = node_modules/component/bin/component
 phantom = node_modules/.bin/mocha-phantomjs --setting web-security=false --setting local-to-remote-url-access=true
@@ -20,7 +21,7 @@ node_modules: package.json
 	@npm install
 
 server: build kill
-	@node test/server &
+	@tests=$(tests) node test/server &
 
 test: build server
 	@sleep 1
