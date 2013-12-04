@@ -39,6 +39,7 @@ describe('UserVoice', function () {
       .option('showWidget', true)
       .option('mode', 'contact')
       .option('accentColor', '#448dd6')
+      .option('smartvote', true)
       .option('trigger', null)
       .option('triggerPosition', 'bottom-right')
       .option('triggerColor', '#ffffff')
@@ -67,6 +68,7 @@ describe('UserVoice', function () {
         mode: 'contact',
         primaryColor: '#cc6d00',
         showWidget: true,
+        smartvote_enabled: true,
         tabColor: '#cc6d00',
         tabInverted: false,
         tabLabel: 'Feedback & Support',
@@ -253,6 +255,7 @@ describe('UserVoice', function () {
             mode: 'full',
             primary_color: '#ffffff',
             showWidget: true,
+            smartvote: true,
             tab_color: '#cc6d00',
             tab_inverted: false,
             tab_label: 'test',

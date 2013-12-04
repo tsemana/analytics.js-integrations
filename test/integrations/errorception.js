@@ -58,7 +58,7 @@ describe('Errorception', function () {
       var err = new Error('a test error');
       window._errs.push = sinon.spy();
       window.onerror(err);
-      assert(window._errs.push.calledWith(err));
+      assert(window._errs.push.calledWith([err]));
     });
 
     it('should call #load', function () {

@@ -1,3 +1,8 @@
+0.2.13 - December 4, 2013
+-------------------------
+* uservoice: add `smartvote` option
+* errorception: fix bug in sending errors
+
 0.2.12 - December 2, 2013
 -------------------------
 * mixpanel: fix `track` date conversion
