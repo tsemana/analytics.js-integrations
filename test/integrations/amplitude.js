@@ -129,19 +129,26 @@ describe('Amplitude', function () {
     });
 
     it('should send an id', function () {
-      amplitude.identify(new Identify({ userId: 'id' }));
-      assert(window.amplitude.setUserId.calledWith('id'));
+      test(amplitude)
+      .identify('id')
+      .called(window.amplitude.setUserId)
+      .with('id');
     });
 
     it('should send traits', function () {
-      amplitude.identify(new Identify({ traits: { trait: true } }));
-      assert(window.amplitude.setGlobalUserProperties.calledWith({ trait: true }));
+      test(amplitude)
+      .identify(null, { trait: true })
+      .called(window.amplitude.setGlobalUserProperties)
+      .with({ trait: true})
     });
 
     it('should send an id and traits', function () {
-      amplitude.identify(new Identify({ userId: 'id', traits: { trait: true } }));
-      assert(window.amplitude.setUserId.calledWith('id'));
-      assert(window.amplitude.setGlobalUserProperties.calledWith({ trait: true }));
+      test(amplitude)
+      .identify('id', { trait: true })
+      .called(window.amplitude.setUserId)
+      .with('id')
+      .called(window.amplitude.setGlobalUserProperties)
+      .with({ trait: true });
     });
   });
 
@@ -152,13 +159,17 @@ describe('Amplitude', function () {
     });
 
     it('should send an event', function () {
-      amplitude.track(new Track({ event: 'event' }));
-      assert(window.amplitude.logEvent.calledWith('event'));
+      test(amplitude)
+      .track('event')
+      .called(window.amplitude.logEvent)
+      .with('event');
     });
 
     it('should send an event and properties', function () {
-      amplitude.track(new Track({ event: 'event', properties: { prop: true }}));
-      assert(window.amplitude.logEvent.calledWith('event', { prop: true }));
+      test(amplitude)
+      .track('event', { prop: true })
+      .called(window.amplitude.logEvent)
+      .with('event', { prop: true });
     });
   });
 });
