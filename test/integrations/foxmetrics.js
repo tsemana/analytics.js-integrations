@@ -74,7 +74,7 @@ describe('FoxMetrics', function () {
 
 
     it('should send a page view', function () {
-      foxmetrics.page();
+      test(foxmetrics).page();
       assert(window._fxm.push.calledWith([
         '_fxm.pages.view',
         undefined,
@@ -86,11 +86,12 @@ describe('FoxMetrics', function () {
     });
 
     it('should send page properties', function () {
-      foxmetrics.page('category', 'name', {
+      test(foxmetrics).page('category', 'name', {
+        referrer: 'referrer',
         title: 'title',
-        url: 'url',
-        referrer: 'referrer'
+        url: 'url'
       });
+
       assert(window._fxm.push.calledWith([
         '_fxm.pages.view',
         'title',
@@ -109,7 +110,8 @@ describe('FoxMetrics', function () {
     });
 
     it('should send an id', function () {
-      foxmetrics.identify('id');
+      test(foxmetrics).identify('id');
+      // foxmetrics.identify('id');
       assert(window._fxm.push.calledWith([
         '_fxm.visitor.profile',
         'id',
@@ -124,12 +126,13 @@ describe('FoxMetrics', function () {
     });
 
     it('should not only send traits', function () {
-      foxmetrics.identify(null, { trait: true });
+      test(foxmetrics).identify(null, { trait: true });
+      // foxmetrics.identify(null, { trait: true });
       assert(!window._fxm.push.called);
     });
 
     it('should send an id and traits', function () {
-      foxmetrics.identify('id', {
+      test(foxmetrics).identify('id', {
         address: 'address',
         email: 'email@example.com',
         firstName: 'first',
@@ -156,7 +159,7 @@ describe('FoxMetrics', function () {
     });
 
     it('should split a name trait', function () {
-      foxmetrics.identify('id', { name: 'first last' });
+      test(foxmetrics).identify('id', { name: 'first last' });
       assert(window._fxm.push.calledWith([
         '_fxm.visitor.profile',
         'id',
@@ -181,7 +184,7 @@ describe('FoxMetrics', function () {
 
 
     it('should send an event', function () {
-      foxmetrics.track('event');
+      test(foxmetrics).track('event');
       assert(window._fxm.push.calledWith([
         'event',
         undefined,
@@ -190,7 +193,7 @@ describe('FoxMetrics', function () {
     });
 
     it('should send an event and properties', function () {
-      foxmetrics.track('event', { property: true });
+      test(foxmetrics).track('event', { property: true });
       assert(window._fxm.push.calledWith([
         'event',
         undefined,
@@ -199,7 +202,7 @@ describe('FoxMetrics', function () {
     });
 
     it('should send a category property', function () {
-      foxmetrics.track('event', { category: 'category' });
+      test(foxmetrics).track('event', { category: 'category' });
       assert(window._fxm.push.calledWith([
         'event',
         'category',
@@ -208,8 +211,8 @@ describe('FoxMetrics', function () {
     });
 
     it('should send a stored category', function () {
-      foxmetrics.page('category');
-      foxmetrics.track('event', { category: 'category' });
+      test(foxmetrics).page('category');
+      test(foxmetrics).track('event', { category: 'category' });
       assert(window._fxm.push.calledWith([
         '_fxm.pages.view',
         undefined,
