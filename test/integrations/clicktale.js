@@ -97,8 +97,6 @@ describe('ClickTale', function () {
       .identify('id')
       .called(window.ClickTaleSetUID)
       .with('id');
-      // clicktale.identify('id');
-      // assert(window.ClickTaleSetUID.calledWith('id'));
     });
 
     it('should send traits', function () {
