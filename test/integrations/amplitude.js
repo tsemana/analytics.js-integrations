@@ -7,9 +7,6 @@ describe('Amplitude', function () {
   var equal = require('equals');
   var sinon = require('sinon');
   var test = require('integration-tester');
-  var Identify = require('facade').Identify;
-  var Track = require('facade').Track;
-  var Page = require('facade').Page;
 
   var amplitude;
   var settings = {
@@ -87,36 +84,43 @@ describe('Amplitude', function () {
     });
 
     it('should not track unnamed pages by default', function () {
-      amplitude.page(new Page({}));
+      test(amplitude).page();
       assert(!window.amplitude.logEvent.called);
     });
 
     it('should track unnamed pages if enabled', function () {
       amplitude.options.trackAllPages = true;
-      amplitude.page(new Page({}));
-      assert(window.amplitude.logEvent.calledWith('Loaded a Page', {}));
+      test(amplitude)
+      .page()
+      .called(window.amplitude.logEvent);
     });
 
     it('should track named pages by default', function () {
-      amplitude.page(new Page({ name: 'Name' }));
-      assert(window.amplitude.logEvent.calledWith('Viewed Name Page', {}));
+      test(amplitude)
+      .page(null, 'Name')
+      .called(window.amplitude.logEvent)
+      .with('Viewed Name Page');
     });
 
     it('should track named pages with a category added', function () {
-      amplitude.page(new Page({ category: 'Category', name: 'Name' }));
-      assert(window.amplitude.logEvent.calledWith('Viewed Category Name Page', {}));
+      test(amplitude)
+      .page('Category', 'Name')
+      .called(window.amplitude.logEvent)
+      .with('Viewed Category Name Page');
     });
 
     it('should track categorized pages by default', function () {
-      amplitude.page(new Page({ category: 'Category', name: 'Name' }));
-      assert(window.amplitude.logEvent.calledWith('Viewed Category Name Page', {}));
+      test(amplitude)
+      .page('Category', 'Name')
+      .called(window.amplitude.logEvent)
+      .with('Viewed Category Name Page');
     });
 
     it('should not track name or categorized pages if disabled', function () {
       amplitude.options.trackNamedPages = false;
       amplitude.options.trackCategorizedPages = false;
-      amplitude.page(new Page({ name: 'Name' }));
-      amplitude.page(new Page({ category: 'Category', name: 'Name' }));
+      test(amplitude).page(null, 'Name');
+      test(amplitude).page('Category', 'Name');
       assert(!window.amplitude.logEvent.called);
     });
   });
