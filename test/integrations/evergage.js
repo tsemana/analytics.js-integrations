@@ -199,16 +199,18 @@ describe('Evergage', function () {
     });
 
     it('should send a page view', function () {
-      evergage.page();
+      test(evergage).page();
       assert(!window._aaq.push.called);
       assert(window.Evergage.init.calledWith(true));
     });
 
     it('should send page properties', function () {
-      evergage.page('category', 'name', { property: true });
-      assert(window._aaq.push.calledWith(['namePage', 'name']));
-      assert(window._aaq.push.calledWith(['setCustomField', 'property', true, 'page']));
-      assert(window.Evergage.init.calledWith(true));
+      test(evergage)
+      .page('category', 'name', { property: true })
+      .called(window._aaq.push)
+      .with(['namePage', 'name'])
+      .called(window._aaq.push)
+      .with(['setCustomField', 'property', true, 'page']);
     });
   });
 
