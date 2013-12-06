@@ -102,8 +102,6 @@ describe('Errorception', function () {
       .identify('id')
       .changed(window._errs.meta)
       .to({ id: 'id' });
-      // errorception.identify('id');
-      // assert(equal(window._errs.meta, { id: 'id' }));
     });
 
     it('should add traits to metadata', function () {
@@ -111,8 +109,6 @@ describe('Errorception', function () {
       .identify(null, { trait: true })
       .changed(window._errs.meta)
       .to({ trait: true });
-      // errorception.identify(null, { trait: true });
-      // assert(equal(window._errs.meta, { trait: true }));
     });
 
     it('should add an id and traits to metadata', function () {
@@ -120,8 +116,6 @@ describe('Errorception', function () {
       .identify('id', { trait: true })
       .changed(window._errs.meta)
       .to({ id: 'id', trait: true });
-      // errorception.identify('id', { trait: true });
-      // assert(equal(window._errs.meta, { id: 'id', trait: true }));
     });
 
     it('should not add to metadata when meta option is false', function () {
