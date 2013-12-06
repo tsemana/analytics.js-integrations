@@ -7,6 +7,9 @@ describe('Amplitude', function () {
   var equal = require('equals');
   var sinon = require('sinon');
   var test = require('integration-tester');
+  var Identify = require('facade').Identify;
+  var Track = require('facade').Track;
+  var Page = require('facade').Page;
 
   var amplitude;
   var settings = {
@@ -84,36 +87,36 @@ describe('Amplitude', function () {
     });
 
     it('should not track unnamed pages by default', function () {
-      amplitude.page();
+      amplitude.page(new Page({}));
       assert(!window.amplitude.logEvent.called);
     });
 
     it('should track unnamed pages if enabled', function () {
       amplitude.options.trackAllPages = true;
-      amplitude.page(null, null, {});
+      amplitude.page(new Page({}));
       assert(window.amplitude.logEvent.calledWith('Loaded a Page', {}));
     });
 
     it('should track named pages by default', function () {
-      amplitude.page(null, 'Name', {});
+      amplitude.page(new Page({ name: 'Name' }));
       assert(window.amplitude.logEvent.calledWith('Viewed Name Page', {}));
     });
 
     it('should track named pages with a category added', function () {
-      amplitude.page('Category', 'Name', {});
+      amplitude.page(new Page({ category: 'Category', name: 'Name' }));
       assert(window.amplitude.logEvent.calledWith('Viewed Category Name Page', {}));
     });
 
     it('should track categorized pages by default', function () {
-      amplitude.page('Category', 'Name', {});
-      assert(window.amplitude.logEvent.calledWith('Viewed Category Page', {}));
+      amplitude.page(new Page({ category: 'Category', name: 'Name' }));
+      assert(window.amplitude.logEvent.calledWith('Viewed Category Name Page', {}));
     });
 
     it('should not track name or categorized pages if disabled', function () {
       amplitude.options.trackNamedPages = false;
       amplitude.options.trackCategorizedPages = false;
-      amplitude.page(null, 'Name', {});
-      amplitude.page('Category', 'Name', {});
+      amplitude.page(new Page({ name: 'Name' }));
+      amplitude.page(new Page({ category: 'Category', name: 'Name' }));
       assert(!window.amplitude.logEvent.called);
     });
   });
@@ -126,17 +129,17 @@ describe('Amplitude', function () {
     });
 
     it('should send an id', function () {
-      amplitude.identify('id');
+      amplitude.identify(new Identify({ userId: 'id' }));
       assert(window.amplitude.setUserId.calledWith('id'));
     });
 
     it('should send traits', function () {
-      amplitude.identify(null, { trait: true });
+      amplitude.identify(new Identify({ traits: { trait: true } }));
       assert(window.amplitude.setGlobalUserProperties.calledWith({ trait: true }));
     });
 
     it('should send an id and traits', function () {
-      amplitude.identify('id', { trait: true });
+      amplitude.identify(new Identify({ userId: 'id', traits: { trait: true } }));
       assert(window.amplitude.setUserId.calledWith('id'));
       assert(window.amplitude.setGlobalUserProperties.calledWith({ trait: true }));
     });
@@ -149,13 +152,13 @@ describe('Amplitude', function () {
     });
 
     it('should send an event', function () {
-      amplitude.track('event');
+      amplitude.track(new Track({ event: 'event' }));
       assert(window.amplitude.logEvent.calledWith('event'));
     });
 
     it('should send an event and properties', function () {
-      amplitude.track('event', { property: true });
-      assert(window.amplitude.logEvent.calledWith('event', { property: true }));
+      amplitude.track(new Track({ event: 'event', properties: { prop: true }}));
+      assert(window.amplitude.logEvent.calledWith('event', { prop: true }));
     });
   });
 });
