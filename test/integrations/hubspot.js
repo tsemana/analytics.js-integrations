@@ -123,8 +123,6 @@ describe('HubSpot', function () {
       .track('event')
       .called(window._hsq.push)
       .with(['trackEvent', 'event', {}]);
-      // hubspot.track('event');
-      // assert(window._hsq.push.calledWith(['trackEvent', 'event', {}]));
     });
 
     it('should send an event and properties', function () {
@@ -132,10 +130,6 @@ describe('HubSpot', function () {
       .track('event', { property: true })
       .called(window._hsq.push)
       .with(['trackEvent', 'event', { property: true }]);
-      // hubspot.track('event', { property: true });
-      // assert(window._hsq.push.calledWith(['trackEvent', 'event', {
-        // property: true
-      // }]));
     });
 
     it('should convert dates to milliseconds', function () {
@@ -146,10 +140,6 @@ describe('HubSpot', function () {
       .track('event', { date: date })
       .called(window._hsq.push)
       .with(['trackEvent', 'event', { date: ms }]);
-      // hubspot.track('event', { date: date });
-      // assert(window._hsq.push.calledWith(['trackEvent', 'event', {
-        // date: date.getTime()
-      // }]));
     });
   });
 
