@@ -98,14 +98,32 @@ describe('Heap', function () {
     });
 
     it('should send traits', function () {
-      heap.identify(null, { trait: true });
-      assert(window.heap.identify.calledWith({ trait: true }));
+      test(heap)
+      .identify(null, { trait: true })
+      .called(window.heap.identify)
+      .with({ trait: true });
     });
 
-    it('should alias a username', function () {
-      heap.identify(null, { username: 'username' });
-      assert(window.heap.identify.calledWith({ handle: 'username' }));
+    it('should send username as handle', function () {
+      test(heap)
+      .identify(null, { username: 'username' })
+      .called(window.heap.identify)
+      .with({ handle: 'username' });
     });
+
+    it('should send id as handle', function(){
+      test(heap)
+      .identify('id')
+      .called(window.heap.identify)
+      .with({ handle: 'id' });
+    })
+
+    it('should prefer username', function(){
+      test(heap)
+      .identify('id', { username: 'baz' })
+      .called(window.heap.identify)
+      .with({ handle: 'baz' });
+    })
   });
 
   describe('#track', function () {
@@ -115,12 +133,12 @@ describe('Heap', function () {
     });
 
     it('should send an event', function () {
-      heap.track('event');
+      test(heap).track('event');
       assert(window.heap.track.calledWith('event'));
     });
 
     it('should send an event and properties', function () {
-      heap.track('event', { property: true });
+      test(heap).track('event', { property: true });
       assert(window.heap.track.calledWith('event', { property: true }));
     });
   });
