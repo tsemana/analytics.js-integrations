@@ -92,7 +92,8 @@ describe('Amplitude', function () {
       amplitude.options.trackAllPages = true;
       test(amplitude)
       .page()
-      .called(window.amplitude.logEvent);
+      .called(window.amplitude.logEvent)
+      .with('Loaded a Page');
     });
 
     it('should track named pages by default', function () {
