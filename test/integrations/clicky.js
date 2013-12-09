@@ -95,18 +95,24 @@ describe('Clicky', function () {
     });
 
     it('should send a path and title', function () {
-      clicky.page(null, null, { path: '/path', title: 'title' });
-      assert(window.clicky.log.calledWith('/path', 'title'));
+      test(clicky)
+      .page(null, null, { path: '/path', title: 'title' })
+      .called(window.clicky.log)
+      .with('/path', 'title');
     });
 
     it('should prefer a name', function () {
-      clicky.page(null, 'name', { path: '/path', title: 'title' });
-      assert(window.clicky.log.calledWith('/path', 'name'));
+      test(clicky)
+      .page(null, 'name', { path: '/path', title: 'title' })
+      .called(window.clicky.log)
+      .with('/path', 'name');
     });
 
     it('should prefer a name and category', function () {
-      clicky.page('category', 'name', { path: '/path', title: 'title' });
-      assert(window.clicky.log.calledWith('/path', 'category name'));
+      test(clicky)
+      .page('category', 'name', { path: '/path', title: 'title' })
+      .called(window.clicky.log)
+      .with('/path', 'category name');
     });
   });
 
@@ -138,13 +144,17 @@ describe('Clicky', function () {
     });
 
     it('should send an event', function () {
-      clicky.track('event', {});
-      assert(window.clicky.goal.calledWith('event'));
+      test(clicky)
+      .track('event', {})
+      .called(window.clicky.goal)
+      .with('event');
     });
 
     it('should send revenue', function () {
-      clicky.track('event', { revenue: 42.99 });
-      assert(window.clicky.goal.calledWith('event', 42.99));
+      test(clicky)
+      .track('event', { revenue: 42.99 })
+      .called(window.clicky.goal)
+      .with('event', 42.99);
     });
   });
 
