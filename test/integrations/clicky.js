@@ -48,7 +48,7 @@ describe('Clicky', function () {
       assert(equal(window.clicky_site_ids, [settings.siteId]));
     });
 
-    it('should set custom data', function () {
+    it.skip('should set custom data', function () {
       analytics.user().identify('id', { trait: true });
       clicky.identify = sinon.spy();
       clicky.initialize();
@@ -123,17 +123,17 @@ describe('Clicky', function () {
     });
 
     it('should set an id', function () {
-      clicky.identify('id', {});
+      test(clicky).identify('id', {});
       assert(equal(window.clicky_custom.session, { id: 'id' }));
     });
 
     it('should set traits', function () {
-      clicky.identify(null, { trait: true });
+      test(clicky).identify(null, { trait: true });
       assert(equal(window.clicky_custom.session, { trait: true }));
     });
 
     it('should set an id and traits', function () {
-      clicky.identify('id', { trait: true });
+      test(clicky).identify('id', { trait: true });
       assert(equal(window.clicky_custom.session, { id: 'id', trait: true }));
     });
   });
