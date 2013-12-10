@@ -115,14 +115,14 @@ describe('Heap', function () {
       test(heap)
       .identify('id')
       .called(window.heap.identify)
-      .with({ handle: 'id' });
+      .with({ handle: 'id', id: 'id' });
     })
 
     it('should prefer username', function(){
       test(heap)
       .identify('id', { username: 'baz' })
       .called(window.heap.identify)
-      .with({ handle: 'baz' });
+      .with({ handle: 'baz', id: 'id' });
     })
   });
 

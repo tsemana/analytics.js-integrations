@@ -130,29 +130,42 @@ describe('Mixpanel', function () {
     });
 
     it('should send an id', function () {
-      test(mixpanel).identify('id');
-      assert(window.mixpanel.identify.calledWith('id'));
+      test(mixpanel)
+        .identify('id')
+        .called(window.mixpanel.identify)
+        .with('id')
+        .called(window.mixpanel.register)
+        .with({ id: 'id' });
     });
 
     it('should send traits', function () {
-      test(mixpanel).identify(null, { trait: true });
-      assert(window.mixpanel.register.calledWith({ trait: true }));
+      test(mixpanel)
+        .identify(null, { trait: true })
+        .called(window.mixpanel.register)
+        .with({ trait: true });
     });
 
     it('should send an id and traits', function () {
-      test(mixpanel).identify('id', { trait: true });
-      assert(window.mixpanel.identify.calledWith('id'));
-      assert(window.mixpanel.register.calledWith({ trait: true }));
+      test(mixpanel)
+        .identify('id', { trait: true })
+        .called(window.mixpanel.identify)
+        .with('id')
+        .called(window.mixpanel.register)
+        .with({ trait: true, id: 'id' });
     });
 
     it('should use an id as a name tag', function () {
-      test(mixpanel).identify('id');
-      assert(window.mixpanel.name_tag.calledWith('id'));
+      test(mixpanel)
+        .identify('id')
+        .called(window.mixpanel.name_tag)
+        .with('id');
     });
 
     it('should prefer a username as a name tag', function () {
-      test(mixpanel).identify('id', { username: 'username' });
-      assert(window.mixpanel.name_tag.calledWith('username'));
+      test(mixpanel)
+        .identify('id', { username: 'username' })
+        .called(window.mixpanel.name_tag)
+        .with('username');
     });
 
     it('should prefer an email as a name tag', function () {

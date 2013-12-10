@@ -153,7 +153,7 @@ describe('Amplitude', function () {
       .called(window.amplitude.setUserId)
       .with('id')
       .called(window.amplitude.setGlobalUserProperties)
-      .with({ trait: true });
+      .with({ trait: true, id: 'id' });
     });
   });
 

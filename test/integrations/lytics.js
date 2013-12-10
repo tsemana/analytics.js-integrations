@@ -100,7 +100,7 @@ describe('Lytics', function () {
 
     it('should send an id', function () {
       test(lytics).identify('id');
-      assert(window.jstag.send.calledWith({ _uid: 'id' }));
+      assert(window.jstag.send.calledWith({ _uid: 'id', id: 'id' }));
     });
 
     it('should send traits', function () {
@@ -110,7 +110,7 @@ describe('Lytics', function () {
 
     it('should send an id and traits', function () {
       test(lytics).identify('id', { trait: true });
-      assert(window.jstag.send.calledWith({ _uid: 'id', trait: true }));
+      assert(window.jstag.send.calledWith({ _uid: 'id', trait: true, id: 'id' }));
     });
   });
 

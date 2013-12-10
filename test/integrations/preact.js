@@ -81,13 +81,15 @@ describe('Preact', function () {
     });
 
     it('should send an id', function () {
-      test(preact).identify('id');
-      assert(window._lnq.push.calledWith(['_setPersonData', {
-        uid: 'id',
-        email: undefined,
-        name: undefined,
-        properties: {}
-      }]));
+      test(preact)
+        .identify('id')
+        .called(window._lnq.push)
+        .with(['_setPersonData', {
+          properties: { id: 'id' },
+          email: undefined,
+          name: undefined,
+          uid: 'id',
+        }]);
     });
 
     it('shouldnt send just traits', function () {
@@ -96,33 +98,39 @@ describe('Preact', function () {
     });
 
     it('should send an id and traits', function () {
-      test(preact).identify('id', { trait: true });
-      assert(window._lnq.push.calledWith(['_setPersonData', {
-        uid: 'id',
-        email: undefined,
-        name: undefined,
-        properties: { trait: true }
-      }]));
+      test(preact)
+        .identify('id', { trait: true })
+        .called(window._lnq.push)
+        .with(['_setPersonData', {
+          properties: { trait: true, id: 'id' },
+          email: undefined,
+          name: undefined,
+          uid: 'id',
+        }]);
     });
 
     it('should send an email', function () {
-      test(preact).identify('id', { email: 'name@example.com' });
-      assert(window._lnq.push.calledWith(['_setPersonData', {
-        uid: 'id',
-        email: 'name@example.com',
-        name: undefined,
-        properties: { email: 'name@example.com' }
-      }]));
+      test(preact)
+        .identify('id', { email: 'name@example.com' })
+        .called(window._lnq.push)
+        .with(['_setPersonData', {
+          properties: { email: 'name@example.com', id: 'id' },
+          email: 'name@example.com',
+          name: undefined,
+          uid: 'id',
+        }]);
     });
 
     it('should send a name', function () {
-      test(preact).identify('id', { name: 'name' });
-      assert(window._lnq.push.calledWith(['_setPersonData', {
-        uid: 'id',
-        email: undefined,
-        name: 'name',
-        properties: { name: 'name' }
-      }]));
+      test(preact)
+        .identify('id', { name: 'name' })
+        .called(window._lnq.push)
+        .with(['_setPersonData', {
+          properties: { name: 'name', id: 'id' },
+          email: undefined,
+          name: 'name',
+          uid: 'id',
+        }]);
     });
   });
 

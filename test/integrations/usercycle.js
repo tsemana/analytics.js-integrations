@@ -83,7 +83,7 @@ describe('USERcycle', function () {
     it('should send an id', function () {
       test(usercycle).identify('id');
       assert(window._uc.push.calledWith(['uid', 'id']));
-      assert(window._uc.push.calledWith(['action', 'came_back', {}]));
+      assert(window._uc.push.calledWith(['action', 'came_back', { id: 'id' }]));
     });
 
     it('should send traits', function () {
@@ -97,7 +97,8 @@ describe('USERcycle', function () {
       test(usercycle).identify('id', { trait: true });
       assert(window._uc.push.calledWith(['uid', 'id']));
       assert(window._uc.push.calledWith(['action', 'came_back', {
-        trait: true
+        trait: true,
+        id: 'id'
       }]));
     });
   });

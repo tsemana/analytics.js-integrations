@@ -99,7 +99,7 @@ describe('Qualaroo', function () {
     it('should send an id and traits', function () {
       test(qualaroo).identify('id', { trait: true });
       assert(window._kiq.push.calledWith(['identify', 'id']));
-      assert(window._kiq.push.calledWith(['set', { trait: true }]));
+      assert(window._kiq.push.calledWith(['set', { trait: true, id: 'id' }]));
     });
 
     it('should prefer an email', function () {

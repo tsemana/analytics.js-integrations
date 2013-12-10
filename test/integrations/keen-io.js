@@ -140,7 +140,7 @@ describe('Keen IO', function () {
     it('should pass an id', function () {
       test(keen).identify('id');
       var user = window.Keen.client.globalProperties().user;
-      assert(equal(user, { userId: 'id', traits: {} }));
+      assert(equal(user, { userId: 'id', traits: { id: 'id' } }));
     });
 
     it('should pass a traits', function () {
@@ -152,7 +152,7 @@ describe('Keen IO', function () {
     it('should pass an id and traits', function () {
       test(keen).identify('id', { trait: true });
       var user = window.Keen.client.globalProperties().user;
-      assert(equal(user, { userId: 'id', traits: { trait: true }}));
+      assert(equal(user, { userId: 'id', traits: { trait: true, id: 'id' }}));
     });
   });
 

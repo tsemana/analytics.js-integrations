@@ -131,7 +131,7 @@ describe('GoSquared', function () {
       test(gosquared).identify('id', { trait: true });
       assert(window.GoSquared.UserName == 'id');
       assert(window.GoSquared.VisitorName == 'id');
-      assert(equal(window.GoSquared.Visitor, { userID: 'id', trait: true }));
+      assert(equal(window.GoSquared.Visitor, { userID: 'id', trait: true, id: 'id' }));
     });
 
     it('should prefer an email for visitor name', function () {

@@ -120,7 +120,7 @@ describe('KISSmetrics', function () {
     it('should send an id and traits', function () {
       test(kissmetrics).identify('id', { trait: true });
       assert(window._kmq.push.calledWith(['identify', 'id']));
-      assert(window._kmq.push.calledWith(['set', { trait: true }]));
+      assert(window._kmq.push.calledWith(['set', { trait: true, id: 'id' }]));
     });
   });
 

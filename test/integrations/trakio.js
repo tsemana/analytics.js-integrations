@@ -146,8 +146,10 @@ describe('trak.io', function () {
     });
 
     it('should send id', function () {
-      test(trakio).identify('id');
-      assert(window.trak.io.identify.calledWith('id', {}));
+      test(trakio)
+        .identify('id')
+        .called(window.trak.io.identify)
+        .with('id', { id: 'id' });
     });
 
     it('should send traits', function () {
@@ -156,8 +158,10 @@ describe('trak.io', function () {
     });
 
     it('should send an id and traits', function () {
-      test(trakio).identify('id', { trait: true });
-      assert(window.trak.io.identify.calledWith('id', { trait: true }));
+      test(trakio)
+        .identify('id', { trait: true })
+        .called(window.trak.io.identify)
+        .with('id', { trait: true, id: 'id' });
     });
 
     it('should alias traits', function () {

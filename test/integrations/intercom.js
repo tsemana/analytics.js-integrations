@@ -76,19 +76,27 @@ describe('Intercom', function () {
 
     it('should call boot the first time and update the second', function () {
       var app = settings.appId;
-      test(intercom).identify('id');
-      assert(window.Intercom.calledWith('boot', { app_id: app, user_id: 'id' }));
-      test(intercom).identify('id');
-      assert(window.Intercom.calledWith('update', { app_id: app, user_id: 'id' }));
+      test(intercom)
+        .identify('id')
+        .called(window.Intercom)
+        .with('boot', { app_id: app, user_id: 'id', id: 'id' });
+
+      test(intercom)
+        .identify('id')
+        .called(window.Intercom)
+        .with('update', { app_id: app, user_id: 'id', id: 'id' });
     });
 
     it('should send an id and traits', function () {
-      test(intercom).identify('id', { email: 'email@example.com' });
-      assert(window.Intercom.calledWith('boot', {
-        app_id: settings.appId,
-        email: 'email@example.com',
-        user_id: 'id'
-      }));
+      test(intercom)
+        .identify('id', { email: 'email@example.com' })
+        .called(window.Intercom)
+        .with('boot', {
+          email: 'email@example.com',
+          app_id: settings.appId,
+          user_id: 'id',
+          id: 'id'
+        });
     });
 
     it('should convert dates', function () {
@@ -101,7 +109,8 @@ describe('Intercom', function () {
         app_id: settings.appId,
         user_id: 'id',
         created_at: Math.floor(date / 1000),
-        company: { created_at: Math.floor(date / 1000) }
+        company: { created_at: Math.floor(date / 1000) },
+        id: 'id'
       }));
     });
 
@@ -114,7 +123,8 @@ describe('Intercom', function () {
       assert(window.Intercom.calledWith('boot', {
         app_id: settings.appId,
         user_id: 'id',
-        user_hash: 'x'
+        user_hash: 'x',
+        id: 'id'
       }));
     });
 
@@ -127,7 +137,8 @@ describe('Intercom', function () {
       assert(window.Intercom.calledWith('boot', {
         app_id: settings.appId,
         user_id: 'id',
-        increments: { number: 42 }
+        increments: { number: 42 },
+        id: 'id'
       }));
     });
 
@@ -137,6 +148,7 @@ describe('Intercom', function () {
       assert(window.Intercom.calledWith('boot', {
         app_id: settings.appId,
         user_id: 'id',
+        id: 'id',
         widget: {
           activator: '#IntercomDefaultWidget',
           use_counter: true
@@ -151,6 +163,7 @@ describe('Intercom', function () {
       assert(window.Intercom.calledWith('boot', {
         app_id: settings.appId,
         user_id: 'id',
+        id: 'id',
         widget: {
           activator: '#Intercom',
           use_counter: true

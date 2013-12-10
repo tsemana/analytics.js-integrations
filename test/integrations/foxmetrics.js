@@ -110,24 +110,24 @@ describe('FoxMetrics', function () {
     });
 
     it('should send an id', function () {
-      test(foxmetrics).identify('id');
-      // foxmetrics.identify('id');
-      assert(window._fxm.push.calledWith([
-        '_fxm.visitor.profile',
-        'id',
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        undefined,
-        {}
-      ]));
+      test(foxmetrics)
+        .identify('id')
+        .called(window._fxm.push)
+        .with([
+          '_fxm.visitor.profile',
+          'id',
+          undefined,
+          undefined,
+          undefined,
+          undefined,
+          undefined,
+          undefined,
+          { id: 'id' }
+        ]);
     });
 
     it('should not only send traits', function () {
       test(foxmetrics).identify(null, { trait: true });
-      // foxmetrics.identify(null, { trait: true });
       assert(!window._fxm.push.called);
     });
 
@@ -153,7 +153,8 @@ describe('FoxMetrics', function () {
           email: 'email@example.com',
           firstName: 'first',
           lastName: 'last',
-          trait: true
+          trait: true,
+          id: 'id'
         }
       ]));
     });
@@ -170,7 +171,8 @@ describe('FoxMetrics', function () {
         undefined,
         undefined,
         {
-          name: 'first last'
+          name: 'first last',
+          id: 'id'
         }
       ]));
     });
