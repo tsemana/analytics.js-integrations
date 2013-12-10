@@ -48,13 +48,6 @@ describe('Clicky', function () {
       assert(equal(window.clicky_site_ids, [settings.siteId]));
     });
 
-    it.skip('should set custom data', function () {
-      analytics.user().identify('id', { trait: true });
-      clicky.identify = sinon.spy();
-      clicky.initialize();
-      assert(clicky.identify.calledWith('id', { trait: true }));
-    });
-
     it('should call #load', function () {
       clicky.initialize();
       assert(clicky.load.called);
