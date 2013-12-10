@@ -126,7 +126,7 @@ describe('Google Analytics', function () {
       });
 
       it('should send a page view', function () {
-        ga.page();
+        test(ga).page();
         assert(window.ga.calledWith('send', 'pageview', {
           page: undefined,
           title: undefined,
@@ -135,7 +135,7 @@ describe('Google Analytics', function () {
       });
 
       it('should send a page view with properties', function () {
-        ga.page('category', 'name', { url: 'url', path: '/path' });
+        test(ga).page('category', 'name', { url: 'url', path: '/path' });
         assert(window.ga.calledWith('send', 'pageview', {
           page: '/path',
           title: 'category name',
@@ -144,7 +144,7 @@ describe('Google Analytics', function () {
       });
 
       it('should track a named page', function () {
-        ga.page(null, 'Name');
+        test(ga).page(null, 'Name');
         assert(window.ga.calledWith('send', 'event', {
           eventCategory: 'All',
           eventAction: 'Viewed Name Page',
@@ -155,7 +155,7 @@ describe('Google Analytics', function () {
       });
 
       it('should track a name + category page', function () {
-        ga.page('Category', 'Name');
+        test(ga).page('Category', 'Name');
         assert(window.ga.calledWith('send', 'event', {
           eventCategory: 'Category',
           eventAction: 'Viewed Category Name Page',
@@ -166,7 +166,7 @@ describe('Google Analytics', function () {
       });
 
       it('should track a categorized page', function () {
-        ga.page('Category', 'Name');
+        test(ga).page('Category', 'Name');
         assert(window.ga.calledWith('send', 'event', {
           eventCategory: 'Category',
           eventAction: 'Viewed Category Page',
@@ -179,8 +179,8 @@ describe('Google Analytics', function () {
       it('should not track a named or categorized page when the option is off', function () {
         ga.options.trackNamedPages = false;
         ga.options.trackCategorizedPages = false;
-        ga.page(null, 'Name');
-        ga.page('Category', 'Name');
+        test(ga).page(null, 'Name');
+        test(ga).page('Category', 'Name');
         assert(window.ga.calledTwice);
       });
     });
@@ -192,7 +192,7 @@ describe('Google Analytics', function () {
       });
 
       it('should send an event', function () {
-        ga.track('event');
+        test(ga).track('event');
         assert(window.ga.calledWith('send', 'event', {
           eventCategory: 'All',
           eventAction: 'event',
@@ -203,7 +203,7 @@ describe('Google Analytics', function () {
       });
 
       it('should send a category property', function () {
-        ga.track('event', { category: 'category' });
+        test(ga).track('event', { category: 'category' });
         assert(window.ga.calledWith('send', 'event', {
           eventCategory: 'category',
           eventAction: 'event',
@@ -214,8 +214,8 @@ describe('Google Analytics', function () {
       });
 
       it('should send a stored category', function () {
-        ga.page('category');
-        ga.track('event', { category: 'category' });
+        test(ga).page('category');
+        test(ga).track('event', { category: 'category' });
         assert(window.ga.calledWith('send', 'event', {
           eventCategory: 'category',
           eventAction: 'event',
@@ -226,7 +226,7 @@ describe('Google Analytics', function () {
       });
 
       it('should send a label property', function () {
-        ga.track('event', { label: 'label' });
+        test(ga).track('event', { label: 'label' });
         assert(window.ga.calledWith('send', 'event', {
           eventCategory: 'All',
           eventAction: 'event',
@@ -237,7 +237,7 @@ describe('Google Analytics', function () {
       });
 
       it('should send a rounded value property', function () {
-        ga.track('event', { value: 1.1 });
+        test(ga).track('event', { value: 1.1 });
         assert(window.ga.calledWith('send', 'event', {
           eventCategory: 'All',
           eventAction: 'event',
@@ -248,7 +248,7 @@ describe('Google Analytics', function () {
       });
 
       it('should prefer a rounded revenue property', function () {
-        ga.track('event', { revenue: 9.99 });
+        test(ga).track('event', { revenue: 9.99 });
         assert(window.ga.calledWith('send', 'event', {
           eventCategory: 'All',
           eventAction: 'event',
@@ -259,7 +259,7 @@ describe('Google Analytics', function () {
       });
 
       it('should send a non-interaction property', function () {
-        ga.track('event', { noninteraction: true });
+        test(ga).track('event', { noninteraction: true });
         assert(window.ga.calledWith('send', 'event', {
           eventCategory: 'All',
           eventAction: 'event',
@@ -270,7 +270,7 @@ describe('Google Analytics', function () {
       });
 
       it('should send a non-interaction option', function () {
-        ga.track('event', {}, { noninteraction: true });
+        test(ga).track('event', {}, { 'Google Analytics': { noninteraction: true } });
         assert(window.ga.calledWith('send', 'event', {
           eventCategory: 'All',
           eventAction: 'event',
@@ -397,35 +397,35 @@ describe('Google Analytics', function () {
       });
 
       it('should send a page view', function () {
-        ga.page();
+        test(ga).page();
         assert(window._gaq.push.calledWith(['_trackPageview', undefined]));
       });
 
       it('should send a path', function () {
-        ga.page(null, null, { path: '/path' });
+        test(ga).page(null, null, { path: '/path' });
         assert(window._gaq.push.calledWith(['_trackPageview', '/path']));
       });
 
       it('should track a named page', function () {
-        ga.page(null, 'Name');
+        test(ga).page(null, 'Name');
         assert(window._gaq.push.calledWith(['_trackEvent', 'All', 'Viewed Name Page', undefined, 0, true]));
       });
 
       it('should track a named page with a category', function () {
-        ga.page('Category', 'Name');
+        test(ga).page('Category', 'Name');
         assert(window._gaq.push.calledWith(['_trackEvent', 'Category', 'Viewed Category Name Page', undefined, 0, true]));
       });
 
       it('should track a categorized page', function () {
-        ga.page('Category', 'Name');
+        test(ga).page('Category', 'Name');
         assert(window._gaq.push.calledWith(['_trackEvent', 'Category', 'Viewed Category Page', undefined, 0, true]));
       });
 
       it('should not track a named or categorized page when the option is off', function () {
         ga.options.trackNamedPages = false;
         ga.options.trackCategorizedPages = false;
-        ga.page(null, 'Name');
-        ga.page('Category', 'Name');
+        test(ga).page(null, 'Name');
+        test(ga).page('Category', 'Name');
         assert(window._gaq.push.calledTwice);
       });
     });
@@ -437,43 +437,43 @@ describe('Google Analytics', function () {
       });
 
       it('should send an event', function () {
-        ga.track('event');
+        test(ga).track('event');
         assert(window._gaq.push.calledWith(['_trackEvent', 'All', 'event', undefined, 0, undefined]));
       });
 
       it('should send a category property', function () {
-        ga.track('event', { category: 'category' });
+        test(ga).track('event', { category: 'category' });
         assert(window._gaq.push.calledWith(['_trackEvent', 'category', 'event', undefined, 0, undefined]));
       });
 
       it('should send a stored category', function () {
-        ga.page('category');
-        ga.track('event', { category: 'category' });
+        test(ga).page('category');
+        test(ga).track('event', { category: 'category' });
         assert(window._gaq.push.calledWith(['_trackEvent', 'category', 'event', undefined, 0, undefined]));
       });
 
       it('should send a label property', function () {
-        ga.track('event', { label: 'label' });
+        test(ga).track('event', { label: 'label' });
         assert(window._gaq.push.calledWith(['_trackEvent', 'All', 'event', 'label', 0, undefined]));
       });
 
       it('should send a rounded value property', function () {
-        ga.track('event', { value: 1.1 });
+        test(ga).track('event', { value: 1.1 });
         assert(window._gaq.push.calledWith(['_trackEvent', 'All', 'event', undefined, 1, undefined]));
       });
 
       it('should prefer a rounded revenue property', function () {
-        ga.track('event', { revenue: 9.99 });
+        test(ga).track('event', { revenue: 9.99 });
         assert(window._gaq.push.calledWith(['_trackEvent', 'All', 'event', undefined, 10, undefined]));
       });
 
       it('should send a non-interaction property', function () {
-        ga.track('event', { noninteraction: true });
+        test(ga).track('event', { noninteraction: true });
         assert(window._gaq.push.calledWith(['_trackEvent', 'All', 'event', undefined, 0, true]));
       });
 
       it('should send a non-interaction option', function () {
-        ga.track('event', {}, { noninteraction: true });
+        test(ga).track('event', {}, { 'Google Analytics': { noninteraction: true } });
         assert(window._gaq.push.calledWith(['_trackEvent', 'All', 'event', undefined, 0, true]));
       });
     });
