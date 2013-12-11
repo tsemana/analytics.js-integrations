@@ -106,6 +106,16 @@ describe('Heap', function () {
       heap.identify(null, { username: 'username' });
       assert(window.heap.identify.calledWith({ handle: 'username' }));
     });
+
+    it('should prefer username over id', function(){
+      heap.identify('id', { username: 'username' });
+      assert(window.heap.identify.calledWith({ handle: 'username' }));
+    })
+
+    it('should fallback to id when username is missing', function(){
+      heap.identify('id');
+      assert(window.heap.identify.calledWith({ handle: 'id' }));
+    })
   });
 
   describe('#track', function () {
