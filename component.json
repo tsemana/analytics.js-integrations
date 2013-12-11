@@ -104,6 +104,7 @@
     "lib/uservoice.js",
     "lib/vero.js",
     "lib/visual-website-optimizer.js",
+    "lib/webengage.js",
     "lib/woopra.js",
     "lib/yandex-metrica.js"
   ]
