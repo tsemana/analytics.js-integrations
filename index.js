@@ -60,6 +60,7 @@ var integrations = [
   'uservoice',
   'vero',
   'visual-website-optimizer',
+  'webengage',
   'woopra',
   'yandex-metrica'
 ];
