@@ -90,12 +90,16 @@ describe('Woopra', function () {
 
     it('should prefer a name', function () {
       test(woopra).page(null, 'name', { title: 'title' });
-      assert(window.woopra.track.calledWith('pv', { title: 'name' }));
+      assert(window.woopra.track.calledWith('pv', { title: 'name', name: 'name' }));
     });
 
     it('should prefer a category and name', function () {
       test(woopra).page('category', 'name', { title: 'title' });
-      assert(window.woopra.track.calledWith('pv', { title: 'category name' }));
+      assert(window.woopra.track.calledWith('pv', {
+        title: 'category name',
+        category: 'category',
+        name: 'name'
+      }));
     });
   });
 

@@ -211,12 +211,12 @@ describe('trak.io', function () {
     });
 
     it('should send a new id', function () {
-      trakio.alias('new');
+      test(trakio).alias('new');
       assert(window.trak.io.alias.calledWith('new'));
     });
 
     it('should send a new id and an original id', function () {
-      trakio.alias('another', 'original');
+      test(trakio).alias('another', 'original');
       assert(window.trak.io.alias.calledWith('original', 'another'));
     });
   });

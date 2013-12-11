@@ -90,8 +90,10 @@ describe('Klaviyo', function () {
     });
 
     it('should send an id', function () {
-      test(klaviyo).identify('id');
-      assert(window._learnq.push.calledWith(['identify', { $id: 'id' }]));
+      test(klaviyo)
+        .identify('id')
+        .called(window._learnq.push)
+        .with(['identify', { $id: 'id' }]);
     });
 
     it('shouldnt send just traits', function () {
@@ -100,11 +102,10 @@ describe('Klaviyo', function () {
     });
 
     it('should send an id and traits', function () {
-      test(klaviyo).identify('id', { trait: true });
-      assert(window._learnq.push.calledWith(['identify', {
-        $id: 'id',
-        trait: true
-      }]));
+      test(klaviyo)
+        .identify('id', { trait: true })
+        .called(window._learnq.push)
+        .with(['identify', { $id: 'id', trait: true }]);
     });
 
     it('should alias traits', function () {
