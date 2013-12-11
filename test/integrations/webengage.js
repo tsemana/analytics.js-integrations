@@ -18,10 +18,6 @@ describe('WebEngage', function(){
     webengage.initialize();
   })
 
-  afterEach(function(){
-    webengage.reset();
-  })
-
   it('should store the correct settings', function(){
     test(webengage)
       .name('WebEngage')
@@ -41,7 +37,6 @@ describe('WebEngage', function(){
       assert(!webengage.loaded());
       window.webengage = {};
       assert(webengage.loaded());
-      window.webengage = null;
     })
   })
 
