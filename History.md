@@ -1,3 +1,7 @@
+0.2.15 - December 11, 2013
+-------------------------
+ * webengage: load in initialize
+
 0.2.14 - December 11, 2013
 -------------------------
  * add [WebEngage](http://webengage.com)
