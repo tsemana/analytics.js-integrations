@@ -212,10 +212,12 @@ describe('Olark', function () {
     });
 
     it('should us an id as a nickname', function () {
-      test(olark).identify('id');
-      assert(window.olark.calledWith('api.chat.updateVisitorNickname', {
-        snippet: 'id'
-      }));
+      test(olark)
+        .identify('id')
+        .called(window.olark)
+        .with('api.chat.updateVisitorNickname', {
+          snippet: 'id'
+        });
     });
 
     it('should prefer a username as a nickname', function () {
