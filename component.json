@@ -47,7 +47,9 @@
     "jkroso/equals": "*",
     "segmentio/analytics.js": "page",
     "segmentio/analytics.js-integration-tester": "*",
-    "segmentio/when": "*"
+    "segmentio/when": "*",
+    "yields/clear-timeouts": "*",
+    "yields/clear-intervals": "*"
   },
   "scripts": [
     "index.js",
