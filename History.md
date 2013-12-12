@@ -1,3 +1,7 @@
+0.3.0 - December 12, 2013
+-------------------------
+* add [facade](https://github.com/segmentio/facade)
+
 0.2.16 - December 11, 2013
 --------------------------
 * google-analytics: add support for retaining query string in page views
