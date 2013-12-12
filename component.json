@@ -2,7 +2,7 @@
   "name": "integrations",
   "repo": "segmentio/analytics.js-integrations",
   "description": "All of the third-party analytics.js integrations.",
-  "version": "0.2.13",
+  "version": "0.2.16",
   "license": "MIT",
   "keywords": [
     "analytics.js",
@@ -48,7 +48,9 @@
     "segmentio/analytics.js": "add/facade",
     "segmentio/facade": "0.2.0",
     "segmentio/analytics.js-integration-tester": "add/facade",
-    "segmentio/when": "*"
+    "segmentio/when": "*",
+    "yields/clear-timeouts": "*",
+    "yields/clear-intervals": "*"
   },
   "scripts": [
     "index.js",
@@ -105,6 +107,7 @@
     "lib/uservoice.js",
     "lib/vero.js",
     "lib/visual-website-optimizer.js",
+    "lib/webengage.js",
     "lib/woopra.js",
     "lib/yandex-metrica.js"
   ]

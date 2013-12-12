@@ -143,6 +143,16 @@ describe('Google Analytics', function () {
         }));
       });
 
+      it('should send the query if its included', function () {
+        ga.options.includeSearch = true;
+        test(ga).page('category', 'name', { url: 'url', path: '/path', search: '?q=1' });
+        assert(window.ga.calledWith('send', 'pageview', {
+          page: '/path?q=1',
+          title: 'category name',
+          url: 'url'
+        }));
+      });
+
       it('should track a named page', function () {
         test(ga).page(null, 'Name');
         assert(window.ga.calledWith('send', 'event', {
@@ -404,6 +414,12 @@ describe('Google Analytics', function () {
       it('should send a path', function () {
         test(ga).page(null, null, { path: '/path' });
         assert(window._gaq.push.calledWith(['_trackPageview', '/path']));
+      });
+
+      it('should send the query if its included', function () {
+        ga.options.includeSearch = true;
+        test(ga).page(null, null, { path: '/path', search: '?q=1' });
+        assert(window._gaq.push.calledWith(['_trackPageview', '/path?q=1']));
       });
 
       it('should track a named page', function () {

@@ -1,3 +1,16 @@
+0.2.16 - December 11, 2013
+--------------------------
+* google-analytics: add support for retaining query string in page views
+
+0.2.15 - December 11, 2013
+--------------------------
+ * webengage: load in initialize
+
+0.2.14 - December 11, 2013
+--------------------------
+ * add [WebEngage](http://webengage.com)
+ * heap: fallback to user id as `.handle`
+
 0.2.13 - December 4, 2013
 -------------------------
 * uservoice: add `smartvote` option

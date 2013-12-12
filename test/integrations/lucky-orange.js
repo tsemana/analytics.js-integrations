@@ -9,7 +9,7 @@ describe('LuckyOrange', function () {
 
   var lucky;
   var settings = {
-    siteId: '12345'
+    siteId: '17181'
   };
 
   beforeEach(function () {
@@ -56,10 +56,9 @@ describe('LuckyOrange', function () {
   });
 
   describe('#loaded', function () {
-    it('should test window._loq.push', function () {
-      window._loq = [];
+    it('should test window.__wtw_watcher_added', function () {
       assert(!lucky.loaded());
-      window._loq.push = function(){};
+      window.__wtw_watcher_added = true;
       assert(lucky.loaded());
     });
   });
@@ -72,7 +71,7 @@ describe('LuckyOrange', function () {
     });
 
     it('should change loaded state', function (done) {
-      assert(!lucky.loaded());
+      if (lucky.loaded()) return done(new Error('lucky-orange is already loaded'));
       lucky.load(function (err) {
         if (err) return done(err);
         assert(lucky.loaded());

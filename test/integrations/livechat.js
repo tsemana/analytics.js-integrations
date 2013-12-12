@@ -1,6 +1,8 @@
 
 describe('LiveChat', function () {
 
+  var timeouts = require('clear-timeouts');
+  var intervals = require('clear-intervals');
   var analytics = require('analytics');
   var assert = require('assert');
   var equal = require('equals');
@@ -20,6 +22,8 @@ describe('LiveChat', function () {
   });
 
   afterEach(function () {
+    timeouts();
+    intervals();
     livechat.reset();
   });
 
@@ -50,19 +54,9 @@ describe('LiveChat', function () {
   });
 
   describe('#loaded', function () {
-    var global;
-
-    before(function () {
-      global = window.LC_API;
-    });
-
-    after(function () {
-      window.LC_API = global;
-    });
-
-    it('should test window.LC_API', function () {
+    it('should test .isLoaded', function () {
       assert(!livechat.loaded());
-      window.LC_API = {};
+      livechat.isLoaded = true;
       assert(livechat.loaded());
     });
   });
@@ -75,7 +69,7 @@ describe('LiveChat', function () {
     });
 
     it('should change loaded state', function (done) {
-      assert(!livechat.loaded());
+      if (livechat.loaded()) return done(new Error('livechat already loaded'));
       livechat.load(function (err) {
         if (err) return done(err);
         assert(livechat.loaded());
@@ -115,5 +109,9 @@ describe('LiveChat', function () {
       ]));
     });
   });
+
+  after(function(){
+    livechat.initialize();
+  })
 
 });
