@@ -26,6 +26,7 @@ var integrations = [
   'gauges',
   'get-satisfaction',
   'google-analytics',
+  'google-tag-manager',
   'gosquared',
   'heap',
   'hittail',
