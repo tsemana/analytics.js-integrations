@@ -30,6 +30,7 @@ describe('LuckyOrange', function () {
       .global('_loq')
       .global('__wtw_lucky_site_id')
       .global('__wtw_lucky_is_segment_io')
+      .global('__wtw_custom_user_data')
       .option('siteId', null);
   });
 
@@ -87,10 +88,26 @@ describe('LuckyOrange', function () {
       sinon.stub(window._loq, 'push');
     });
 
-    it('should send an id and traits', function () {
-      test(lucky).identify('id', { trait: true });
-      assert(window._loq.push.calledWith(['identify', 'id']));
-      assert(window._loq.push.calledWith(['set', { trait: true, id: 'id' }]));
+    it('should send name', function(){
+      test(lucky)
+        .identify(null, { email: 'test@example.com' })
+        .changed(window.__wtw_custom_user_data)
+        .to({ email: 'test@example.com' });
+    })
+
+    it('should send name', function(){
+      test(lucky)
+        .identify(null, { name: 'test' })
+        .changed(window.__wtw_custom_user_data)
+        .to({ name: 'test' });
+    })
+
+    it('should send traits', function () {
+      var traits = { name: 'test', email: 'test@example.com' };
+      test(lucky)
+        .identify('id', traits)
+        .changed(window.__wtw_custom_user_data)
+        .to({ id: 'id', name: 'test', email: 'test@example.com' });
     });
   });
 
