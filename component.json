@@ -73,6 +73,7 @@
     "lib/gauges.js",
     "lib/get-satisfaction.js",
     "lib/google-analytics.js",
+    "lib/google-tag-manager.js",
     "lib/gosquared.js",
     "lib/heap.js",
     "lib/hittail.js",
