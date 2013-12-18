@@ -1,3 +1,8 @@
+0.3.1 - December 18, 2013
+-------------------------
+* add [Google Tag Manager](https://www.google.com/tagmanager/)
+* lucky orange: fix identify bug
+
 0.3.0 - December 12, 2013
 -------------------------
 * add [facade](https://github.com/segmentio/facade)
