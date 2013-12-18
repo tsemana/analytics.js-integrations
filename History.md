@@ -1,3 +1,7 @@
+0.3.2 - December 18, 2013
+-------------------------
+* fix `segmentio/facade` dependency
+
 0.3.1 - December 18, 2013
 -------------------------
 * add [Google Tag Manager](https://www.google.com/tagmanager/)
