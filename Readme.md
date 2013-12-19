@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/segmentio/analytics.js-integrations.png)](https://travis-ci.org/segmentio/analytics.js-integrations)
+
 
 # analytics.js-integrations
 
