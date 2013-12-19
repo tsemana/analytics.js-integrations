@@ -1,3 +1,9 @@
+
+0.3.3 - December 18, 2013
+-------------------------
+* update obj-case, fixes problems with amd
+* add require.js to test file
+
 0.3.2 - December 18, 2013
 -------------------------
 * fix `segmentio/facade` dependency
