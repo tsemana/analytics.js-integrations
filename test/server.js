@@ -15,6 +15,9 @@ var app = express()
   .use(send)
   .set('views', __dirname)
   .engine('html', hbs.__express)
+  .get('/coverage', function(_, res){
+    res.render('coverage.html');
+  })
   .get('*', function (req, res, next) {
     res.render('index.html');
   })

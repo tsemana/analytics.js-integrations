@@ -50,7 +50,8 @@
     "segmentio/analytics.js-integration-tester": "*",
     "segmentio/when": "*",
     "yields/clear-timeouts": "*",
-    "yields/clear-intervals": "*"
+    "yields/clear-intervals": "*",
+    "yields/coverage": "*"
   },
   "scripts": [
     "index.js",
