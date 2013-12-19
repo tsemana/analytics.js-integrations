@@ -9,7 +9,7 @@ describe('Intercom', function () {
 
   var intercom;
   var settings = {
-    appId: '541bcea6192966e3d579d4055739783093f14961'
+    appId: '8cf9338df9625cbe6811a16d573a79b0c8a8fa86'
   };
 
   beforeEach(function () {
