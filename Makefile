@@ -32,4 +32,8 @@ test-browser: node_modules build server
 	@sleep 1
 	@open $(test)
 
-.PHONY: clean server test test-browser
+test-coverage: node_modules build server
+	@sleep 1
+	@open $(test)/coverage
+
+.PHONY: clean server test test-browser test-coverage
