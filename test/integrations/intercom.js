@@ -9,7 +9,7 @@ describe('Intercom', function () {
 
   var intercom;
   var settings = {
-    appId: 'e2a1655e0444b4cb3f5e593bd35b0602aa1039ae'
+    appId: '541bcea6192966e3d579d4055739783093f14961'
   };
 
   beforeEach(function () {
@@ -192,5 +192,18 @@ describe('Intercom', function () {
       }));
     });
   });
+
+  describe('#track', function(){
+    beforeEach(function(){
+      window.Intercom = sinon.spy();
+    })
+
+    it('should send an event', function(){
+      test(intercom)
+        .track('event')
+        .called(window.Intercom)
+        .with('trackEvent', 'event');
+    })
+  })
 
 });
