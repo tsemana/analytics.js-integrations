@@ -51,7 +51,8 @@
     "segmentio/when": "*",
     "yields/clear-timeouts": "*",
     "yields/clear-intervals": "*",
-    "yields/coverage": "*"
+    "yields/coverage": "*",
+    "yields/gravy": "*"
   },
   "scripts": [
     "index.js",
