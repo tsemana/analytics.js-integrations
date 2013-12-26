@@ -1,4 +1,5 @@
 
+BROWSERS ?= 'ie6..11, safari, chrome, firefox, iphone, opera'
 tests ?= *
 test = http://localhost:4202
 component = node_modules/component/bin/component
@@ -14,14 +15,14 @@ components: component.json
 	@$(component) install --dev
 
 kill:
-	@-test ! -s test/pid.txt || kill `cat test/pid.txt`
+	@-test ! -s test/pid.txt || kill `cat test/pid.txt` &> /dev/null
 	@-rm -f test/pid.txt
 
 node_modules: package.json
-	@npm install
+	@npm install &> /dev/null
 
 server: build kill
-	@tests=$(tests) node test/server &
+	@tests=$(tests) node test/server &> /dev/null &
 
 test: build server
 	@sleep 1
@@ -36,4 +37,8 @@ test-coverage: node_modules build server
 	@sleep 1
 	@open $(test)/coverage
 
-.PHONY: clean server test test-browser test-coverage
+test-sauce: node_modules build server
+	@sleep 1
+	@BROWSERS=$(BROWSERS) node_modules/.bin/gravy --url $(test)
+
+.PHONY: clean server test test-browser test-coverage test-sauce

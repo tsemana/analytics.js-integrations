@@ -98,7 +98,7 @@
       mochaPhantomJS.run();
     } else {
       require('debug').enable('*');
-      mocha.run();
+      require('gravy')(mocha.run());
     }
   </script>
 </body>
