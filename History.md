@@ -1,4 +1,8 @@
 
+0.3.4 - December 26, 2013
+-------------------------
+ * add intercom track
+
 0.3.3 - December 18, 2013
 -------------------------
 * update obj-case, fixes problems with amd
