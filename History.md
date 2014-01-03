@@ -1,4 +1,8 @@
 
+0.3.5 - January 3, 2014
+-----------------------
+ * add slugs.json
+
 0.3.4 - December 26, 2013
 -------------------------
  * add intercom track
