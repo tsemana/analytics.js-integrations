@@ -4,6 +4,7 @@
   "description": "All of the third-party analytics.js integrations.",
   "version": "0.3.4",
   "license": "MIT",
+  "integrations": "./lib/slugs.json",
   "keywords": [
     "analytics.js",
     "integrations",
@@ -46,7 +47,7 @@
     "ianstormtaylor/assert": "*",
     "ianstormtaylor/sinon": "*",
     "jkroso/equals": "*",
-    "segmentio/analytics.js": "add/facade",
+    "segmentio/analytics.js": "*",
     "segmentio/analytics.js-integration-tester": "*",
     "segmentio/when": "*",
     "yields/clear-timeouts": "*",
@@ -113,5 +114,8 @@
     "lib/webengage.js",
     "lib/woopra.js",
     "lib/yandex-metrica.js"
+  ],
+  "json": [
+    "lib/slugs.json"
   ]
 }
