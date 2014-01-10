@@ -1,4 +1,9 @@
 
+0.3.6 / 2014-01-10 
+==================
+
+ * intercom: send created_at and name correctly
+
 0.3.5 - January 3, 2014
 -----------------------
  * add slugs.json
