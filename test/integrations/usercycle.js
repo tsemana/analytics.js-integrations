@@ -120,5 +120,14 @@ describe('USERcycle', function () {
         property: true
       }]));
     });
+
+    it('should send revenue as revenue_amount', function(){
+      test(usercycle)
+        .track('event', { revenue: '$50' })
+        .called(window._uc.push)
+        .with(['action', 'event', {
+          revenue_amount: 50
+        }]);
+    })
   });
 });
