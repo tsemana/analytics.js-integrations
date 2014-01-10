@@ -107,40 +107,53 @@ describe('GoSquared', function () {
   });
 
   describe('#identify', function () {
-    beforeEach(function (done) {
+    beforeEach(function () {
       gosquared.initialize();
-      gosquared.once('load', done);
+      window._gs = sinon.spy();
     });
 
     it('should set an id', function () {
-      test(gosquared).identify('id');
-      assert(window._gs('get', 'visitorID') == 'id');
-      assert(window._gs('get', 'visitorName') == 'id');
+      test(gosquared)
+        .identify('id')
+        .called(window._gs)
+        .with('set', 'visitorID', 'id');
     });
 
     it('should set traits', function () {
-      test(gosquared).identify(null, { trait: true });
-      assert(equal(window._gs('get', 'visitor'), { trait: true }));
+      test(gosquared)
+        .identify(null, { trait: true })
+        .called(window._gs)
+        .with('set', 'visitor', { trait: true });
     });
 
     it('should set an id and traits', function () {
-      test(gosquared).identify('id', { trait: true });
-      assert(window._gs('get', 'visitorID') == 'id');
-      assert(window._gs('get', 'visitorName') == 'id');
-      assert(equal(window._gs('get', 'visitor'), { userID: 'id', trait: true, id: 'id' }));
+      test(gosquared)
+        .identify('id', { trait: true })
+        .called(window._gs)
+        .with('set', 'visitorID', 'id')
+        .called(window._gs)
+        .with('set', 'visitor', {
+          userID: 'id',
+          trait: true,
+          id: 'id'
+        });
     });
 
     it('should prefer an email for visitor name', function () {
-      test(gosquared).identify('id', {
-        email: 'email@example.com',
-        username: 'username'
-      });
-      assert(window._gs('get', 'visitorName') == 'email@example.com');
+      test(gosquared)
+        .identify('id', {
+          email: 'email@example.com',
+          username: 'username'
+        })
+        .called(window._gs)
+        .with('set', 'visitorName', 'email@example.com');
     });
 
     it('should also prefer a username for visitor name', function () {
-      test(gosquared).identify('id', { username: 'username' });
-      assert(window._gs('get', 'visitorName') == 'username');
+      test(gosquared)
+        .identify('id', { username: 'username' })
+        .called(window._gs)
+        .with('set', 'visitorName', 'username');
     });
   });
 
