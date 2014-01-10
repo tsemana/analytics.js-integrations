@@ -99,6 +99,43 @@ describe('Intercom', function () {
         });
     });
 
+    it('should send user name', function(){
+      test(intercom)
+        .identify('id', { name: 'john doe' })
+        .called(window.Intercom)
+        .with('boot', {
+          app_id: settings.appId,
+          user_id: 'id',
+          name: 'john doe',
+          id: 'id'
+        });
+    })
+
+    it('should send first and last as name', function(){
+      test(intercom)
+        .identify('id', { firstName: 'john', lastName: 'doe' })
+        .called(window.Intercom)
+        .with('boot', {
+          app_id: settings.appId,
+          user_id: 'id',
+          name: 'john doe',
+          id: 'id'
+        });
+    })
+
+    it('should send created_at as seconds', function(){
+      var now = new Date;
+      test(intercom)
+        .identify('id', { created: now })
+        .called(window.Intercom)
+        .with('boot', {
+          app_id: settings.appId,
+          created_at: Math.floor(now.getTime() / 1000),
+          user_id: 'id',
+          id: 'id'
+        });
+    })
+
     it('should convert dates', function () {
       var date = new Date();
       test(intercom).identify('id', {
