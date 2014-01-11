@@ -58,6 +58,7 @@
   "scripts": [
     "index.js",
     "lib/adroll.js",
+    "lib/adwords.js",
     "lib/amplitude.js",
     "lib/awesm.js",
     "lib/awesomatic.js",
