@@ -26,7 +26,7 @@ server: build kill
 
 test: build server
 	@sleep 1
-	-@$(phantom) $(test)
+	@$(phantom) $(test)
 	@make kill
 
 test-browser: node_modules build server
