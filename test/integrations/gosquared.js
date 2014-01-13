@@ -7,6 +7,7 @@ describe('GoSquared', function () {
   var GoSquared = require('integrations/lib/gosquared');
   var sinon = require('sinon');
   var test = require('integration-tester');
+  var each = require('each');
 
   var gosquared;
   var settings = {
@@ -54,6 +55,24 @@ describe('GoSquared', function () {
       gosquared.initialize();
       assert(gosquared.load.called);
     });
+
+    it('should be configure the site token', function(){
+      window._gs = sinon.spy();
+      test(gosquared)
+        .initialize()
+        .called(window._gs)
+        .with(settings.siteToken);
+    })
+
+    it('should configure all defaults', function(){
+      window._gs = sinon.spy();
+      var assert = test(gosquared).initialize();
+      each(gosquared.options, function(name, value){
+        if ('siteToken' == name) return;
+        if (null == value) return;
+        assert.called(window._gs).with('set', name, value);
+      });
+    })
   });
 
   describe('#loaded', function () {
