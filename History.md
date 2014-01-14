@@ -1,4 +1,14 @@
 
+0.3.7 / 2014-01-15 
+==================
+
+ * update Facade to 0.2.3
+ * gosquared: update tracker
+ * add [Facebook](https://www.facebook.com/advertising)
+ * add [AdWords](https://adwords.google.com/)
+ * add [Mouseflow](http://mouseflow.com/)
+ * usercycle: map `revenue` to `revenue_amount`
+
 0.3.6 / 2014-01-10 
 ==================
 
