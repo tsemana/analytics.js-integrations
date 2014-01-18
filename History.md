@@ -1,5 +1,10 @@
 
-0.3.7 / 2014-01-15 
+0.3.8 / 2014-01-18
+==================
+
+ * rename facebook to facebook ads
+
+0.3.7 / 2014-01-15
 ==================
 
  * update Facade to 0.2.3
@@ -9,7 +14,7 @@
  * add [Mouseflow](http://mouseflow.com/)
  * usercycle: map `revenue` to `revenue_amount`
 
-0.3.6 / 2014-01-10 
+0.3.6 / 2014-01-10
 ==================
 
  * intercom: send created_at and name correctly
