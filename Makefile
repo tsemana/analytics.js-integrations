@@ -1,44 +1,47 @@
 
-BROWSERS ?= 'ie6..11, safari, chrome, firefox, iphone, opera'
+BROWSERS= "ie6..11, chrome, safari, firefox"
+SRC= $(wildcard index.js lib/*.js)
 tests ?= *
-test = http://localhost:4202
-component = node_modules/component/bin/component
-phantom = node_modules/.bin/mocha-phantomjs --setting web-security=false --setting local-to-remote-url-access=true
+BINS= node_modules/.bin
+C= $(BINS)/component
+TEST= http://localhost:4202
+PHANTOM= $(BINS)/mocha-phantomjs \
+	--setting local-to-remote-url-access=true \
+	--setting web-security=false
 
-build: node_modules components $(shell find lib)
-	@$(component) build --dev
 
-clean:
-	@rm -rf build components node_modules
+build: node_modules components $(SRC)
+	@$(C) build --dev
 
 components: component.json
-	@$(component) install --dev
+	@$(C) install --dev
 
 kill:
-	@-test ! -s test/pid.txt || kill `cat test/pid.txt` &> /dev/null
-	@-rm -f test/pid.txt
+	-@test -e test/pid.txt \
+		&& kill `cat test/pid.txt` \
+		&& rm -f test/pid.txt
 
 node_modules: package.json
-	@npm install &> /dev/null
+	@npm install
 
 server: build kill
-	@tests=$(tests) node test/server &> /dev/null &
+	@tests=$(tests) node test/server &
+	@sleep 1
 
 test: build server
-	@sleep 1
-	@$(phantom) $(test)
-	@make kill
+	@$(PHANTOM) $(TEST)
 
-test-browser: node_modules build server
-	@sleep 1
-	@open $(test)
+test-browser: build server
+	@open $(TEST)
 
-test-coverage: node_modules build server
-	@sleep 1
-	@open $(test)/coverage
+test-coverage: build server
+	@open $(TEST)/coverage
 
-test-sauce: node_modules build server
-	@sleep 1
-	@BROWSERS=$(BROWSERS) node_modules/.bin/gravy --url $(test)
+test-sauce: build server
+	@BROWSERS=$(BROWSERS) $(GRAVY) --url $(TEST)
 
-.PHONY: clean server test test-browser test-coverage test-sauce
+clean:
+	rm -rf components build
+
+.PHONY: clean server test test-browser
+.PHONY: test-sauce test-coverage
