@@ -73,7 +73,7 @@
     "lib/drip.js",
     "lib/evergage.js",
     "lib/errorception.js",
-    "lib/facebook.js",
+    "lib/facebook-ads.js",
     "lib/foxmetrics.js",
     "lib/gauges.js",
     "lib/get-satisfaction.js",

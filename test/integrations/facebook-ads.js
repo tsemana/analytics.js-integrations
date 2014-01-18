@@ -1,5 +1,5 @@
 
-describe('Facebook', function(){
+describe('Facebook Ads', function(){
 
   var Facebook = require('integrations/lib/facebook');
   var test = require('integration-tester');
@@ -24,7 +24,7 @@ describe('Facebook', function(){
 
   it('should have the correct settings', function(){
     test(facebook)
-      .name('Facebook')
+      .name('Facebook Ads')
       .readyOnInitialize()
       .option('currency', 'USD')
       .option('events', {});
