@@ -99,6 +99,7 @@
     "lib/lucky-orange.js",
     "lib/lytics.js",
     "lib/mixpanel.js",
+    "lib/mojn.js",
     "lib/mouseflow.js",
     "lib/mousestats.js",
     "lib/olark.js",
