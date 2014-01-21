@@ -1,7 +1,7 @@
 
 describe('Facebook Ads', function(){
 
-  var Facebook = require('integrations/lib/facebook');
+  var Facebook = require('integrations/lib/facebook-ads');
   var test = require('integration-tester');
   var analytics = require('analytics');
   var assert = require('assert');
