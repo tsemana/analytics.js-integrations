@@ -70,6 +70,7 @@
     "lib/comscore.js",
     "lib/crazy-egg.js",
     "lib/customerio.js",
+    "lib/curebit.js",
     "lib/drip.js",
     "lib/evergage.js",
     "lib/errorception.js",
