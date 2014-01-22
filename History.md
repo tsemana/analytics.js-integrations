@@ -1,4 +1,10 @@
 
+0.3.9 / 2014-01-23
+==================
+
+ * add [Bronto](http://bronto.com/).
+ * add [Curebit](http://www.curebit.com/)
+
 0.3.8 / 2014-01-18
 ==================
 
