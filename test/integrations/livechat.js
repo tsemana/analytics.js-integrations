@@ -44,7 +44,7 @@ describe('LiveChat', function () {
     it('should create window.__lc', function () {
       assert(!window.__lc);
       livechat.initialize();
-      assert(equal(window.__lc, { license: settings.license }));
+      assert(equal(window.__lc, { license: settings.license, group: 0 }));
     });
 
     it('should call #load', function () {
