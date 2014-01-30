@@ -1,4 +1,11 @@
 
+0.3.10 / 2014-01-30
+==================
+
+ * upgrade facade to 0.2.4
+ * upgrade analytics.js-integration to 0.1.7
+ * add group option to livechat
+
 0.3.9 / 2014-01-23
 ==================
 
