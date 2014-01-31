@@ -48,14 +48,14 @@ describe('Facebook Ads', function(){
       test(facebook)
         .track('signup', {})
         .called(Facebook.load)
-        .with(0, 0, 'USD');
+        .with({ id: 0, currency: 'USD', value: 0 });
     })
 
     it('should send revenue', function(){
       test(facebook)
         .track('login', { revenue: '$50' })
         .called(Facebook.load)
-        .with(1, 50, 'USD');
+        .with({ id: 1, value: 50, currency: 'USD' });
     })
 
     it('should send correctly', function(){

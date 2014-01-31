@@ -45,14 +45,14 @@ describe('AdWords', function(){
       test(adwords)
         .track('signup', {})
         .called(AdWords.load)
-        .with(0, 0, 'signup');
+        .with({ value: 0, label: 'signup', script: 0}, { id: 0 });
     })
 
     it('should send revenue', function(){
       test(adwords)
         .track('login', { revenue: '$50' })
         .called(AdWords.load)
-        .with(1, 50, 'login');
+        .with({ value: 50, label: 'login', script: 0 }, { id: 1 });
     })
 
     it('should send correctly', function(){
