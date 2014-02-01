@@ -130,7 +130,7 @@ describe('Google Analytics', function () {
         assert(window.ga.calledWith('send', 'pageview', {
           page: undefined,
           title: undefined,
-          url: undefined
+          location: undefined
         }));
       });
 
@@ -139,7 +139,7 @@ describe('Google Analytics', function () {
         assert(window.ga.calledWith('send', 'pageview', {
           page: '/path',
           title: 'category name',
-          url: 'url'
+          location: 'url'
         }));
       });
 
@@ -149,7 +149,7 @@ describe('Google Analytics', function () {
         assert(window.ga.calledWith('send', 'pageview', {
           page: '/path?q=1',
           title: 'category name',
-          url: 'url'
+          location: 'url'
         }));
       });
 
