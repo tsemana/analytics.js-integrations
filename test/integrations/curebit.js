@@ -9,6 +9,7 @@ describe('Curebit', function(){
   var sinon = require('sinon');
   var timeouts = require('clear-timeouts');
   var intervals = require('clear-intervals');
+  var iso = require('to-iso-string');
 
   var curebit;
   var settings = {
@@ -112,7 +113,9 @@ describe('Curebit', function(){
         coupon_code: 'save20',
         customer_id: null,
         email: undefined,
-        order_date: date,
+        order_date: iso(date),
+        first_name: undefined,
+        last_name: undefined,
         order_number: 'ab535a52',
         subtotal: 647.92,
         items: [{
