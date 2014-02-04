@@ -196,4 +196,37 @@ describe('GoSquared', function () {
     });
   });
 
+  describe('ecommerce', function(){
+    beforeEach(function(done){
+      gosquared.initialize();
+      gosquared.once('load', function(){
+        window._gs = sinon.spy();
+        done();
+      });
+    })
+
+    it('should send a transaction', function(){
+      test(gosquared)
+        .track('checked out', {
+          transactionId: 'a9173991',
+          total: 90,
+          quantity: 10,
+          products: [{
+            name: 'my-product',
+            quantity: 10,
+            price: 9
+          }]
+        });
+
+      assert(window._gs.calledWith('transaction', 'a9173991', {
+        revenue: 90,
+        track: true
+      }, [{
+        name: 'my-product',
+        quantity: 10,
+        price: 9
+      }]));
+    })
+  })
+
 });
