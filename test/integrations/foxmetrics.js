@@ -226,4 +226,55 @@ describe('FoxMetrics', function () {
     });
   });
 
+  describe('ecommerce', function(){
+    beforeEach(function(){
+      foxmetrics.initialize();
+      window._fxm.push = sinon.spy();
+    });
+
+    it('should track viewed product', function(){
+      test(foxmetrics).track('viewed product', {
+        sku: 'f84d349b',
+        name: 'my-product',
+        category: 'category'
+      });
+
+      assert(window._fxm.push.calledWith([
+        '_fxm.ecommerce.productview',
+        'f84d349b',
+        'my-product',
+        'category'
+      ]));
+    })
+
+    it('should track added product', function(){
+      test(foxmetrics).track('added product', {
+        id: 'c1ec1864',
+        name: 'my-product',
+        category: 'category'
+      });
+
+      assert(window._fxm.push.calledWith([
+        '_fxm.ecommerce.cartitem',
+        'c1ec1864',
+        'my-product',
+        'category'
+      ]));
+    })
+
+    it('should track removed product', function(){
+      test(foxmetrics).track('removed product', {
+        sku: 'c1ec1864',
+        name: 'my-product'
+      });
+
+      assert(window._fxm.push.calledWith([
+        '_fxm.ecommerce.removecartitem',
+        'c1ec1864',
+        'my-product',
+        undefined
+      ]));
+    })
+  })
+
 });
