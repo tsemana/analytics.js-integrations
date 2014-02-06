@@ -616,7 +616,7 @@ describe('Google Analytics', function () {
           'af5ccd73',
           'p-298',
           'my product',
-          '',
+          undefined,
           24.75,
           1,
         ]]));
@@ -626,7 +626,7 @@ describe('Google Analytics', function () {
           'af5ccd73',
           'p-299',
           'other product',
-          '',
+          undefined,
           24.75,
           3
         ]]));
