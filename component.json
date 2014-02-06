@@ -63,6 +63,7 @@
     "lib/amplitude.js",
     "lib/awesm.js",
     "lib/awesomatic.js",
+    "lib/bing-ads.js",
     "lib/bronto.js",
     "lib/bugherd.js",
     "lib/bugsnag.js",
