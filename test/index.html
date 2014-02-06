@@ -89,6 +89,7 @@
   <script src="test/integrations/spinnakr.js"></script>
   <script src="test/integrations/tapstream.js"></script>
   <script src="test/integrations/trakio.js"></script>
+  <script src="test/integrations/twitter-ads.js"></script>
   <script src="test/integrations/usercycle.js"></script>
   <script src="test/integrations/userfox.js"></script>
   <script src="test/integrations/uservoice.js"></script>
@@ -103,7 +104,7 @@
       mochaPhantomJS.run();
     } else {
       require('debug').enable('*');
-      require('gravy')(mocha.run());
+      mocha.run();
     }
   </script>
 </body>
