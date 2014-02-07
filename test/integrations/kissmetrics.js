@@ -243,6 +243,7 @@ describe('KISSmetrics', function () {
       fn();
 
       assert(equals(window.KM.set.args[0][0], {
+        'Order ID': '12074d48',
         SKU: '40bcda73',
         Name: 'my-product',
         Price: 75,
@@ -252,6 +253,7 @@ describe('KISSmetrics', function () {
       }));
 
       assert(equals(window.KM.set.args[1][0], {
+        'Order ID': '12074d48',
         SKU: '64346fc6',
         Name: 'other-product',
         Price: 75,
