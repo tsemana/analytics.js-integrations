@@ -6,6 +6,9 @@ describe('KISSmetrics', function () {
   var KISSmetrics = require('integrations/lib/kissmetrics');
   var sinon = require('sinon');
   var test = require('integration-tester');
+  var intervals = require('clear-intervals');
+  var timeouts = require('clear-timeouts');
+  var equals = require('equals');
 
   var kissmetrics;
   var settings = {
@@ -25,6 +28,11 @@ describe('KISSmetrics', function () {
     kissmetrics.once('load', done);
     kissmetrics.initialize();
   });
+
+  afterEach(function(){
+    intervals();
+    timeouts();
+  })
 
   it('should have the right settings', function () {
     test(kissmetrics)
@@ -161,4 +169,98 @@ describe('KISSmetrics', function () {
     });
   });
 
+  describe('ecommerce', function(){
+    beforeEach(function(){
+      kissmetrics.initialize();
+      window.KM = { set: sinon.spy(), ts: Function('return 0') };
+      window._kmq.push = sinon.spy();
+    });
+
+    it('should track viewed product', function(){
+      test(kissmetrics)
+        .track('viewed product', { sku: 1, name: 'item', price: 9 })
+        .called(window._kmq.push)
+        .with(['record', 'Product Viewed', { SKU: 1, Name: 'item', Price: 9, Quantity: 1 }]);
+    })
+
+    it('should track added product', function(){
+      test(kissmetrics)
+        .track('added product', { sku: 1, name: 'item', price: 9, quantity: 2 })
+        .called(window._kmq.push)
+        .with(['record', 'Product Added', {
+          SKU: 1,
+          Name: 'item',
+          Price: 9,
+          Quantity: 2
+        }])
+    })
+
+    it('should track checkout', function(){
+      test(kissmetrics)
+        .track('checked out', {
+          transactionId: '12074d48',
+          total: 150,
+          products: [{
+            sku: '40bcda73',
+            name: 'my-product',
+            price: 75,
+            quantity: 1
+          }, {
+            sku: '64346fc6',
+            name: 'other-product',
+            price: 75,
+            quantity: 1
+          }]
+        });
+
+      assert(window._kmq.push.args[0], ['record', 'Purchased', {
+        'Order ID': '12074d48',
+        'Order Total': 150
+      }]);
+    })
+
+    it('should add items once KM is loaded', function(){
+      test(kissmetrics)
+        .track('checked out', {
+          transactionId: '12074d48',
+          total: 150,
+          products: [{
+            sku: '40bcda73',
+            name: 'my-product',
+            price: 75,
+            quantity: 1
+          }, {
+            sku: '64346fc6',
+            name: 'other-product',
+            price: 75,
+            quantity: 1
+          }]
+        });
+
+      var fn = window._kmq.push.args[1][0];
+      assert(2 == window._kmq.push.args.length);
+      assert('function' == typeof fn);
+      fn();
+
+      assert(equals(window.KM.set.args[0][0], {
+        'Order ID': '12074d48',
+        SKU: '40bcda73',
+        Name: 'my-product',
+        Price: 75,
+        Quantity: 1,
+        _t: 0,
+        _d: 1
+      }));
+
+      assert(equals(window.KM.set.args[1][0], {
+        'Order ID': '12074d48',
+        SKU: '64346fc6',
+        Name: 'other-product',
+        Price: 75,
+        Quantity: 1,
+        _t: 1,
+        _d: 1
+      }));
+    })
+  })
 });

@@ -9,6 +9,7 @@ describe('Curebit', function(){
   var sinon = require('sinon');
   var timeouts = require('clear-timeouts');
   var intervals = require('clear-intervals');
+  var iso = require('to-iso-string');
 
   var curebit;
   var settings = {
@@ -81,6 +82,51 @@ describe('Curebit', function(){
         assert(curebit.loaded());
         done();
       })
+    })
+  })
+
+  describe('ecommerce', function(){
+    beforeEach(function(){
+      curebit.initialize();
+      window._curebitq.push = sinon.spy();
+    });
+
+    it('should send ecommerce data', function(){
+      var date = new Date;
+
+      test(curebit).track('checked out', {
+        transactionId: 'ab535a52',
+        coupon: 'save20',
+        date: date,
+        total: 647.92,
+        products: [{
+          sku: '5be59f56',
+          quantity: 8,
+          price: 80.99,
+          name: 'my-product',
+          url: '//products.io/my-product',
+          image: '//products.io/my-product.webp'
+        }]
+      });
+
+      assert(window._curebitq.push.calledWith(['register_purchase', {
+        coupon_code: 'save20',
+        customer_id: null,
+        email: undefined,
+        order_date: iso(date),
+        first_name: undefined,
+        last_name: undefined,
+        order_number: 'ab535a52',
+        subtotal: 647.92,
+        items: [{
+          product_id: '5be59f56',
+          quantity: 8,
+          price: 80.99,
+          title: 'my-product',
+          url: '//products.io/my-product',
+          image_url: '//products.io/my-product.webp',
+        }]
+      }]))
     })
   })
 })

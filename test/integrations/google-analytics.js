@@ -291,6 +291,79 @@ describe('Google Analytics', function () {
       });
     });
 
+    describe('ecommerce', function(){
+      beforeEach(function(){
+        ga.initialize();
+        window.ga = sinon.spy();
+      })
+
+      it('should require ecommerce.js', function(){
+        test(ga).track('checked out', { transactionId: 'ee099bf7' });
+        assert(window.ga.calledWith('require', 'ecommerce', 'ecommerce.js'));
+        assert(ga.ecommerce);
+      })
+
+      it('should not require ecommerce if .ecommerce is true', function(){
+        ga.ecommerce = true;
+        test(ga).track('checked out', { transactionId: 'e213e4da' });
+        assert(!window.ga.calledWith('require', 'ecommerce', 'ecommerce.js'));
+      })
+
+      it('should send simple ecommerce data', function(){
+        test(ga).track('checked out', { transactionId: '7306cc06' });
+        assert(3 == window.ga.args.length);
+        assert('ecommerce:addTransaction' == window.ga.args[1][0]);
+        assert('ecommerce:send' == window.ga.args[2][0]);
+      })
+
+      it('should send ecommerce data', function(){
+        test(ga).track('checked out', {
+          transactionId: '780bc55',
+          total: 99.99,
+          shipping: 13.99,
+          tax: 20.99,
+          products: [{
+            quantity: 1,
+            price: 24.75,
+            name: 'my product',
+            sku: 'p-298'
+          }, {
+            quantity: 3,
+            price: 24.75,
+            name: 'other product',
+            sku: 'p-299'
+          }]
+        });
+
+        assert(equal(window.ga.args[1], ['ecommerce:addTransaction', {
+          id: '780bc55',
+          revenue: 99.99,
+          shipping: 13.99,
+          affiliation: undefined,
+          tax: 20.99
+        }]));
+
+        assert(equal(window.ga.args[2], ['ecommerce:addItem', {
+          id: '780bc55',
+          category: undefined,
+          name: 'my product',
+          price: 24.75,
+          quantity: 1,
+          sku: 'p-298'
+        }]));
+
+        assert(equal(window.ga.args[3], ['ecommerce:addItem', {
+          id: '780bc55',
+          category: undefined,
+          name: 'other product',
+          price: 24.75,
+          sku: 'p-299',
+          quantity: 3
+        }]));
+
+        assert(equal(window.ga.args[4], ['ecommerce:send']));
+      })
+    })
   });
 
   describe('Classic', function () {
@@ -493,6 +566,73 @@ describe('Google Analytics', function () {
         assert(window._gaq.push.calledWith(['_trackEvent', 'All', 'event', undefined, 0, true]));
       });
     });
+
+    describe('ecommerce', function(){
+      beforeEach(function(){
+        ga.initialize();
+        window._gaq.push = sinon.spy();
+      })
+
+      it('should send simple ecommerce data', function(){
+        test(ga).track('checked out', { transactionId: '078781c7' });
+        assert(2 == window._gaq.push.args.length);
+        assert('_addTrans' == window._gaq.push.args[0][0][0]);
+        assert('_trackTrans' == window._gaq.push.args[1][0][0]);
+      })
+
+      it('should send ecommerce data', function(){
+        test(ga).track('checked out', {
+          transactionId: 'af5ccd73',
+          total: 99.99,
+          shipping: 13.99,
+          tax: 20.99,
+          products: [{
+            quantity: 1,
+            price: 24.75,
+            name: 'my product',
+            sku: 'p-298'
+          }, {
+            quantity: 3,
+            price: 24.75,
+            name: 'other product',
+            sku: 'p-299'
+          }]
+        });
+
+        assert(equal(window._gaq.push.args[0], [[
+          '_addTrans',
+          'af5ccd73',
+          undefined,
+          99.99,
+          20.99,
+          13.99,
+          undefined,
+          undefined,
+          undefined
+        ]]));
+
+        assert(equal(window._gaq.push.args[1], [[
+          '_addItem',
+          'af5ccd73',
+          'p-298',
+          'my product',
+          undefined,
+          24.75,
+          1,
+        ]]));
+
+        assert(equal(window._gaq.push.args[2], [[
+          '_addItem',
+          'af5ccd73',
+          'p-299',
+          'other product',
+          undefined,
+          24.75,
+          3
+        ]]));
+        // assert(equal(window._gaq.push.args[0]))
+      })
+    })
   });
 
 });
