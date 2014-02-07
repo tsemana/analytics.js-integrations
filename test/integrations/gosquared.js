@@ -212,6 +212,7 @@ describe('GoSquared', function () {
           total: 90,
           quantity: 10,
           products: [{
+            category: 'my category',
             name: 'my-product',
             quantity: 10,
             price: 9
@@ -223,6 +224,7 @@ describe('GoSquared', function () {
         track: true
       }, [{
         name: 'my-product',
+        category: 'my category',
         quantity: 10,
         price: 9
       }]));
