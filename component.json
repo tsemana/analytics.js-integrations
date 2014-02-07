@@ -109,6 +109,7 @@
     "lib/qualaroo.js",
     "lib/quantcast.js",
     "lib/rollbar.js",
+    "lib/saasquatch.js",
     "lib/sentry.js",
     "lib/snapengage.js",
     "lib/spinnakr.js",
