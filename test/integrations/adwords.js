@@ -8,10 +8,11 @@ describe('AdWords', function(){
   var sinon = require('sinon');
 
   var settings = {
+    conversionId: 983265867,
     events: {
-      signup: 0,
-      login: 1,
-      play: 2
+      signup: '7c8fc3c1',
+      login: '49aa6e21',
+      play: 'b91fc77f'
     }
   };
 
@@ -45,21 +46,21 @@ describe('AdWords', function(){
       test(adwords)
         .track('signup', {})
         .called(AdWords.load)
-        .with({ value: 0, label: 'signup', script: 0}, { id: 0 });
+        .with({ value: 0, label: '7c8fc3c1', script: 0}, { id: 983265867 });
     })
 
     it('should send revenue', function(){
       test(adwords)
         .track('login', { revenue: '$50' })
         .called(AdWords.load)
-        .with({ value: 50, label: 'login', script: 0 }, { id: 1 });
+        .with({ value: 50, label: '49aa6e21', script: 0 }, { id: 983265867 });
     })
 
     it('should send correctly', function(){
       test(adwords).track('play', { revenue: 90 });
       var img = AdWords.load.returnValues[0];
       assert(img);
-      assert('http://www.googleadservices.com/pagead/conversion/2?value=90&label=play&script=0' == img.src)
+      assert('http://www.googleadservices.com/pagead/conversion/983265867?value=90&label=b91fc77f&script=0' == img.src)
     })
   })
 })
