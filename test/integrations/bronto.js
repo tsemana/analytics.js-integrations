@@ -95,9 +95,9 @@ describe('Bronto', function(){
     it('should send ecommerce data', function(){
       var date = new Date;
 
-      test(bronto).track('checked out', {
+      test(bronto).track('completed order', {
         products: [{ sku: 'c546c96', quantity: 8, name: 'my-product', price: 99.99 }],
-        transactionId: '55c497bf',
+        orderId: '55c497bf',
         date: date,
       });
 
