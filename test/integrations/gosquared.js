@@ -207,8 +207,8 @@ describe('GoSquared', function () {
 
     it('should send a transaction', function(){
       test(gosquared)
-        .track('checked out', {
-          transactionId: 'a9173991',
+        .track('completed order', {
+          orderId: 'a9173991',
           total: 90,
           quantity: 10,
           products: [{
