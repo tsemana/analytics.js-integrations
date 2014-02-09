@@ -275,6 +275,44 @@ describe('FoxMetrics', function () {
         undefined
       ]));
     })
+
+    it('should track completed order', function(){
+      test(foxmetrics).track('completed order', {
+        orderId: '3723ee8a',
+        total: 300,
+        tax: 10,
+        shipping: 20,
+        products: [{
+          sku: 'd370b4cd',
+          name: 'sony pulse',
+          category: 'tech',
+          price: 270,
+          quantity: 1
+        }]
+      });
+
+      assert(equal(window._fxm.push.args[0][0], [
+        '_fxm.ecommerce.order',
+        '3723ee8a',
+        270,
+        20,
+        10,
+        undefined,
+        undefined,
+        undefined,
+        1,
+      ]));
+
+      assert(equal(window._fxm.push.args[1][0], [
+        '_fxm.ecommerce.purchaseitem',
+        'd370b4cd',
+        'sony pulse',
+        'tech',
+        1,
+        270,
+        '3723ee8a'
+      ]));
+    })
   })
 
 });
