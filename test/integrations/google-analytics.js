@@ -298,27 +298,27 @@ describe('Google Analytics', function () {
       })
 
       it('should require ecommerce.js', function(){
-        test(ga).track('checked out', { transactionId: 'ee099bf7' });
+        test(ga).track('completed order', { orderId: 'ee099bf7' });
         assert(window.ga.calledWith('require', 'ecommerce', 'ecommerce.js'));
         assert(ga.ecommerce);
       })
 
       it('should not require ecommerce if .ecommerce is true', function(){
         ga.ecommerce = true;
-        test(ga).track('checked out', { transactionId: 'e213e4da' });
+        test(ga).track('completed order', { orderId: 'e213e4da' });
         assert(!window.ga.calledWith('require', 'ecommerce', 'ecommerce.js'));
       })
 
       it('should send simple ecommerce data', function(){
-        test(ga).track('checked out', { transactionId: '7306cc06' });
+        test(ga).track('completed order', { orderId: '7306cc06' });
         assert(3 == window.ga.args.length);
         assert('ecommerce:addTransaction' == window.ga.args[1][0]);
         assert('ecommerce:send' == window.ga.args[2][0]);
       })
 
       it('should send ecommerce data', function(){
-        test(ga).track('checked out', {
-          transactionId: '780bc55',
+        test(ga).track('completed order', {
+          orderId: '780bc55',
           total: 99.99,
           shipping: 13.99,
           tax: 20.99,
@@ -574,15 +574,15 @@ describe('Google Analytics', function () {
       })
 
       it('should send simple ecommerce data', function(){
-        test(ga).track('checked out', { transactionId: '078781c7' });
+        test(ga).track('completed order', { orderId: '078781c7' });
         assert(2 == window._gaq.push.args.length);
         assert('_addTrans' == window._gaq.push.args[0][0][0]);
         assert('_trackTrans' == window._gaq.push.args[1][0][0]);
       })
 
       it('should send ecommerce data', function(){
-        test(ga).track('checked out', {
-          transactionId: 'af5ccd73',
+        test(ga).track('completed order', {
+          orderId: 'af5ccd73',
           total: 99.99,
           shipping: 13.99,
           tax: 20.99,
