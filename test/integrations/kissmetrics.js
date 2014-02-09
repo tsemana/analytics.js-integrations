@@ -195,10 +195,10 @@ describe('KISSmetrics', function () {
         }])
     })
 
-    it('should track checkout', function(){
+    it('should track completed order', function(){
       test(kissmetrics)
-        .track('checked out', {
-          transactionId: '12074d48',
+        .track('completed order', {
+          orderId: '12074d48',
           total: 150,
           products: [{
             sku: '40bcda73',
@@ -221,8 +221,8 @@ describe('KISSmetrics', function () {
 
     it('should add items once KM is loaded', function(){
       test(kissmetrics)
-        .track('checked out', {
-          transactionId: '12074d48',
+        .track('completed order', {
+          orderId: '12074d48',
           total: 150,
           products: [{
             sku: '40bcda73',
