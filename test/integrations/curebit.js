@@ -94,8 +94,8 @@ describe('Curebit', function(){
     it('should send ecommerce data', function(){
       var date = new Date;
 
-      test(curebit).track('checked out', {
-        transactionId: 'ab535a52',
+      test(curebit).track('completed order', {
+        orderId: 'ab535a52',
         coupon: 'save20',
         date: date,
         total: 647.92,
