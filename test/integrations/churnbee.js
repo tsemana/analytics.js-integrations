@@ -69,12 +69,6 @@ describe('ChurnBee', function(){
   })
 
   describe('#load', function(){
-    beforeEach(function(){
-      sinon.stub(churnbee, 'load');
-      churnbee.initialize();
-      churnbee.load.restore();
-    })
-
     it('should change the loaded state', function(done){
       test(churnbee).loads(done);
     })
