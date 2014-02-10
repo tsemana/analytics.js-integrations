@@ -1,5 +1,5 @@
 
-describe('mojn', function(){
+describe('Mojn', function(){
 
   var Mojn      = require('integrations/lib/mojn');
   var test      = require('integration-tester');
@@ -17,6 +17,7 @@ describe('mojn', function(){
     mojn = new Mojn.Integration(settings);
     mojn.initialize();
   });
+
   afterEach(function () {
     mojn.reset();
   });
@@ -25,6 +26,7 @@ describe('mojn', function(){
     test(mojn)
       .name('Mojn')
       .readyOnInitialize()
+      .global('_agTrack')
       .option('customerCode', '');
   });
 
@@ -37,12 +39,14 @@ describe('mojn', function(){
       mojn.initialize();
       assert(mojn.load.called);
     });
+
     it('should pass customerCode to tracker script', function() {
-      window._agTrack = {push: sinon.spy()};
+      window._agTrack = { push: sinon.spy() };
       mojn.initialize();
-      assert(window._agTrack.push.calledWith({cid: settings.customerCode}));
+      assert(window._agTrack.push.calledWith({ cid: settings.customerCode }));
     });
   });
+
   describe('#loaded', function() {
     it('tests array-ness of _agTrack', function() {
       delete window._agTrack;
@@ -57,25 +61,19 @@ describe('mojn', function(){
   describe('#load', function () {
     beforeEach(function () {
       sinon.stub(mojn, 'load');
-      mojn.initialize();
       mojn.load.restore();
     });
 
-    it('should change loaded state', function (done) {
-      assert(!mojn.loaded());
-      mojn.load(function (err) {
-        if (err) return done(err);
-        assert(mojn.loaded());
-        done();
-      });
+    it('should change loaded state', function(done){
+      delete window._agTrack;
+      test(mojn).loads(done);
     });
   });
-
 
   describe('#track', function(){
     beforeEach(function(){
       sinon.spy(mojn, 'track');
-      window._agTrack = {push: sinon.spy()};
+      window._agTrack = { push: sinon.spy() };
     });
 
     afterEach(function(){
@@ -88,13 +86,13 @@ describe('mojn', function(){
     });
 
     it('should track if revenue is set (no currency)', function(){
-      test(mojn).track('some sale', {revenue: 42});
-      assert(window._agTrack.push.calledWith({conv: '42'}));
+      test(mojn).track('some sale', { revenue: 42 });
+      assert(window._agTrack.push.calledWith({ conv: '42' }));
     });
 
     it('should track if revenue is set (with currency)', function(){
-      test(mojn).track('some sale', {revenue: 42, currency: 'DKK'});
-      assert(window._agTrack.push.calledWith({conv: 'DKK42'}));
+      test(mojn).track('some sale', { revenue: 42, currency: 'DKK' });
+      assert(window._agTrack.push.calledWith({ conv: 'DKK42' }));
     });
   });
 
@@ -102,26 +100,23 @@ describe('mojn', function(){
     beforeEach(function() {
       sinon.spy(mojn, 'identify');
     });
+
     afterEach(function() {
       mojn.identify.reset();
     });
 
     it('should ignore if missing email', function() {
-      test(mojn).identify(null, {
-        anything: 'but an email'
-      });
+      test(mojn).identify(null, { anything: 'but an email' });
       var img = mojn.identify.returnValues[0];
-      assert(img === undefined);
+      assert(null == img);
     });
 
     it('should track if email is set', function() {
       var email = 'test@test.mojn.com';
-      test(mojn).identify(null, {
-        email: email
-      });
-      var img    = mojn.identify.returnValues[0];
-      var expect = window.location.protocol+'//matcher.idtargeting.com/analytics.gif?cid='+settings.customerCode+'&_mjnctid='+email;
-      assert(expect === img.src);
+      test(mojn).identify(null, { email: email });
+      var img = mojn.identify.returnValues[0];
+      var expect = window.location.protocol + '//matcher.idtargeting.com/analytics.gif?cid=' + settings.customerCode + '&_mjnctid=' + email;
+      assert(expect == img.src);
     });
   });
 });
