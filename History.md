@@ -1,4 +1,24 @@
 
+0.4.0 / 2014-02-10
+==================
+
+ * upgrade facade to `0.2.7`
+ * adwords: fix mappnigs, closes #49
+ * add [Mojn](https://mojn.com)
+ * add [SaaSquatch](http://www.referralsaasquatch.com/)
+ * add [ChurnBee](http://churnbee.com)
+ * add [Bing Ads](http://advertise.bingads.microsoft.com/)
+ * add [Twitter Ads](http://ads.twitter.com/)
+ * Update to raven-js 1.1.10 [mattrobenolt]
+ * foxmetrics: add ecommerce
+ * kissmetrics: add ecommerce
+ * gosquared: add ecommerce
+ * bronto: add ecommerce
+ * curebit: add ecommerce
+ * google-analytics: add ecommerce
+ * google analytics: fix page url property name
+ * upgrade analytics.js-integration to `0.1.7`
+
 0.3.10 / 2014-01-30
 ==================
 

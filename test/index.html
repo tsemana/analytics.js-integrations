@@ -40,10 +40,12 @@
   <script src="test/integrations/amplitude.js"></script>
   <script src="test/integrations/awesm.js"></script>
   <script src="test/integrations/awesomatic.js"></script>
+  <script src="test/integrations/bing-ads.js"></script>
   <script src="test/integrations/bugherd.js"></script>
   <script src="test/integrations/bugsnag.js"></script>
   <script src="test/integrations/bronto.js"></script>
   <script src="test/integrations/chartbeat.js"></script>
+  <script src="test/integrations/churnbee.js"></script>
   <script src="test/integrations/clicktale.js"></script>
   <script src="test/integrations/clicky.js"></script>
   <script src="test/integrations/comscore.js"></script>
@@ -73,6 +75,7 @@
   <script src="test/integrations/livechat.js"></script>
   <script src="test/integrations/lucky-orange.js"></script>
   <script src="test/integrations/lytics.js"></script>
+  <script src="test/integrations/mojn.js"></script>
   <script src="test/integrations/mouseflow.js"></script>
   <script src="test/integrations/mousestats.js"></script>
   <script src="test/integrations/mixpanel.js"></script>
@@ -84,11 +87,13 @@
   <script src="test/integrations/qualaroo.js"></script>
   <script src="test/integrations/quantcast.js"></script>
   <script src="test/integrations/rollbar.js"></script>
+  <script src="test/integrations/saasquatch.js"></script>
   <script src="test/integrations/sentry.js"></script>
   <script src="test/integrations/snapengage.js"></script>
   <script src="test/integrations/spinnakr.js"></script>
   <script src="test/integrations/tapstream.js"></script>
   <script src="test/integrations/trakio.js"></script>
+  <script src="test/integrations/twitter-ads.js"></script>
   <script src="test/integrations/usercycle.js"></script>
   <script src="test/integrations/userfox.js"></script>
   <script src="test/integrations/uservoice.js"></script>
@@ -103,7 +108,7 @@
       mochaPhantomJS.run();
     } else {
       require('debug').enable('*');
-      require('gravy')(mocha.run());
+      mocha.run();
     }
   </script>
 </body>
