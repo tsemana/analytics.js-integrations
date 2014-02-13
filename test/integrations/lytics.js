@@ -27,12 +27,11 @@ describe('Lytics', function () {
   it('should have the right settings', function () {
     test(lytics)
       .name('Lytics')
-      .assumesPageview()
       .readyOnInitialize()
       .global('jstag')
       .option('cid', '')
       .option('cookie', 'seerid')
-      .option('delay', 200)
+      .option('delay', 2000)
       .option('sessionTimeout', 1800)
       .option('url', '//c.lytics.io');
   });
@@ -43,7 +42,6 @@ describe('Lytics', function () {
     });
 
     it('should create window.jstag', function () {
-      assert(!window.jstag);
       lytics.initialize();
       assert(window.jstag);
     });
