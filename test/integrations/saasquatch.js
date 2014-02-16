@@ -28,7 +28,6 @@ describe('SaaSquatch', function(){
     test(squatch)
       .name('SaaSquatch')
       .option('tenantAlias', '')
-      .option('accountId', '')
       .global('_sqh');
   })
 
@@ -73,7 +72,6 @@ describe('SaaSquatch', function(){
         .with(['init', {
           user_id: 'id',
           tenant_alias: 'baz',
-          account_id: 'foo',
           email: undefined,
           first_name: undefined,
           last_name: undefined,
@@ -88,11 +86,55 @@ describe('SaaSquatch', function(){
         .with(['init', {
           user_id: null,
           tenant_alias: 'baz',
-          account_id: 'foo',
           email: 'self@example.com',
           first_name: undefined,
           last_name: undefined,
           user_image: undefined
+        }])
+    })
+
+    it('should pass checksum', function(){
+      test(squatch)
+        .identify(null, { email: 'self@example.com' }, { SaaSquatch: { checksum: 'wee' } })
+        .called(window._sqh.push)
+        .with(['init', {
+          user_id: null,
+          tenant_alias: 'baz',
+          email: 'self@example.com',
+          first_name: undefined,
+          last_name: undefined,
+          user_image: undefined,
+          checksum: 'wee'
+        }])
+    })
+
+    it('should pass accountId', function(){
+      test(squatch)
+        .identify(null, { email: 'self@example.com', accountId: 123 })
+        .called(window._sqh.push)
+        .with(['init', {
+          user_id: null,
+          tenant_alias: 'baz',
+          email: 'self@example.com',
+          first_name: undefined,
+          last_name: undefined,
+          user_image: undefined,
+          account_id: 123
+        }])
+    })
+
+    it('should pass referral image', function(){
+      test(squatch)
+        .identify(1, { referralImage: 'img' })
+        .called(window._sqh.push)
+        .with(['init', {
+          user_id: 1,
+          tenant_alias: 'baz',
+          email: undefined,
+          first_name: undefined,
+          last_name: undefined,
+          user_image: undefined,
+          fb_share_image: 'img'
         }])
     })
 
