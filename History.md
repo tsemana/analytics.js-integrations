@@ -1,4 +1,11 @@
 
+0.4.1 / 2014-02-18
+==================
+
+ * saasquatch: add checksum, accountId and image support, closes #58
+ * intercom: update track()
+ * lytics: not tracking pageview fix
+
 0.4.0 / 2014-02-10
 ==================
 
