@@ -30,7 +30,6 @@ describe('Intercom', function () {
       .global('Intercom')
       .option('activator', '#IntercomDefaultWidget')
       .option('appId', '')
-      .option('counter', true)
       .option('inbox', false);
   });
 
@@ -187,8 +186,7 @@ describe('Intercom', function () {
         user_id: 'id',
         id: 'id',
         widget: {
-          activator: '#IntercomDefaultWidget',
-          use_counter: true
+          activator: '#IntercomDefaultWidget'
         }
       }));
     });
@@ -202,8 +200,7 @@ describe('Intercom', function () {
         user_id: 'id',
         id: 'id',
         widget: {
-          activator: '#Intercom',
-          use_counter: true
+          activator: '#Intercom'
         }
       }));
     });
