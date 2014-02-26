@@ -1,4 +1,11 @@
 
+0.4.2 / 2014-02-26
+==================
+
+ * google-analytics: send universal user id, closes #59
+ * churnbee: use an object instead of array for supported events
+ * intercom: remove counter option
+
 0.4.1 / 2014-02-18
 ==================
 
