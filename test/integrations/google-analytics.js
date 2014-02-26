@@ -89,8 +89,15 @@ describe('Google Analytics', function () {
         assert(ga.load.called);
       });
 
-      it('should set universal user id if its truthy', function(){
+      it('should not send universal user id by default', function(){
         analytics.user().id('baz');
+        ga.initialize();
+        assert(!equal(window.ga.q[1], ['set', '&uid', 'baz']));
+      })
+
+      it('should send universal user id if sendUserId option is true and user.id() is truthy', function(){
+        analytics.user().id('baz');
+        ga.options.sendUserId = true;
         ga.initialize();
         assert(equal(window.ga.q[1], ['set', '&uid', 'baz']));
       })
