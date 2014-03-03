@@ -117,7 +117,23 @@ describe('Intercom', function () {
         .with('boot', {
           app_id: settings.appId,
           user_id: 'id',
+          firstName: 'john',
+          lastName: 'doe',
           name: 'john doe',
+          id: 'id'
+        });
+    })
+
+    it('should respect .name, .firstName and .lastName', function(){
+      test(intercom)
+        .identify('id', { firstName: 'john', lastName: 'doe', name: 'baz' })
+        .called(window.Intercom)
+        .with('boot', {
+          app_id: settings.appId,
+          user_id: 'id',
+          firstName: 'john',
+          lastName: 'doe',
+          name: 'baz',
           id: 'id'
         });
     })
