@@ -1,4 +1,11 @@
 
+0.4.4 / 2014-03-05
+==================
+
+ * add curebit identify, closes #62
+ * upgrade bugsnag to v2, closes #61
+ * fix intercom first, last name
+
 0.4.3 / 2014-02-26
 ==================
 
