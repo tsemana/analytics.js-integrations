@@ -35,7 +35,12 @@ describe('Curebit', function(){
       .global('_curebitq')
       .global('curebit')
       .option('siteId', '')
-      .option('server', '');
+      .option('iframeBorder', 0)
+      .option('iframeHeight', 0)
+      .option('iframeWidth', 0)
+      .option('responsive', true)
+      .option('device', '')
+      .option('server', 'https://www.curebit.com');
   })
 
   describe('#initialize', function(){
@@ -85,11 +90,80 @@ describe('Curebit', function(){
     })
   })
 
+  describe('#identify', function(){
+    beforeEach(function(){
+      curebit.initialize();
+      sinon.spy(window._curebitq, 'push');
+    })
+
+    afterEach(function(){
+      window._curebitq.push.restore();
+    })
+
+    it('should identify', function(){
+      test(curebit)
+        .identify('id')
+        .called(window._curebitq.push)
+        .with(['register_affiliate', {
+          responsive: true,
+          device: '',
+          iframe: {
+            width: 0,
+            height: 0,
+            id: '',
+            frameborder: 0
+          },
+          affiliate_member: {
+            customer_id: 'id',
+            first_name: undefined,
+            last_name: undefined,
+            email: undefined,
+          }
+        }])
+    })
+
+    it('should identify and pass options correctly', function(){
+      curebit.options.iframeWidth = 480;
+      curebit.options.iframeHeight = '100%';
+      curebit.options.iframeBorder = 1;
+      curebit.options.iframeId = 'curebit-iframe';
+      curebit.options.responsive = 1;
+      curebit.options.device = 'desktop';
+
+      test(curebit)
+        .identify('id', {
+          name: 'john doe',
+          email: 'my@email.com'
+        })
+        .called(window._curebitq.push)
+        .with(['register_affiliate', {
+          responsive: 1,
+          device: 'desktop',
+          iframe: {
+            width: 480,
+            height: '100%',
+            frameborder: 1,
+            id: 'curebit-iframe'
+          },
+          affiliate_member: {
+            customer_id: 'id',
+            first_name: 'john',
+            last_name: 'doe',
+            email: 'my@email.com'
+          }
+        }]);
+    })
+  })
+
   describe('ecommerce', function(){
     beforeEach(function(){
       curebit.initialize();
-      window._curebitq.push = sinon.spy();
+      sinon.spy(window._curebitq, 'push');
     });
+
+    afterEach(function(){
+      window._curebitq.push.restore();
+    })
 
     it('should send ecommerce data', function(){
       var date = new Date;
