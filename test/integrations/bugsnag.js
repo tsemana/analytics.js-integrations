@@ -13,6 +13,21 @@ describe('Bugsnag', function () {
     apiKey: 'x'
   };
 
+  // HACK: bugsnag overrides, setTimeout
+  // it doesn't break tests but since those
+  // tests load bugsnag <script> multiple
+  // times so that break things.
+  var so, si;
+  before(function(){
+    so = window.setTimeout;
+    si = window.setInterval;
+  })
+
+  after(function(){
+    window.setTimeout = so;
+    window.setInterval = si;
+  })
+
   beforeEach(function () {
     analytics.use(Bugsnag);
     bugsnag = new Bugsnag.Integration(settings);
@@ -63,6 +78,7 @@ describe('Bugsnag', function () {
       bugsnag.load(function (err) {
         if (err) return done(err);
         assert(bugsnag.loaded());
+        window.Bugsnag.notify('baz');
         done();
       });
     });
