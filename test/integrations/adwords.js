@@ -8,10 +8,10 @@ describe('AdWords', function(){
   var sinon = require('sinon');
 
   var settings = {
-    conversionId: 983265867,
+    conversionId: 978352801,
     events: {
-      signup: '7c8fc3c1',
-      login: '49aa6e21',
+      signup: '-kGkCJ_TsgcQofXB0gM',
+      login: 'QbThCM_zogcQofXB0gM',
       play: 'b91fc77f'
     }
   };
@@ -24,43 +24,57 @@ describe('AdWords', function(){
   it('should have the correct settings', function(){
     test(adwords)
       .name('AdWords')
-      .readyOnInitialize()
+      .readyOnLoad()
       .option('events', {});
   })
 
-  describe('#track', function(){
-    before(function(){
-      sinon.spy(AdWords, 'load');
+  describe('#load', function(){
+    it('should load', function(done){
+      adwords.load(function(){ done(); });
     })
+  })
 
-    afterEach(function(){
-      AdWords.load.reset();
+  describe('#track', function(){
+    beforeEach(function(done){
+      remove('iframe');
+      adwords.on('ready', done);
+      adwords.initialize();
     })
 
     it('should not send if event is not defined', function(){
       test(adwords).track('toString', {});
-      assert(!AdWords.load.called);
+      assert(0 == get('iframe').length);
     })
 
-    it('should send if event is found', function(){
-      test(adwords)
-        .track('signup', {})
-        .called(AdWords.load)
-        .with({ value: 0, label: '7c8fc3c1', script: 0}, { id: 983265867 });
+    it('should insert an iframe', function(){
+      test(adwords).track('signup');
+      var iframe = get('iframe')[0];
+      var scripts = iframe.contentDocument.getElementsByTagName('script');
+      assert(iframe.parentNode);
+      assert(2 == scripts.length);
+      assert(scripts[0].textContent);
+      assert(scripts[0].textContent.match(settings.events.signup));
+      assert('http://www.googleadservices.com/pagead/conversion.js' == scripts[1].src);
+      assert(scripts[0].textContent.match(settings.conversionId));
     })
 
     it('should send revenue', function(){
-      test(adwords)
-        .track('login', { revenue: '$50' })
-        .called(AdWords.load)
-        .with({ value: 50, label: '49aa6e21', script: 0 }, { id: 983265867 });
-    })
-
-    it('should send correctly', function(){
-      test(adwords).track('play', { revenue: 90 });
-      var img = AdWords.load.returnValues[0];
-      assert(img);
-      assert('http://www.googleadservices.com/pagead/conversion/983265867?value=90&label=b91fc77f&script=0' == img.src)
+      test(adwords).track('login', { revenue: 1234 });
+      var iframe = get('iframe')[0];
+      var scripts = iframe.contentDocument.getElementsByTagName('script');
+      assert(scripts[0].textContent.match(/1234/));
     })
   })
+
+  function get(sel){
+    return document.getElementsByTagName(sel);
+  }
+
+  function remove(sel){
+    var els = get(sel);
+    for (var i = 0; i < els.length; ++i) {
+      if (!els[i].parentNode) continue;
+      els[i].parentNode.removeChild(els[i]);
+    }
+  }
 })
