@@ -34,47 +34,70 @@ describe('AdWords', function(){
     })
   })
 
+  describe('#conversion', function(){
+    beforeEach(function(){
+      var els = document.getElementsByTagName('img');
+      for (var i = 0; i < els.length; ++i) {
+        if (!els[i].src) continue;
+        if (/googleadservices/.test(els[i].src)) continue;
+        els[i].parentNode.removeChild(els[i]);
+      }
+    })
+
+    it('should set globals correctly', function(done){
+      adwords.conversion({ conversionId: 1, label: 'baz', value: 9 }, done);
+      assert(1 == window.google_conversion_id);
+      assert('en' == window.google_conversion_language);
+      assert('3' == window.google_conversion_format);
+      assert('ffffff' == window.google_conversion_color);
+      assert('baz' == window.google_conversion_label);
+      assert(9 == window.google_conversion_value);
+      assert(false == window.google_remarketing_only);
+    })
+
+    it('should override document.write', function(done){
+      var write = document.write;
+      adwords.conversion({ conversionId: 1, label: 'baz', value: 9 }, done);
+      assert(write != document.write);
+    });
+
+    it('should restore document.write', function(done){
+      var write = document.write;
+      adwords.conversion({ conversionId: 1, label: 'baz', value: 9 }, function(){
+        assert(write == document.write);
+        done();
+      });
+    })
+  })
+
   describe('#track', function(){
     beforeEach(function(done){
-      remove('iframe');
       adwords.on('ready', done);
+      sinon.spy(adwords, 'conversion');
       adwords.initialize();
     })
 
     it('should not send if event is not defined', function(){
       test(adwords).track('toString', {});
-      assert(0 == get('iframe').length);
+      assert(!adwords.conversion.called);
     })
 
-    it('should insert an iframe', function(){
-      test(adwords).track('signup');
-      var iframe = get('iframe')[0];
-      var scripts = iframe.contentDocument.getElementsByTagName('script');
-      assert(iframe.parentNode);
-      assert(2 == scripts.length);
-      assert(scripts[0].textContent);
-      assert(scripts[0].textContent.match(settings.events.signup));
-      assert('http://www.googleadservices.com/pagead/conversion.js' == scripts[1].src);
-      assert(scripts[0].textContent.match(settings.conversionId));
+    it('should send event if its defined', function(){
+      test(adwords).track('signup', {});
+      assert(adwords.conversion.calledWith({
+        conversionId: adwords.options.conversionId,
+        label: adwords.options.events.signup,
+        value: 0,
+      }))
     })
 
     it('should send revenue', function(){
-      test(adwords).track('login', { revenue: 1234 });
-      var iframe = get('iframe')[0];
-      var scripts = iframe.contentDocument.getElementsByTagName('script');
-      assert(scripts[0].textContent.match(/1234/));
+      test(adwords).track('login', { revenue: 90 });
+      assert(adwords.conversion.calledWith({
+        conversionId: adwords.options.conversionId,
+        label: adwords.options.events.login,
+        value: 90
+      }));
     })
   })
-
-  function get(sel){
-    return document.getElementsByTagName(sel);
-  }
-
-  function remove(sel){
-    var els = get(sel);
-    for (var i = 0; i < els.length; ++i) {
-      if (!els[i].parentNode) continue;
-      els[i].parentNode.removeChild(els[i]);
-    }
-  }
 })
