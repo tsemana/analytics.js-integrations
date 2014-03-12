@@ -31,6 +31,7 @@
     "segmentio/is-email": "0.1.1",
     "segmentio/load-date": "0.0.1",
     "segmentio/load-script": "0.1.0",
+    "segmentio/script-onload": "1.0.0",
     "segmentio/on-body": "0.0.1",
     "segmentio/on-error": "0.1.0",
     "segmentio/to-iso-string": "0.0.1",
