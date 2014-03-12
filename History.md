@@ -1,4 +1,10 @@
 
+0.4.6 / 2014-03-12
+==================
+
+ * adwords: use `.appendChild()` and load `conversion.js` instead of the pixel.
+ * curebit: fix typo
+
 0.4.5 / 2014-03-06
 ==================
 
