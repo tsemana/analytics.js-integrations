@@ -94,13 +94,13 @@ describe('Curebit', function(){
 
   describe('#register-affiliate', function(){
     it('should not register affiliate when the url doesnt match', function(){
-      curebit.options.campaigns = { '/share' : 'share' };
+      curebit.options.campaigns = { '/share' : 'share, test' };
       curebit.initialize();
       equals(window._curebitq.length, 1);
     })
 
     it('should register affiliate when the url matches', function(){
-      curebit.options.campaigns = { '/' : 'share' };
+      curebit.options.campaigns = { '/' : 'share, test' };
       curebit.options.iframeId = 'curebit-iframe';
       curebit.initialize();
       sinon.spy(window._curebitq, 'push');
@@ -113,14 +113,14 @@ describe('Curebit', function(){
             id: 'curebit-iframe',
             frameborder: 0
           },
-          campaign_tags : 'share'
+          campaign_tags : ['share', 'test']
       }]);
 
 
     })
 
     it('should register affiliate with affiliate member info', function(){
-      curebit.options.campaigns = { '/' : 'share' };
+      curebit.options.campaigns = { '/' : 'share, test' };
       curebit.options.iframeId = 'curebit-iframe';
       analytics.identify('id', {
         firstName : 'john',
@@ -138,7 +138,7 @@ describe('Curebit', function(){
           id: 'curebit-iframe',
           frameborder: 0
         },
-        campaign_tags : 'share',
+        campaign_tags : ['share', 'test'],
         affiliate_member: {
           email: 'my@email.com',
           first_name: 'john',
