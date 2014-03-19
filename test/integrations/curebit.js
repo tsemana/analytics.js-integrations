@@ -40,7 +40,7 @@ describe('Curebit', function(){
       .option('iframeWidth', '100%')
       .option('responsive', true)
       .option('device', '')
-      .option('insertIntoId', '')
+      .option('insertIntoId', 'curebit-frame')
       .option('campaigns', {})
       .option('server', 'https://www.curebit.com');
   })
