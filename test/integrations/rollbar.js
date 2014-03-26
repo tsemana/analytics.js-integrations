@@ -54,9 +54,6 @@ describe('Rollbar', function() {
 
   describe('#load', function() {
     beforeEach(function() {
-      //sinon.stub(rollbar, 'load');
-      //rollbar.initialize();
-      //rollbar.load.restore();
       rollbar.reset();
     });
 
