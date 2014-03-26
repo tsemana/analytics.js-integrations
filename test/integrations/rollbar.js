@@ -1,60 +1,41 @@
 
-describe('Rollbar', function () {
+describe('Rollbar', function() {
 
-  var Rollbar = require('integrations/lib/rollbar');
   var analytics = require('analytics');
   var assert = require('assert');
   var equal = require('equals');
   var noop = function(){};
-  var test = require('integration-tester');
+  var Rollbar = require('integrations/lib/rollbar');
   var sinon = require('sinon');
+  var test = require('integration-tester');
 
   var rollbar;
   var settings = {
     accessToken: 'e1674422cbe9419987eb2e7f98adc5ec',
-    'server.environment': 'testenvironment'
+    environment: 'testenvironment',
   };
 
-  beforeEach(function () {
+  beforeEach(function() {
     analytics.use(Rollbar);
     rollbar = new Rollbar.Integration(settings);
-    rollbar.initialize(); // noop
   });
 
-  afterEach(function () {
+  afterEach(function() {
     rollbar.reset();
   });
 
-  it('should store the right settings', function () {
+  it('should have the right settings', function() {
     test(rollbar)
       .name('Rollbar')
       .readyOnInitialize()
-      .assumesPageview()
-      .global('_rollbar')
+      .global('Rollbar')
       .option('accessToken', '')
       .option('identify', true);
   });
 
-  describe('#initialize', function () {
-    var onerror;
-
+  describe('#initialize', function() {
     beforeEach(function () {
       sinon.stub(rollbar, 'load');
-      // set up custom onerror so mocha won't complain
-      onerror = window.onerror;
-      window.onerror = function(){};
-    });
-
-    afterEach(function () {
-      window.onerror = onerror;
-    });
-
-    it('should add the error handler', function () {
-      rollbar.initialize();
-      var err = new Error('a test error');
-      window._rollbar.push = sinon.spy();
-      window.onerror(err);
-      assert(window._rollbar.push.calledWith(err));
     });
 
     it('should call #load', function () {
@@ -63,67 +44,82 @@ describe('Rollbar', function () {
     });
   });
 
-  describe('#loaded', function () {
-    it('should test window._rollbar.push', function () {
-      window._rollbar = [];
+  describe('#loaded', function() {
+    it('should be loaded after initialize', function() {
       assert(!rollbar.loaded());
-      window._rollbar.push = function(){};
+      rollbar.initialize();
       assert(rollbar.loaded());
     });
   });
 
-  describe('#load', function () {
-    beforeEach(function () {
-      sinon.stub(rollbar, 'load');
-      onerror = window.onerror;
-      window.onerror = noop;
-      rollbar.initialize();
-      window.onerror = onerror;
-      rollbar.load.restore();
+  describe('#load', function() {
+    beforeEach(function() {
+      //sinon.stub(rollbar, 'load');
+      //rollbar.initialize();
+      //rollbar.load.restore();
+      rollbar.reset();
     });
 
-    it('should change loaded state', function (done) {
-      assert(!rollbar.loaded());
-      rollbar.load(function (err) {
+    it('should set an onerror handler', function (done) {
+      var handler = window.onerror;
+      rollbar.load(function(err) {
         if (err) return done(err);
-        assert(rollbar.loaded());
+        assert(handler !== window.onerror);
+        assert('function' === typeof window.onerror);
+        done();
+      });
+    });
+
+    it('should add global Rollbar notifier', function(done) {
+      rollbar.load(function(err) {
+        assert(window.Rollbar);
+        assert(window.Rollbar.debug);
+        assert(window.Rollbar.info);
+        assert(window.Rollbar.warning);
+        assert(window.Rollbar.error);
+        assert(window.Rollbar.critical);
+        assert(window.Rollbar.configure);
+        assert(window.Rollbar.scope);
         done();
       });
     });
   });
 
-  describe('#identify', function () {
-    beforeEach(function () {
+  describe('#identify', function() {
+    var configure;
+    beforeEach(function() {
       rollbar.initialize();
-      window._rollbar.extraParams = {};
+      configure = sinon.stub(window.Rollbar, 'configure');
     });
 
-    it('should add an id to metadata', function () {
-      test(rollbar).identify('id');
-      assert(equal(window._rollbar.extraParams, { person: { id: 'id' } }));
+    it('should add an id to metadata', function() {
+      test(rollbar).identify('user-id');
+      var firstCall = window.Rollbar.configure.firstCall;
+      args = firstCall.args;
+      assert(args[0].payload.person.id === 'user-id');
     });
 
-    it('should add traits to person data', function () {
-      test(rollbar).identify(null, { trait: true });
-      assert(equal(window._rollbar.extraParams, { person: { trait: true } }));
+    it('should add traits to person data', function() {
+      test(rollbar).identify(null, {trait: true});
+      var firstCall = window.Rollbar.configure.firstCall;
+      args = firstCall.args;
+      assert(args[0].payload.person.id === null);
+      assert(args[0].payload.person.trait === true);
     });
 
-    it('should add an id and traits to person data', function () {
-      test(rollbar).identify('id', { trait: true });
-      assert(equal(window._rollbar.extraParams, {
-        person: {
-          id: 'id',
-          trait: true
-        }
-      }));
+    it('should add an id and traits to person data', function() {
+      test(rollbar).identify('user-id', {trait: true});
+      var firstCall = window.Rollbar.configure.firstCall;
+      args = firstCall.args;
+      assert(args[0].payload.person.id === 'user-id');
+      assert(args[0].payload.person.trait === true);
     });
 
-    it('should not add to person data when identify option is false', function () {
+    it('should not add to person data when identify option is false', function() {
       rollbar.options.identify = false;
-      test(rollbar).identify('id');
-      assert(equal(window._rollbar.extraParams, {}));
+      test(rollbar).identify('user-id');
+      assert(!window.Rollbar.configure.called);
     });
   });
-
 });
 
