@@ -63,6 +63,7 @@
     "index.js",
     "lib/adroll.js",
     "lib/adwords.js",
+    "lib/alexa.js",
     "lib/amplitude.js",
     "lib/awesm.js",
     "lib/awesomatic.js",
