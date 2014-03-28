@@ -90,6 +90,7 @@
     "lib/google-tag-manager.js",
     "lib/gosquared.js",
     "lib/heap.js",
+    "lib/hellobar.js",
     "lib/hittail.js",
     "lib/hubspot.js",
     "lib/improvely.js",
