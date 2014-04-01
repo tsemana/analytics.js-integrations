@@ -28,8 +28,11 @@ server: build kill
 	@tests=$(tests) node test/server &
 	@sleep 1
 
-test: build server
+test: build server test-node
 	@$(PHANTOM) $(TEST)
+
+test-node: node_modules
+	@node_modules/.bin/mocha test/node.js
 
 test-browser: build server
 	@open $(TEST)
