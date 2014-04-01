@@ -2,6 +2,7 @@
 0.4.14 / 2014-04-01
 ==================
 
+ * add tests for slugs.json and component.json
  * add Hellobar
  * mixpanel: fix traits leak
  * add Alexa
