@@ -17,7 +17,6 @@ describe('Vero', function () {
   beforeEach(function () {
     analytics.use(Vero);
     vero = new Vero.Integration(settings);
-    vero.initialize(); // noop
   });
 
   afterEach(function () {
@@ -26,7 +25,6 @@ describe('Vero', function () {
 
   it('should store the proper settings', function () {
     test(vero)
-      .assumesPageview()
       .readyOnInitialize()
       .global('_veroq')
       .option('apiKey', '');
@@ -47,6 +45,18 @@ describe('Vero', function () {
       assert(vero.load.called);
     });
   });
+
+  describe('#page', function(){
+    beforeEach(function(){
+      window._veroq = [];
+      window._veroq.push = sinon.spy();
+    })
+
+    it('should push "trackPageview"', function(){
+      test(vero).page();
+      assert(window._veroq.push.calledWith(['trackPageview']));
+    })
+  })
 
   describe('#loaded', function () {
     it('should test window._veroq.push', function () {

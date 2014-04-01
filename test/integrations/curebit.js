@@ -14,7 +14,7 @@ describe('Curebit', function(){
   var curebit;
   var settings = {
     siteId: 'curebit-87ab995d-736b-45ba-ac41-71f4dbb5c74a',
-    server: ''
+    server: 'https://api.segment.io/track'
   };
 
   beforeEach(function(){
@@ -35,7 +35,14 @@ describe('Curebit', function(){
       .global('_curebitq')
       .global('curebit')
       .option('siteId', '')
-      .option('server', '');
+      .option('iframeBorder', 0)
+      .option('iframeHeight', '480')
+      .option('iframeWidth', '100%')
+      .option('responsive', true)
+      .option('device', '')
+      .option('insertIntoId', 'curebit-frame')
+      .option('campaigns', {})
+      .option('server', 'https://www.curebit.com');
   })
 
   describe('#initialize', function(){
@@ -49,7 +56,7 @@ describe('Curebit', function(){
         .changed(window._curebitq[0])
         .to(['init', {
           site_id: settings.siteId,
-          server: ''
+          server: 'https://api.segment.io/track'
         }]);
     })
 
@@ -85,11 +92,73 @@ describe('Curebit', function(){
     })
   })
 
+  describe('#register-affiliate', function(){
+    it('should not register affiliate when the url doesnt match', function(){
+      curebit.options.campaigns = { '/share' : 'share, test' };
+      curebit.initialize();
+      equals(window._curebitq.length, 1);
+    })
+
+    it('should register affiliate when the url matches', function(){
+      curebit.options.campaigns = { '/' : 'share, test' };
+      curebit.options.iframeId = 'curebit-iframe';
+      curebit.initialize();
+      sinon.spy(window._curebitq, 'push');
+      window._curebitq.push.calledWith(['register_affiliate', {
+          responsive: true,
+          device: '',
+          iframe: {
+            width: '100%',
+            height: '480',
+            id: 'curebit-iframe',
+            frameborder: 0
+          },
+          campaign_tags : ['share', 'test']
+      }]);
+
+
+    })
+
+    it('should register affiliate with affiliate member info', function(){
+      curebit.options.campaigns = { '/' : 'share, test' };
+      curebit.options.iframeId = 'curebit-iframe';
+      analytics.identify('id', {
+        firstName : 'john',
+        lastName  : 'doe',
+        email : 'my@email.com'
+      });
+      curebit.initialize();
+      sinon.spy(window._curebitq, 'push');
+      window._curebitq.push.calledWith(['register_affiliate', {
+        responsive: true,
+        device: '',
+        iframe: {
+          height: '100%',
+          width: '480',
+          id: 'curebit-iframe',
+          frameborder: 0
+        },
+        campaign_tags : ['share', 'test'],
+        affiliate_member: {
+          email: 'my@email.com',
+          first_name: 'john',
+          last_name: 'doe',
+          customer_id: 'id'
+        }
+      }]);
+    })
+  })
+
   describe('ecommerce', function(){
     beforeEach(function(){
+      analytics.user().reset();
       curebit.initialize();
-      window._curebitq.push = sinon.spy();
+      sinon.spy(window._curebitq, 'push');
     });
+
+    afterEach(function(){
+      window._curebitq.push.restore();
+    })
 
     it('should send ecommerce data', function(){
       var date = new Date;

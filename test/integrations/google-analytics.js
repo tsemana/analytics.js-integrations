@@ -40,6 +40,7 @@ describe('Google Analytics', function () {
     beforeEach(function () {
       analytics.use(GA);
       ga = new GA.Integration(settings);
+      analytics.user().id(null);
     });
 
     afterEach(function () {
@@ -87,6 +88,19 @@ describe('Google Analytics', function () {
         ga.initialize();
         assert(ga.load.called);
       });
+
+      it('should not send universal user id by default', function(){
+        analytics.user().id('baz');
+        ga.initialize();
+        assert(!equal(window.ga.q[1], ['set', '&uid', 'baz']));
+      })
+
+      it('should send universal user id if sendUserId option is true and user.id() is truthy', function(){
+        analytics.user().id('baz');
+        ga.options.sendUserId = true;
+        ga.initialize();
+        assert(equal(window.ga.q[1], ['set', '&uid', 'baz']));
+      })
     });
 
     describe('#loaded', function () {
