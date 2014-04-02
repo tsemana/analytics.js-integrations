@@ -97,6 +97,7 @@
     "lib/inspectlet.js",
     "lib/intercom.js",
     "lib/keen-io.js",
+    "lib/kenshoo.js",
     "lib/kissmetrics.js",
     "lib/klaviyo.js",
     "lib/leadlander.js",
