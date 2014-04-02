@@ -97,6 +97,28 @@ describe('Quantcast', function () {
       assert(item.qacct === settings.pCode);
     });
 
+    it('should push the page name as a label', function () {
+      var name = 'Page Name';
+      test(quantcast).page(name);
+      var item = window._qevents[1];
+      assert(item.labels === 'Page.'+name);
+    });
+
+    it('should push the page name as a label without commas', function () {
+      var name = 'Page, Name';
+      test(quantcast).page(name);
+      var item = window._qevents[1];
+      assert(item.labels === 'Page.Page; Name');
+    });
+
+    it('should push the page category and name as labels', function () {
+      var category = 'Category Name';
+      var name = 'Page Name';
+      test(quantcast).page(category, name);
+      var item = window._qevents[1];
+      assert(item.labels === ('Page.'+category+'.'+name));
+    });
+
     it('should push the user id', function () {
       analytics.user().identify('id');
       test(quantcast).page();
@@ -127,6 +149,19 @@ describe('Quantcast', function () {
       assert(item.event === 'click');
     });
 
+    it('should push a label for the event', function () {
+      test(quantcast).track('event');
+      var item = window._qevents[1];
+      assert(item.labels === 'Event.event');
+    });
+
+    it('should push revenue for the event', function () {
+      var revenue = 10.45;
+      test(quantcast).track('event', { revenue : revenue });
+      var item = window._qevents[1];
+      assert(item.revenue === '10.45');
+    });
+
     it('should push the pCode', function () {
       test(quantcast).track('event');
       var item = window._qevents[1];
@@ -138,6 +173,30 @@ describe('Quantcast', function () {
       test(quantcast).track('event');
       var item = window._qevents[1];
       assert(item.uid === 'id');
+    });
+
+    it('should handle completed order events', function () {
+      test(quantcast).track('completed order', {
+        orderId: '780bc55',
+        total: 99.99,
+        shipping: 13.99,
+        tax: 20.99,
+        products: [{
+          quantity: 1,
+          price: 24.75,
+          name: 'my product',
+          sku: 'p-298'
+        }, {
+          quantity: 3,
+          price: 24.75,
+          name: 'other product',
+          sku: 'p-299'
+        }]
+      });
+      var item = window._qevents[1];
+      assert(item.orderid === '780bc55');
+      assert(item.revenue === '99.99');
+      assert(item.labels === 'Event.completed order');
     });
   });
 
