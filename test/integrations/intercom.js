@@ -194,30 +194,25 @@ describe('Intercom', function () {
       }));
     });
 
-    it('should send inbox settings', function () {
-      intercom.options.inbox = true;
+    it('should send widget settings if the activator isnt the default one.', function () {
+      intercom.options.activator = '#my-widget';
       test(intercom).identify('id');
       assert(window.Intercom.calledWith('boot', {
         app_id: settings.appId,
         user_id: 'id',
         id: 'id',
         widget: {
-          activator: '#IntercomDefaultWidget'
+          activator: '#my-widget'
         }
       }));
     });
 
-    it('should allow overriding default activator', function () {
-      intercom.options.inbox = true;
-      intercom.options.activator = '#Intercom';
+    it('should not send activator if its the default one.', function () {
       test(intercom).identify('id');
       assert(window.Intercom.calledWith('boot', {
         app_id: settings.appId,
         user_id: 'id',
-        id: 'id',
-        widget: {
-          activator: '#Intercom'
-        }
+        id: 'id'
       }));
     });
   });
