@@ -1,4 +1,12 @@
 
+0.5.0 / 2014-04-04
+==================
+
+ * quantcast: dont use .filter and .map
+ * add Kenshoo [realyze]
+ * add Navilytics [beeker1121]
+ * rollbar: update to use latest notifier [coryvirok]
+
 0.4.14 / 2014-04-01
 ==================
 
