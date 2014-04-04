@@ -98,25 +98,21 @@ describe('Quantcast', function () {
     });
 
     it('should push the page name as a label', function () {
-      var name = 'Page Name';
-      test(quantcast).page(name);
+      test(quantcast).page('Page Name');
       var item = window._qevents[1];
-      assert(item.labels === 'Page.'+name);
+      assert(item.labels === 'Page.Page Name,_fp.Page.Page Name');
     });
 
     it('should push the page name as a label without commas', function () {
-      var name = 'Page, Name';
-      test(quantcast).page(name);
+      test(quantcast).page('Page, Name');
       var item = window._qevents[1];
-      assert(item.labels === 'Page.Page; Name');
+      assert(item.labels === 'Page.Page; Name,_fp.Page.Page; Name');
     });
 
     it('should push the page category and name as labels', function () {
-      var category = 'Category Name';
-      var name = 'Page Name';
-      test(quantcast).page(category, name);
+      test(quantcast).page('Category', 'Page');
       var item = window._qevents[1];
-      assert(item.labels === ('Page.'+category+'.'+name));
+      assert(item.labels === ('Page.Category.Page,_fp.Page.Category.Page'));
     });
 
     it('should push the user id', function () {
@@ -152,7 +148,7 @@ describe('Quantcast', function () {
     it('should push a label for the event', function () {
       test(quantcast).track('event');
       var item = window._qevents[1];
-      assert(item.labels === 'Event.event');
+      assert(item.labels === 'Event.event,_fp.Event.event');
     });
 
     it('should push revenue for the event', function () {
@@ -196,7 +192,7 @@ describe('Quantcast', function () {
       var item = window._qevents[1];
       assert(item.orderid === '780bc55');
       assert(item.revenue === '99.99');
-      assert(item.labels === 'Event.completed order');
+      assert(item.labels === 'Event.completed order,_fp.Event.completed order');
     });
   });
 
