@@ -23,7 +23,7 @@ describe('Hellobar', function() {
 
   it('should have the right settings', function () {
     test(hellobar)
-      .name('Hellobar')
+      .name('Hello Bar')
       .assumesPageview()
       .readyOnInitialize()
       .global('_hbq')
@@ -51,9 +51,9 @@ describe('Hellobar', function() {
   describe('#loaded', function () {
     it('should test window._hbq', function () {
       window._hbq = undefined;
-      assert( ! hellobar.loaded());
+      assert(!hellobar.loaded());
       window._hbq = {push: Array.prototype.push};
-      assert( ! hellobar.loaded());
+      assert(!hellobar.loaded());
       window._hbq = {push: function() {}};
       assert(hellobar.loaded());
     });
@@ -67,7 +67,7 @@ describe('Hellobar', function() {
     });
 
     it('should change loaded state', function (done) {
-      assert( ! hellobar.loaded());
+      assert(!hellobar.loaded());
       hellobar.load(function (err) {
         if (err) return done(err);
         assert(hellobar.loaded());
