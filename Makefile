@@ -1,5 +1,4 @@
 
-BROWSERS= "ie6..11, chrome, safari, firefox"
 SRC= $(wildcard index.js lib/*.js)
 tests ?= *
 BINS= node_modules/.bin
@@ -39,9 +38,6 @@ test-browser: build server
 
 test-coverage: build server
 	@open $(TEST)/coverage
-
-test-sauce: build server
-	@BROWSERS=$(BROWSERS) $(GRAVY) --url $(TEST)
 
 clean:
 	rm -rf components build
