@@ -10,8 +10,8 @@ describe('Alexa', function () {
 
   var alexa;
   var settings = {
-    atrk_acct: 'h5Gaj1a4ZP000h',
-    domain: 'rishirajbansal.com',
+    account: 'h5Gaj1a4ZP000h',
+    domain: 'mydomain.com',
     dynamic: true
   };
 
@@ -32,7 +32,7 @@ describe('Alexa', function () {
       .assumesPageview()
       .readyOnLoad()
       .global('_atrk_opts')
-      .option('atrk_acct', null)
+      .option('account', null)
       .option('domain', '')
       .option('dynamic', true);
   });
@@ -44,7 +44,11 @@ describe('Alexa', function () {
 
     it('should create window._atrk_opts', function () {
       alexa.initialize();
-      assert(equal(window._atrk_opts, settings));
+      assert(equal(window._atrk_opts, {
+        atrk_acct: settings.account,
+        domain: settings.domain,
+        dynamic: settings.dynamic
+      }));
     });
 
     it('should call #load', function () {
