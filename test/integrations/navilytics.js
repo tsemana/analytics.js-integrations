@@ -7,11 +7,12 @@ describe('Navilytics', function () {
   var Navilytics = require('integrations/lib/navilytics');
   var sinon = require('sinon');
   var test = require('integration-tester');
+  var timeouts = require('clear-timeouts');
 
   var navilytics;
   var settings = {
-    mid: '1000',
-    pid: '50'
+    memberId: '1042',
+    projectId: '73'
   };
 
   beforeEach(function () {
@@ -21,6 +22,7 @@ describe('Navilytics', function () {
   });
 
   afterEach(function () {
+    timeouts();
     navilytics.reset();
   });
 
@@ -30,8 +32,8 @@ describe('Navilytics', function () {
       .assumesPageview()
       .readyOnLoad()
       .global('__nls')
-      .option('mid', '')
-      .option('pid', '');
+      .option('memberId', '')
+      .option('projectId', '');
   });
 
   describe('#initialize', function () {
