@@ -1,4 +1,12 @@
 
+0.5.2 / 2014-04-07 
+==================
+
+ * curebit: fixing up to new spec
+ * navilytics: mid & pid -> memberId & projectId
+ * hellobar: rename Hellobar -> Hello Bar
+ * alexa: atrk_acct -> account
+
 0.5.1 / 2014-04-05
 ==================
 
