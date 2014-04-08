@@ -113,6 +113,7 @@
     "lib/optimizely.js",
     "lib/perfect-audience.js",
     "lib/pingdom.js",
+    "lib/piwik.js",
     "lib/preact.js",
     "lib/qualaroo.js",
     "lib/quantcast.js",
