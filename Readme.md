@@ -24,6 +24,7 @@ If you ever need any help, feel free to email [friends@segment.io](mailto:friend
 - [Clicky](http://clicky.com/)
 - [comScore](http://www.comscore.com/)
 - [Crazy Egg](crazyegg.com)
+- [Curebit](https://curebit.com/)
 - [Customer.io](http://customer.io/)
 - [Drip](https://www.getdrip.com/)
 - [Errorception](http://errorception.com/)
