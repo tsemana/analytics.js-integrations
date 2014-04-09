@@ -1,4 +1,3 @@
-
 describe('integrations', function () {
 
   var assert = require('assert');
@@ -6,7 +5,7 @@ describe('integrations', function () {
   var object = require('object');
 
   it('should export our integrations', function () {
-    assert(object.length(Integrations) === 71);
+    assert(object.length(Integrations) === 72);
   });
 
 });
