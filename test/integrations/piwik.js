@@ -30,7 +30,7 @@ describe('Piwik', function () {
       .option('id', '')
       .option('url', null)
       .assumesPageview()
-      .readyOnLoad();
+      .readyOnInitialize();
   });
 
   describe('#initialize', function () {
