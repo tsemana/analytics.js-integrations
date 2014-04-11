@@ -1,4 +1,15 @@
 
+0.5.4 / 2014-04-11 
+==================
+
+ * mojn: replace global var name [mojn]
+ * ga: add google display ads
+ * curebit: Switch to stable library
+ * Add Piwik [charlesportwoodii]
+ * adwords: fix typo
+ * kenshoo: fix typo
+ * Add curebit to readme
+
 0.5.3 / 2014-04-07 
 ==================
 
