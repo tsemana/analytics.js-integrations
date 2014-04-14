@@ -9,7 +9,7 @@ describe('Piwik', function () {
       test      = require('integration-tester'),
       piwik,
       settings  = {
-        id: 42,
+        siteId: 42,
         url: 'https://demo.piwik.org'
       };
 
@@ -27,7 +27,7 @@ describe('Piwik', function () {
     test(piwik)
       .name('Piwik')
       .global('_paq')
-      .option('id', '')
+      .option('siteId', '')
       .option('url', null)
       .assumesPageview()
       .readyOnInitialize();
@@ -45,7 +45,7 @@ describe('Piwik', function () {
 
     it('should push the id onto window._paq', function () {
       piwik.initialize();
-      assert(equal(window._paq[0], ['setSiteId', settings.id]));
+      assert(equal(window._paq[0], ['setSiteId', settings.siteId]));
     });
 
     it('should push the url onto window._paq', function () {
