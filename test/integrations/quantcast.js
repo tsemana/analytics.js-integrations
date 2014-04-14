@@ -30,7 +30,8 @@ describe('Quantcast', function () {
       .readyOnInitialize()
       .global('_qevents')
       .global('__qc')
-      .option('pCode', null);
+      .option('pCode', null)
+      .option('advertise', false);
   });
 
   describe('#initialize', function () {
