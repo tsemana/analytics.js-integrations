@@ -1,4 +1,12 @@
 
+0.5.5 / 2014-04-14 
+==================
+
+ * quantcast: remove labelPages option
+ * quantcast: add .advertise option and impl
+ * piwik: id -> siteId
+ * mixpanel: add increments, closes #95
+
 0.5.4 / 2014-04-11 
 ==================
 
