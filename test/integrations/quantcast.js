@@ -54,6 +54,12 @@ describe('Quantcast', function () {
       quantcast.initialize();
       assert(quantcast.load.called);
     });
+
+    it('should call #page when given a page', function(){
+      quantcast.page = sinon.spy();
+      quantcast.initialize(test.types.page())
+      assert('page' == quantcast.page.args[0][0].action());
+    })
   });
 
   describe('#loaded', function () {
@@ -122,6 +128,13 @@ describe('Quantcast', function () {
       var item = window._qevents[1];
       assert(item.uid === 'id');
     });
+
+    it('should call `#initialize` with `#page` once the integration is ready', function(){
+      quantcast._initialized = false;
+      quantcast.initialize = sinon.spy();
+      test(quantcast).page('name');
+      assert('page' == quantcast.initialize.args[0][0].action());
+    })
 
     describe('when advertise is true', function(){
       it('should prefix with _fp.event', function(){
