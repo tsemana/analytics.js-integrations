@@ -1,4 +1,11 @@
 
+0.5.6 / 2014-04-16 
+==================
+
+ * quantcast: call .page() with .page(Page) in initialize
+ * upgrade integration to 0.1.8
+ * add adroll events, closes #27 ?
+
 0.5.5 / 2014-04-14 
 ==================
 
