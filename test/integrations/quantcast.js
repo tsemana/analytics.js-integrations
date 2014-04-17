@@ -191,6 +191,12 @@ describe('Quantcast', function () {
       assert(item.revenue === '10.45');
     });
 
+    it('should not push revenue if its undefined', function(){
+      test(quantcast).track('event', { revenue: undefined });
+      var item = window._qevents[1];
+      assert(!item.hasOwnProperty('revenue'));
+    })
+
     it('should push the pCode', function () {
       test(quantcast).track('event');
       var item = window._qevents[1];
