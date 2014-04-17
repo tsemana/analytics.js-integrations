@@ -1,4 +1,11 @@
 
+0.5.7 / 2014-04-17 
+==================
+
+ * quantcast: fix advertise separator
+ * quantcast: fix revenue undefined case
+ * quantcast: fix pageviews.
+
 0.5.6 / 2014-04-16 
 ==================
 
