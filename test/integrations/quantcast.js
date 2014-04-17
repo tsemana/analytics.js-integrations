@@ -60,7 +60,7 @@ describe('Quantcast', function () {
       quantcast.initialize(test.types.page('category', 'name'));
       var pushed = window._qevents[0];
       assert('x' == pushed.qacct);
-      assert('refresh' == pushed.event);
+      assert(null == pushed.event);
       assert('page.category.name' == pushed.labels);
     })
   });
