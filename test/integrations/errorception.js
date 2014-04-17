@@ -11,7 +11,7 @@ describe('Errorception', function () {
 
   var errorception;
   var settings = {
-    projectId: '506b76b52f52c3f662000140'
+    projectId: '53502178c0906d4031000350'
   };
 
   beforeEach(function () {
