@@ -151,7 +151,7 @@ describe('Quantcast', function () {
         quantcast.options.advertise = true;
         test(quantcast).page('Category Name', 'Page Name');
         var item = window._qevents[1];
-        assert(item.labels == '_fp.event.Category Name.Page Name');
+        assert(item.labels == '_fp.event.Category Name Page Name');
       })
     })
   });
