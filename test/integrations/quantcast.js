@@ -55,10 +55,13 @@ describe('Quantcast', function () {
       assert(quantcast.load.called);
     });
 
-    it('should call #page when given a page', function(){
+    it('should push "refresh" with labels when given a page', function(){
       quantcast.page = sinon.spy();
-      quantcast.initialize(test.types.page())
-      assert('page' == quantcast.page.args[0][0].action());
+      quantcast.initialize(test.types.page('category', 'name'));
+      var pushed = window._qevents[0];
+      assert('x' == pushed.qacct);
+      assert('refresh' == pushed.event);
+      assert('page.category.name' == pushed.labels);
     })
   });
 
