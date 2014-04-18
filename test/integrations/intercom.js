@@ -247,7 +247,7 @@ describe('Intercom', function () {
       test(intercom)
         .track('event')
         .called(window.Intercom)
-        .with('trackUserEvent', 'event', {});
+        .with('trackEvent', 'event', {});
     })
   })
 
