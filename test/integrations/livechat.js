@@ -12,7 +12,7 @@ describe('LiveChat', function () {
 
   var livechat;
   var settings = {
-    license: '1520'
+    license: '4293371'
   };
 
   beforeEach(function () {
@@ -33,6 +33,9 @@ describe('LiveChat', function () {
       .assumesPageview()
       .readyOnLoad()
       .global('__lc')
+      .global('LC_API')
+      .global('LC_Invite')
+      .global('__lc_inited')
       .option('license', '');
   });
 
@@ -56,7 +59,9 @@ describe('LiveChat', function () {
   describe('#loaded', function () {
     it('should test .isLoaded', function () {
       assert(!livechat.loaded());
-      livechat.isLoaded = true;
+      window.LC_API = {};
+      assert(!livechat.loaded());
+      window.LC_Invite = {};
       assert(livechat.loaded());
     });
   });
@@ -81,8 +86,9 @@ describe('LiveChat', function () {
   describe('#identify', function () {
     beforeEach(function (done) {
       livechat.initialize();
-      livechat.once('load', function () {
-        window.LC_API.set_custom_variables = sinon.spy();
+      livechat.once('ready', function () {
+        sinon.spy(window.LC_API, 'set_custom_variables');
+        window.LC_API.set_custom_variables.reset();
         done();
       });
     });
@@ -98,22 +104,18 @@ describe('LiveChat', function () {
     it('should send traits', function () {
       test(livechat).identify(null, { trait: true });
       assert(window.LC_API.set_custom_variables.calledWith([
-        { name: 'trait', value: true }
+        { name: 'trait', value: 'true' }
       ]));
     });
 
     it('should send an id and traits', function () {
       test(livechat).identify('id', { trait: true });
       assert(window.LC_API.set_custom_variables.calledWith([
-        { name: 'trait', value: true },
+        { name: 'trait', value: 'true' },
         { name: 'id', value: 'id' },
         { name: 'User ID',value: 'id' }
       ]));
     });
   });
-
-  after(function(){
-    livechat.initialize();
-  })
 
 });
