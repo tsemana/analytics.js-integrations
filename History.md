@@ -1,4 +1,12 @@
 
+0.5.9 / 2014-04-24 
+==================
+
+ * livechat: make sure LC_API & LC_Invite are loaded
+ * add Frontleaf integration
+ * intercom: trackUserEvent -> trackEvent
+ * node-tests: use spec reporter
+
 0.5.8 / 2014-04-17 
 ==================
 
