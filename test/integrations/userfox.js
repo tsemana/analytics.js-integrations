@@ -1,5 +1,5 @@
 
-describe('', function () {
+describe('Userfox', function () {
 
   var analytics = require('analytics');
   var assert = require('assert');
