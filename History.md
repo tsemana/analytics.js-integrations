@@ -1,4 +1,14 @@
 
+0.5.10 / 2014-04-29 
+==================
+
+ * tests: comment out userfox #load test, since their script 404 for some reason
+ * mixpanel: when .created_at is given and transformed to $created, make sure .created_at is then removed
+ * navilytics: make sure __nls is created when initialized
+ * tests: add missing name to userfox test
+ * upgrade analytics.js-integration to 0.2.0 for .events() method
+ * component: add githubusercontent to remotes
+
 0.5.9 / 2014-04-24 
 ==================
 
