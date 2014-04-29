@@ -45,6 +45,12 @@ describe('Navilytics', function () {
       navilytics.initialize();
       assert(navilytics.load.called);
     });
+
+    it('should create window.__nls', function(){
+      assert(null == window.__nls);
+      navilytics.initialize();
+      assert.deepEqual([], window.__nls);
+    })
   });
 
   describe('#loaded', function () {
