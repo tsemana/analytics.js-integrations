@@ -238,6 +238,31 @@ describe('Mixpanel', function () {
         $phone: 'phone'
       }));
     });
+
+    it('should remove .created_at', function(){
+      mixpanel.options.people = true;
+      var date = new Date();
+      test(mixpanel).identify(null, {
+        created_at: date,
+        email: 'name@example.com',
+        firstName: 'first',
+        lastName: 'last',
+        lastSeen: date,
+        name: 'name',
+        username: 'username',
+        phone: 'phone'
+      });
+      assert(window.mixpanel.people.set.calledWith({
+        $created: date,
+        $email: 'name@example.com',
+        $first_name: 'first',
+        $last_name: 'last',
+        $last_seen: date,
+        $name: 'name',
+        $username: 'username',
+        $phone: 'phone'
+      }));
+    })
   });
 
   describe('#track', function () {
