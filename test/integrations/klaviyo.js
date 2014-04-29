@@ -154,6 +154,11 @@ describe('Klaviyo', function () {
       test(klaviyo).track('event', { property: true });
       assert(window._learnq.push.calledWith(['track', 'event', { property: true }]));
     });
+
+    it('should alias revenue to `$value`', function(){
+      test(klaviyo).track('event', { revenue: 90 });
+      assert(window._learnq.push.calledWith(['track', 'event', { $value: 90 }]));
+    })
   });
 
 });
