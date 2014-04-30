@@ -12,6 +12,7 @@
     "custom"
   ],
   "dependencies": {
+    "avetisk/defaults": "0.0.1",
     "component/clone": "0.1.1",
     "component/domify": "1.2.0",
     "component/each": "0.0.1",

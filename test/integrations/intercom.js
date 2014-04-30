@@ -217,15 +217,14 @@ describe('Intercom', function () {
     });
 
     it('should carry over company traits set in group', function() {
-      test(intercom).group('id', {foo: 'bar'});
+      analytics.group().traits({foo: 'bar'});
       test(intercom).identify('id');
       assert(window.Intercom.calledWith('boot', {
         app_id: settings.appId,
         user_id: 'id',
         id: 'id',
         company: {
-          foo: 'bar',
-          id: 'id'
+          foo: 'bar'
         }
       }));
     });
