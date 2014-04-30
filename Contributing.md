@@ -44,13 +44,13 @@ Then when you call `analytics.initialize`, it will create a new instance of all 
 To get started, inside your integration file, just require the [analytics.js-integration](https://github.com/segmentio/analytics.js-integration) factory like so:
 
 ```js
-var integration = require('integration');
+var integration = require('analytics.js-integration');
 ```
 
 And then you can make your own integration constructor by passing it a `name`:
 
 ```js
-var integration = require('integration');
+var integration = require('analytics.js-integration');
 var MyIntegration = integration('My Integration');
 ```
 
@@ -100,7 +100,7 @@ Every contribution you make to **analytics.js** should be accompanied by matchin
 
 When adding your own integration, the easiest way to figure out what major things to test is to look at everything you've added to the integration `prototype`. You'll want to write testing groups for `#initialize`, `#load`, `#identify`, `#track`, etc. And each group should test all of the expected functionality.
 
-The most important thing to writing clean, easy-to-manage integrations is to **keep them small** and **clean up after each test**, so that the environment is never polluted by an individual test. For example, in the [`/test/integrations/customerio.js`](/test/integrations/customerio.js) `#identify` tests you'll notice that we use the `beforeEach` and `afterEach` to make sure that user and spy state is cleared before and after each test. That way no individual test failing means all of the rest of the tests fail too. (Avoid domino situations!)
+The most important thing to writing clean, easy-to-manage integrations is to **keep them small** and **clean up after each test**, so that the environment is never polluted by an individual test. For example, in the [`/test/integrations/customerio.js`](/test/integrations/customerio.js) `#identify` tests you'll notice that we use the `beforeEach` and `afterEach` to make sure that user and sinon.spy state is cleared before and after each test. That way no individual test failing means all of the rest of the tests fail too. (Avoid domino situations!)
 
 If you run into any questions, check out a few of our [existing](/test/integrations/customerio.js) [test](/test/integrations/kissmetrics.js) [files](/test/integrations/mixpanel.js) to see how we've done it.
 

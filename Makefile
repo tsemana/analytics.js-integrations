@@ -1,23 +1,23 @@
 
-SRC= $(wildcard index.js lib/*.js)
+SRC= $(wildcard *.js lib/*/*.js test/*.js)
+REQUIRES= integrations.js test/tests.js
 tests ?= *
 BINS= node_modules/.bin
-TEST_URL= http://localhost:4202
-C= $(BINS)/component
+DUO= $(BINS)/duo
+TEST= http://localhost:4202
 PHANTOM= $(BINS)/mocha-phantomjs \
 	--setting local-to-remote-url-access=true \
 	--setting web-security=false
-ifdef integration
-TEST = $(TEST_URL)?grep=$(integration)
-else
-TEST = $(TEST_URL)
-endif
 
-build: node_modules components $(SRC)
-	@$(C) build --dev
 
-components: component.json
-	@$(C) install --dev
+build: node_modules $(SRC) $(REQUIRES)
+	@$(DUO) --development test/tests.js build/build.js
+
+integrations.js:
+	@node bin/integrations
+
+test/tests.js:
+	@node bin/tests
 
 kill:
 	-@test -e test/pid.txt \
@@ -27,17 +27,12 @@ kill:
 node_modules: package.json
 	@npm install
 
-server: build kill
-	@tests=$(tests) node test/server &
+server: build
+	@node test/server &> /dev/null &
 	@sleep 1
 
-test: build server test-node
+test: build server
 	@$(PHANTOM) $(TEST)
-
-test-node: node_modules
-ifndef integration
-	@node_modules/.bin/mocha -R spec test/node.js
-endif
 
 test-browser: build server
 	@open $(TEST)
@@ -46,7 +41,7 @@ test-coverage: build server
 	@open $(TEST)/coverage
 
 clean:
-	rm -rf components build
+	rm -rf components build integrations.js test/tests.js
 
 .PHONY: clean server test test-browser
 .PHONY: test-sauce test-coverage
