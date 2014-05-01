@@ -20,13 +20,15 @@ describe('Curebit', function(){
   beforeEach(function(){
     analytics.use(Curebit);
     curebit = new Curebit.Integration(settings);
-  })
+  });
 
   afterEach(function(){
     timeouts();
     intervals();
     curebit.reset();
-  })
+    analytics.user().reset();
+    analytics.group().reset();
+  });
 
   it('should have the correct settings', function(){
     test(curebit)
@@ -43,12 +45,12 @@ describe('Curebit', function(){
       .option('insertIntoId', 'curebit-frame')
       .option('campaigns', {})
       .option('server', 'https://www.curebit.com');
-  })
+  });
 
   describe('#initialize', function(){
     beforeEach(function(){
       curebit.load = sinon.spy();
-    })
+    });
 
     it('should push settings', function(){
       test(curebit)
@@ -58,144 +60,154 @@ describe('Curebit', function(){
           site_id: settings.siteId,
           server: 'https://api.segment.io/track'
         }]);
-    })
+    });
 
     it('should call #load', function(){
       test(curebit)
         .initialize()
         .called(curebit.load);
-    })
-  })
+    });
+  });
 
   describe('#loaded', function(){
     it('should test window.curebit', function(){
       assert(!curebit.loaded());
       window.curebit = {};
       assert(curebit.loaded());
-    })
-  })
+    });
+  });
 
   describe('#load', function(){
     beforeEach(function(){
       sinon.stub(curebit, 'load');
       curebit.initialize();
       curebit.load.restore();
-    })
+    });
 
     it('should change the loaded state', function(done){
-      if (curebit.loaded()) return done(new Error('curebit already loaded'));
+      assert(!curebit.loaded());
       curebit.load(function(err){
         if (err) return done(err);
         assert(curebit.loaded());
         done();
-      })
-    })
-  })
+      });
+    });
+  });
 
-  describe('#register-affiliate', function(){
+  describe('#page', function(){
+    beforeEach(function(done){
+      curebit.initialize();
+      sinon.spy(window._curebitq, 'push');
+      curebit.once('load', done);
+    });
+
+    afterEach(function(){
+      window._curebitq.push.restore();
+    });
+
     it('should not register affiliate when the url doesnt match', function(){
       curebit.options.campaigns = { '/share' : 'share, test' };
-      curebit.initialize();
-      equals(window._curebitq.length, 1);
-    })
+      curebit.page();
+      assert(!window._curebitq.push.called);
+    });
 
     it('should register affiliate when the url matches', function(){
       curebit.options.campaigns = { '/' : 'share, test' };
       curebit.options.iframeId = 'curebit-iframe';
-      curebit.initialize();
-      sinon.spy(window._curebitq, 'push');
-      window._curebitq.push.calledWith(['register_affiliate', {
+      curebit.page();
+
+      assert(window._curebitq.push.calledWith(['register_affiliate', {
           responsive: true,
           device: '',
+          campaign_tags : ['share', 'test'],
           iframe: {
-            width: '100%',
+            container: 'curebit-frame',
+            frameborder: 0,
             height: '480',
             id: 'curebit-iframe',
-            frameborder: 0
+            width: '100%'
           },
-          campaign_tags : ['share', 'test']
-      }]);
-
-
-    })
+      }]));
+    });
 
     it('should register affiliate with affiliate member info', function(){
-      curebit.options.campaigns = { '/' : 'share, test' };
-      curebit.options.iframeId = 'curebit-iframe';
       analytics.identify('id', {
         firstName : 'john',
         lastName  : 'doe',
         email : 'my@email.com'
       });
-      curebit.initialize();
-      sinon.spy(window._curebitq, 'push');
-      window._curebitq.push.calledWith(['register_affiliate', {
+
+      curebit.options.campaigns = { '/' : 'share, test' };
+      curebit.options.iframeId = 'curebit-iframe';
+      curebit.page();
+
+      assert(window._curebitq.push.calledWith(['register_affiliate', {
         responsive: true,
         device: '',
-        iframe: {
-          height: '100%',
-          width: '480',
-          id: 'curebit-iframe',
-          frameborder: 0
-        },
         campaign_tags : ['share', 'test'],
+        iframe: {
+          container: 'curebit-frame',
+          frameborder: 0,
+          height: '100%',
+          id: 'curebit-iframe',
+          width: '480'
+        },
         affiliate_member: {
           email: 'my@email.com',
           first_name: 'john',
           last_name: 'doe',
           customer_id: 'id'
         }
-      }]);
-    })
-  })
+      }]));
+    });
+  });
 
-  describe('ecommerce', function(){
+  describe('#completedOrder', function(){
     beforeEach(function(){
-      analytics.user().reset();
       curebit.initialize();
       sinon.spy(window._curebitq, 'push');
     });
 
     afterEach(function(){
       window._curebitq.push.restore();
-    })
+    });
 
     it('should send ecommerce data', function(){
       var date = new Date;
-
-      test(curebit).track('completed order', {
-        orderId: 'ab535a52',
-        coupon: 'save20',
-        date: date,
-        total: 647.92,
-        products: [{
-          sku: '5be59f56',
-          quantity: 8,
-          price: 80.99,
-          name: 'my-product',
-          url: '//products.io/my-product',
-          image: '//products.io/my-product.webp'
-        }]
-      });
-
-      assert(window._curebitq.push.calledWith(['register_purchase', {
-        coupon_code: 'save20',
-        customer_id: null,
-        email: undefined,
-        order_date: iso(date),
-        first_name: undefined,
-        last_name: undefined,
-        order_number: 'ab535a52',
-        subtotal: 647.92,
-        items: [{
-          product_id: '5be59f56',
-          quantity: 8,
-          price: 80.99,
-          title: 'my-product',
-          url: '//products.io/my-product',
-          image_url: '//products.io/my-product.webp',
-        }]
-      }]))
-    })
-  })
-})
+      test(curebit)
+        .track('completed order', {
+          orderId: 'ab535a52',
+          coupon: 'save20',
+          date: date,
+          total: 647.92,
+          products: [{
+            sku: '5be59f56',
+            quantity: 8,
+            price: 80.99,
+            name: 'my-product',
+            url: '//products.io/my-product',
+            image: '//products.io/my-product.webp'
+          }]
+        })
+        .called(window._curebitq.push)
+        .with(['register_purchase', {
+          coupon_code: 'save20',
+          customer_id: null,
+          email: undefined,
+          order_date: iso(date),
+          first_name: undefined,
+          last_name: undefined,
+          order_number: 'ab535a52',
+          subtotal: 647.92,
+          items: [{
+            product_id: '5be59f56',
+            quantity: 8,
+            price: 80.99,
+            title: 'my-product',
+            url: '//products.io/my-product',
+            image_url: '//products.io/my-product.webp',
+          }]
+        }]);
+    });
+  });
+});
