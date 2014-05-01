@@ -15,7 +15,6 @@ If you ever need any help, feel free to email [friends@segment.io](mailto:friend
 - [awe.sm](http://awe.sm)
 - [Awesomatic](https://www.awesomatic.com/)
 - [Bing Ads](http://advertise.bingads.microsoft.com/)
-- [BingAds](http://bugherd.com/)
 - [BugHerd](http://bugherd.com/)
 - [Bugsnag](http://bugsnag.com/)
 - [Chartbeat](https://chartbeat.com/dashboard/)
