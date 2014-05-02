@@ -112,7 +112,7 @@ describe('Curebit', function(){
     });
 
     it('should register affiliate when the url matches', function(){
-      curebit.options.campaigns = { '/' : 'share, test' };
+      curebit.options.campaigns = { '/' : 'share,test' };
       curebit.options.iframeId = 'curebit-iframe';
       curebit.page();
 
@@ -137,7 +137,7 @@ describe('Curebit', function(){
         email : 'my@email.com'
       });
 
-      curebit.options.campaigns = { '/' : 'share, test' };
+      curebit.options.campaigns = { '/' : 'share,test' };
       curebit.options.iframeId = 'curebit-iframe';
       curebit.page();
 
@@ -148,9 +148,9 @@ describe('Curebit', function(){
         iframe: {
           container: 'curebit-frame',
           frameborder: 0,
-          height: '100%',
+          width: '100%',
           id: 'curebit-iframe',
-          width: '480'
+          height: '480',
         },
         affiliate_member: {
           email: 'my@email.com',
