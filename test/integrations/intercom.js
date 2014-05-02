@@ -20,6 +20,8 @@ describe('Intercom', function () {
 
   afterEach(function () {
     intercom.reset();
+    analytics.user().reset();
+    analytics.group().reset();
   });
 
   it('should have the right settings', function () {
@@ -65,6 +67,21 @@ describe('Intercom', function () {
         assert(intercom.loaded());
         done();
       });
+    });
+  });
+
+  describe('#page', function(){
+    beforeEach(function(done){
+      window.Intercom = sinon.spy();
+      intercom.page(); // first call initializes
+      intercom.once('ready', done);
+    });
+
+    it('should call update on subsequent pageviews', function(){
+      test(intercom)
+        .page()
+        .called(window.Intercom)
+        .with('update');
     });
   });
 
