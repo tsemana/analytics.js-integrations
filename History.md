@@ -1,4 +1,13 @@
 
+0.6.0 / 2014-05-02 
+==================
+
+ * fixing curebit tests, fixes #126
+ * swap curebit to load the iframe on #page, BREAKING TESTS
+ * fix intercom page to call update
+ * intercom: cache group, to prevent race conditions.
+ * klaviyo: .revenue() -> $value
+
 0.5.10 / 2014-04-29 
 ==================
 
