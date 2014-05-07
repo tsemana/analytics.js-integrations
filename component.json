@@ -47,6 +47,7 @@
     "segmentio/load-pixel": "0.1.1",
     "segmentio/replace-document-write": "1.0.1",
     "component/indexof": "0.0.3",
+    "component/object": "0.0.3",
     "segmentio/obj-case": "0.0.5"
   },
   "development": {
