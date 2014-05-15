@@ -43,7 +43,7 @@ describe('KISSmetrics', function () {
       .global('KM')
       .global('_kmil')
       .option('apiKey', '')
-      .option('trackNamedPages', true);
+      .option('trackPages', true);
   });
 
   it('should create window._kmq', function () {
@@ -81,29 +81,16 @@ describe('KISSmetrics', function () {
     });
 
     it('should track named pages by default', function () {
-      test(kissmetrics).page(null, 'Name');
-      assert(window._kmq.push.calledWith(['record', 'Viewed Name Page', { name: 'Name' }]));
-    });
-
-    it('should track named pages with categories', function () {
-      test(kissmetrics).page('Category', 'Name');
-      assert(window._kmq.push.calledWith(['record', 'Viewed Category Name Page', {
-        category: 'Category',
-        name: 'Name'
+      test(kissmetrics).page('Name');
+      assert(window._kmq.push.calledWith(['record', 'Viewed Name Page', {
+        'Name - Title': document.title,
+        'Name - Path': window.location.pathname,
+        'Name - URL': window.location.href
       }]));
     });
 
-    it('should track categorized pages by default', function () {
-      test(kissmetrics).page('Category', 'Name');
-      assert(window._kmq.push.calledWith(['record', 'Viewed Category Page', {
-        category: 'Category',
-        name: 'Name'
-      }]));
-    });
-
-    it('should not track a named or categorized page when the option is off', function () {
-      kissmetrics.options.trackNamedPages = false;
-      kissmetrics.options.trackCategorizedPages = false;
+    it('should not track a named pages when the option is off', function () {
+      kissmetrics.options.trackPages = false;
       test(kissmetrics).page(null, 'Name');
       test(kissmetrics).page('Category', 'Name');
       assert(!window._kmq.push.called);
