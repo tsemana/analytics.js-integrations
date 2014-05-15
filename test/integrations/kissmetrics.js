@@ -144,7 +144,9 @@ describe('KISSmetrics', function () {
 
     it('should send an event and properties', function () {
       test(kissmetrics).track('event', { property: true });
-      assert(window._kmq.push.calledWith(['record', 'event', { property: true }]));
+      assert(window._kmq.push.calledWith(['record', 'event', {
+        'event - property': true
+      }]));
     });
 
     it('should alias revenue to "Billing Amount"', function () {
