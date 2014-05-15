@@ -85,6 +85,21 @@ describe('Inspectlet', function () {
     });
   });
 
+  describe('#identify', function () {
+    beforeEach(function () {
+      window.__insp = [];
+      sinon.stub(window.__insp, 'push');
+    });
+
+    it('should identify the user', function () {
+      test(inspectlet).identify('userId', { email: 'email@example.com' });
+      assert(window.__insp.push.calledWith(['tagSession', {
+        email: 'email@example.com',
+        id: 'userId'
+      }]));
+    });
+  });
+
   describe('#track', function () {
     beforeEach(function () {
       window.__insp = [];
