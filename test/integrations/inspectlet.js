@@ -95,7 +95,7 @@ describe('Inspectlet', function () {
       test(inspectlet).identify('userId', { email: 'email@example.com' });
       assert(window.__insp.push.calledWith(['tagSession', {
         email: 'email@example.com',
-        id: 'userId'
+        userid: 'userId'
       }]));
     });
   });
