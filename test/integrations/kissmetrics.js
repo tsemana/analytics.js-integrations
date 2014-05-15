@@ -180,12 +180,12 @@ describe('KISSmetrics', function () {
       test(kissmetrics)
         .track('viewed product', { sku: 1, name: 'item', category: 'category', price: 9 })
         .called(window._kmq.push)
-        .with(['record', 'Product Viewed', {
-          'Product Viewed - SKU': 1,
-          'Product Viewed - Name': 'item',
-          'Product Viewed - Category': 'category',
-          'Product Viewed - Price': 9,
-          'Product Viewed - Quantity': 1
+        .with(['record', 'viewed product', {
+          'viewed product - SKU': 1,
+          'viewed product - Name': 'item',
+          'viewed product - Category': 'category',
+          'viewed product - Price': 9,
+          'viewed product - Quantity': 1
         }]);
     })
 
@@ -193,12 +193,12 @@ describe('KISSmetrics', function () {
       test(kissmetrics)
         .track('added product', { sku: 1, name: 'item', category: 'category', price: 9, quantity: 2 })
         .called(window._kmq.push)
-        .with(['record', 'Product Added', {
-          'Product Added - SKU': 1,
-          'Product Added - Name': 'item',
-          'Product Added - Category': 'category',
-          'Product Added - Price': 9,
-          'Product Added - Quantity': 2
+        .with(['record', 'added product', {
+          'added product - SKU': 1,
+          'added product - Name': 'item',
+          'added product - Category': 'category',
+          'added product - Price': 9,
+          'added product - Quantity': 2
         }])
     })
 
@@ -220,10 +220,10 @@ describe('KISSmetrics', function () {
           }]
         });
 
-      assert(window._kmq.push.args[0], ['record', 'Completed Order', {
-        'Completed Order - ID': '12074d48',
-        'Completed Order - Subtotal': 150,
-        'Completed Order - Total': 166
+      assert(window._kmq.push.args[0], ['record', 'completed order', {
+        'completed order - ID': '12074d48',
+        'completed order - Subtotal': 150,
+        'completed order - Total': 166
       }]);
     })
 
@@ -253,21 +253,21 @@ describe('KISSmetrics', function () {
       fn();
 
       assert(equals(window.KM.set.args[0][0], {
-        'Completed Order - SKU': '40bcda73',
-        'Completed Order - Name': 'my-product',
-        'Completed Order - Category': 'my-category',
-        'Completed Order - Price': 75,
-        'Completed Order - Quantity': 1,
+        'completed order - SKU': '40bcda73',
+        'completed order - Name': 'my-product',
+        'completed order - Category': 'my-category',
+        'completed order - Price': 75,
+        'completed order - Quantity': 1,
         _t: 0,
         _d: 1
       }));
 
       assert(equals(window.KM.set.args[1][0], {
-        'Completed Order - SKU': '64346fc6',
-        'Completed Order - Name': 'other-product',
-        'Completed Order - Category': 'my-other-category',
-        'Completed Order - Price': 75,
-        'Completed Order - Quantity': 1,
+        'completed order - SKU': '64346fc6',
+        'completed order - Name': 'other-product',
+        'completed order - Category': 'my-other-category',
+        'completed order - Price': 75,
+        'completed order - Quantity': 1,
         _t: 1,
         _d: 1
       }));
