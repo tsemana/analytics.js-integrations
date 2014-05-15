@@ -220,10 +220,10 @@ describe('KISSmetrics', function () {
           }]
         });
 
-      assert(window._kmq.push.args[0], ['record', 'Purchased', {
-        'Order ID': '12074d48',
-        'Order Subtotal': 150,
-        'Order Total': 166
+      assert(window._kmq.push.args[0], ['record', 'Completed Order', {
+        'Completed Order - ID': '12074d48',
+        'Completed Order - Subtotal': 150,
+        'Completed Order - Total': 166
       }]);
     })
 
@@ -253,21 +253,21 @@ describe('KISSmetrics', function () {
       fn();
 
       assert(equals(window.KM.set.args[0][0], {
-        'Purchased SKU': '40bcda73',
-        'Purchased Product Name': 'my-product',
-        'Purchased Category': 'my-category',
-        'Purchased Price': 75,
-        'Purchased Quantity': 1,
+        'Completed Order - SKU': '40bcda73',
+        'Completed Order - Name': 'my-product',
+        'Completed Order - Category': 'my-category',
+        'Completed Order - Price': 75,
+        'Completed Order - Quantity': 1,
         _t: 0,
         _d: 1
       }));
 
       assert(equals(window.KM.set.args[1][0], {
-        'Purchased SKU': '64346fc6',
-        'Purchased Product Name': 'other-product',
-        'Purchased Category': 'my-other-category',
-        'Purchased Price': 75,
-        'Purchased Quantity': 1,
+        'Completed Order - SKU': '64346fc6',
+        'Completed Order - Name': 'other-product',
+        'Completed Order - Category': 'my-other-category',
+        'Completed Order - Price': 75,
+        'Completed Order - Quantity': 1,
         _t: 1,
         _d: 1
       }));
