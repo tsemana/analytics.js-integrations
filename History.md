@@ -1,4 +1,13 @@
 
+0.7.0 / 2014-05-17 
+==================
+
+ * tests: update bugherd key
+ * ga: fix typo `ignoreReferrers -> ignoredReferrers`
+ * upgrade facade to `0.3.10`
+ * refactor to use .revenue instead of .revenue || .total
+ * add inspectlet identify, fixes #140
+
 0.6.1 / 2014-05-07 
 ==================
 
