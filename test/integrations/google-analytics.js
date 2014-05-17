@@ -21,7 +21,7 @@ describe('Google Analytics', function () {
       .option('domain', 'none')
       .option('doubleClick', false)
       .option('enhancedLinkAttribution', false)
-      .option('ignoreReferrer', null)
+      .option('ignoredReferrers', null)
       .option('siteSpeedSampleRate', null)
       .option('trackingId', '')
       .option('trackNamedPages', true);
@@ -503,7 +503,7 @@ describe('Google Analytics', function () {
       classic: true,
       domain: 'none',
       enhancedLinkAttribution: true,
-      ignoreReferrer: ['domain.com', 'www.domain.com'],
+      ignoredReferrers: ['domain.com', 'www.domain.com'],
       siteSpeedSampleRate: 42,
       trackingId: 'UA-27033709-5'
     };
@@ -560,8 +560,8 @@ describe('Google Analytics', function () {
 
       it('should set ignored referrers', function () {
         ga.initialize();
-        assert(equal(window._gaq[6], ['_addIgnoredRef', settings.ignoreReferrer[0]]));
-        assert(equal(window._gaq[7], ['_addIgnoredRef', settings.ignoreReferrer[1]]));
+        assert(equal(window._gaq[6], ['_addIgnoredRef', settings.ignoredReferrers[0]]));
+        assert(equal(window._gaq[7], ['_addIgnoredRef', settings.ignoredReferrers[1]]));
       });
 
       it('should call #load', function () {
