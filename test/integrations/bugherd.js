@@ -10,7 +10,7 @@ describe('BugHerd', function () {
 
   var bugherd;
   var settings = {
-    apiKey: '7917d741-16cc-4c2b-bb1a-bdd903d53d72'
+    apiKey: 'r3p1ipxc65qnony5rxwckg'
   };
 
   beforeEach(function () {
