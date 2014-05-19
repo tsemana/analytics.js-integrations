@@ -44,7 +44,7 @@ describe('KISSmetrics', function () {
       .global('_kmil')
       .option('apiKey', '')
       .option('trackPages', true)
-      .option('prefixEventProperties', true);
+      .option('prefixProperties', true);
   });
 
   it('should create window._kmq', function () {
