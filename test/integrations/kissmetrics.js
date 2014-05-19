@@ -43,7 +43,8 @@ describe('KISSmetrics', function () {
       .global('KM')
       .global('_kmil')
       .option('apiKey', '')
-      .option('trackPages', true);
+      .option('trackPages', true)
+      .option('prefixEventProperties', true);
   });
 
   it('should create window._kmq', function () {
@@ -81,15 +82,18 @@ describe('KISSmetrics', function () {
     });
 
     it('should track named pages by default', function () {
-      test(kissmetrics).page('Name');
+      test(kissmetrics).page(null, 'Name', {
+        title : document.title,
+        url : window.location.href
+      });
       assert(window._kmq.push.calledWith(['record', 'Viewed Name Page', {
-        'Name - Title': document.title,
-        'Name - Path': window.location.pathname,
-        'Name - URL': window.location.href
+        'Viewed Name Page - title': document.title,
+        'Viewed Name Page - url'  : window.location.href,
+        'Viewed Name Page - name' : 'Name'
       }]));
     });
 
-    it('should not track a named pages when the option is off', function () {
+    it('should not track a named page when the option is off', function () {
       kissmetrics.options.trackPages = false;
       test(kissmetrics).page(null, 'Name');
       test(kissmetrics).page('Category', 'Name');
@@ -170,11 +174,10 @@ describe('KISSmetrics', function () {
         .track('viewed product', { sku: 1, name: 'item', category: 'category', price: 9 })
         .called(window._kmq.push)
         .with(['record', 'viewed product', {
-          'viewed product - SKU': 1,
-          'viewed product - Name': 'item',
-          'viewed product - Category': 'category',
-          'viewed product - Price': 9,
-          'viewed product - Quantity': 1
+          'viewed product - sku': 1,
+          'viewed product - name': 'item',
+          'viewed product - category': 'category',
+          'viewed product - price': 9
         }]);
     })
 
@@ -183,11 +186,11 @@ describe('KISSmetrics', function () {
         .track('added product', { sku: 1, name: 'item', category: 'category', price: 9, quantity: 2 })
         .called(window._kmq.push)
         .with(['record', 'added product', {
-          'added product - SKU': 1,
-          'added product - Name': 'item',
-          'added product - Category': 'category',
-          'added product - Price': 9,
-          'added product - Quantity': 2
+          'added product - sku': 1,
+          'added product - name': 'item',
+          'added product - category': 'category',
+          'added product - price': 9,
+          'added product - quantity': 2
         }])
     })
 
@@ -196,6 +199,7 @@ describe('KISSmetrics', function () {
         .track('completed order', {
           orderId: '12074d48',
           tax: 16,
+          total: 166,
           products: [{
             sku: '40bcda73',
             name: 'my-product',
@@ -210,9 +214,8 @@ describe('KISSmetrics', function () {
         });
 
       assert(window._kmq.push.args[0], ['record', 'completed order', {
-        'completed order - ID': '12074d48',
-        'completed order - Subtotal': 150,
-        'completed order - Total': 166
+        'completed order - sku': '12074d48',
+        'completed order - total': 166
       }]);
     })
 
@@ -242,21 +245,21 @@ describe('KISSmetrics', function () {
       fn();
 
       assert(equals(window.KM.set.args[0][0], {
-        'completed order - SKU': '40bcda73',
-        'completed order - Name': 'my-product',
-        'completed order - Category': 'my-category',
-        'completed order - Price': 75,
-        'completed order - Quantity': 1,
+        'completed order - sku': '40bcda73',
+        'completed order - name': 'my-product',
+        'completed order - category': 'my-category',
+        'completed order - price': 75,
+        'completed order - quantity': 1,
         _t: 0,
         _d: 1
       }));
 
       assert(equals(window.KM.set.args[1][0], {
-        'completed order - SKU': '64346fc6',
-        'completed order - Name': 'other-product',
-        'completed order - Category': 'my-other-category',
-        'completed order - Price': 75,
-        'completed order - Quantity': 1,
+        'completed order - sku': '64346fc6',
+        'completed order - name': 'other-product',
+        'completed order - category': 'my-other-category',
+        'completed order - price': 75,
+        'completed order - quantity': 1,
         _t: 1,
         _d: 1
       }));
