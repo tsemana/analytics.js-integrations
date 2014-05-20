@@ -1,4 +1,11 @@
 
+0.8.1 / 2014-05-20
+==================
+
+ * add test for prefixProperties: false
+ * revert kissmetrics props, add more tests
+ * intercom: make sure .Intercom() is loaded
+
 0.8.0 / 2014-05-19
 ==================
 
