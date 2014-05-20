@@ -28,6 +28,7 @@ describe('MouseStats', function () {
       .assumesPageview()
       .readyOnLoad()
       .global('msaa')
+      .global('MouseStatsVisitorPlaybacks')
       .option('accountNumber', '');
   });
 
@@ -40,22 +41,18 @@ describe('MouseStats', function () {
   });
 
   describe('#loaded', function () {
-    it('should test window.msaa', function () {
+    it('should test window.MouseStatsVisitorPlaybacks', function () {
       assert(!mousestats.loaded());
-      window.msaa = document.createElement('div');
+      window.MouseStatsVisitorPlaybacks = document.createElement('div');
       assert(!mousestats.loaded());
-      window.msaa = {};
-      assert(!mousestats.loaded());
-      window.msaa = function(){};
+      window.MouseStatsVisitorPlaybacks = [];
       assert(mousestats.loaded());
     });
   });
 
   describe('#load', function () {
     beforeEach(function () {
-      sinon.stub(mousestats, 'load');
       mousestats.initialize();
-      mousestats.load.restore();
     });
 
     it('should change loaded state', function (done) {
