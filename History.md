@@ -3,6 +3,7 @@
 ==================
 
  * kissmetrics: adding prefixing + ecommerce
+ * kissmetrics: updating `.trackNamedPages` and `.trackCategorizedPages` to `.trackPages`
 
 0.7.0 / 2014-05-17
 ==================
