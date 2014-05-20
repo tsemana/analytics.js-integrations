@@ -19,6 +19,8 @@ describe('Hellobar', function() {
 
   afterEach(function() {
     hellobar.reset();
+    var el = document.getElementById('hellobar_container');
+    if (el) el.parentNode.removeChild(el);
   });
 
   it('should have the right settings', function () {
