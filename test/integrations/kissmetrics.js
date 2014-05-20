@@ -43,7 +43,8 @@ describe('KISSmetrics', function () {
       .global('KM')
       .global('_kmil')
       .option('apiKey', '')
-      .option('trackPages', true)
+      .option('trackNamedPages', true)
+      .option('trackCategorizedPages', true)
       .option('prefixProperties', true);
   });
 
@@ -81,6 +82,12 @@ describe('KISSmetrics', function () {
       window._kmq.push = sinon.spy();
     });
 
+    afterEach(function(){
+      // set back to defaults
+      kissmetrics.options.trackNamedPages = true;
+      kissmetrics.options.trackCategorizedPages = true;
+    });
+
     it('should track named pages by default', function () {
       test(kissmetrics).page(null, 'Name', {
         title : document.title,
@@ -94,10 +101,32 @@ describe('KISSmetrics', function () {
     });
 
     it('should not track a named page when the option is off', function () {
-      kissmetrics.options.trackPages = false;
+      kissmetrics.options.trackNamedPages = false;
       test(kissmetrics).page(null, 'Name');
-      test(kissmetrics).page('Category', 'Name');
       assert(!window._kmq.push.called);
+    });
+
+    it('should not track a named page when the option is off, but should track category', function () {
+      kissmetrics.options.trackNamedPages = false;
+      test(kissmetrics).page('Category', 'Name');
+      assert(window._kmq.push.calledOnce);
+    });
+
+    it('should not track a categorized page when the option is off', function () {
+      kissmetrics.options.trackCategorizedPages = false;
+      test(kissmetrics).page('Category', null);
+      assert(!window._kmq.push.called);
+    });
+
+    it('should not track a categorized page when the option is off, but should track page', function () {
+      kissmetrics.options.trackCategorizedPages = false;
+      test(kissmetrics).page('Category', 'Page');
+      assert(window._kmq.push.calledOnce);
+    });
+
+    it('should track both named and categorized page when options are on', function () {
+      test(kissmetrics).page('Category', 'Page');
+      assert(window._kmq.push.calledTwice);
     });
   });
 
