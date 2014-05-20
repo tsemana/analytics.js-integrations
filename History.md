@@ -1,5 +1,10 @@
 
-0.7.0 / 2014-05-17 
+0.8.0 / 2014-05-19
+==================
+
+ * kissmetrics: adding prefixing + ecommerce
+
+0.7.0 / 2014-05-17
 ==================
 
  * tests: update bugherd key
@@ -8,12 +13,12 @@
  * refactor to use .revenue instead of .revenue || .total
  * add inspectlet identify, fixes #140
 
-0.6.1 / 2014-05-07 
+0.6.1 / 2014-05-07
 ==================
 
  * ga: add custom dimensions & metrics, closes #73
 
-0.6.0 / 2014-05-02 
+0.6.0 / 2014-05-02
 ==================
 
  * fixing curebit tests, fixes #126
@@ -22,7 +27,7 @@
  * intercom: cache group, to prevent race conditions.
  * klaviyo: .revenue() -> $value
 
-0.5.10 / 2014-04-29 
+0.5.10 / 2014-04-29
 ==================
 
  * tests: comment out userfox #load test, since their script 404 for some reason
@@ -32,7 +37,7 @@
  * upgrade analytics.js-integration to 0.2.0 for .events() method
  * component: add githubusercontent to remotes
 
-0.5.9 / 2014-04-24 
+0.5.9 / 2014-04-24
 ==================
 
  * livechat: make sure LC_API & LC_Invite are loaded
@@ -40,26 +45,26 @@
  * intercom: trackUserEvent -> trackEvent
  * node-tests: use spec reporter
 
-0.5.8 / 2014-04-17 
+0.5.8 / 2014-04-17
 ==================
 
  * errorception: update key for tests
 
-0.5.7 / 2014-04-17 
+0.5.7 / 2014-04-17
 ==================
 
  * quantcast: fix advertise separator
  * quantcast: fix revenue undefined case
  * quantcast: fix pageviews.
 
-0.5.6 / 2014-04-16 
+0.5.6 / 2014-04-16
 ==================
 
  * quantcast: call .page() with .page(Page) in initialize
  * upgrade integration to 0.1.8
  * add adroll events, closes #27 ?
 
-0.5.5 / 2014-04-14 
+0.5.5 / 2014-04-14
 ==================
 
  * quantcast: remove labelPages option
@@ -67,7 +72,7 @@
  * piwik: id -> siteId
  * mixpanel: add increments, closes #95
 
-0.5.4 / 2014-04-11 
+0.5.4 / 2014-04-11
 ==================
 
  * mojn: replace global var name [mojn]
@@ -78,12 +83,12 @@
  * kenshoo: fix typo
  * Add curebit to readme
 
-0.5.3 / 2014-04-07 
+0.5.3 / 2014-04-07
 ==================
 
  * curebit: removing # since its not necessary
 
-0.5.2 / 2014-04-07 
+0.5.2 / 2014-04-07
 ==================
 
  * curebit: fixing up to new spec
