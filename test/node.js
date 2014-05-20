@@ -14,6 +14,7 @@ var assert = require('assert');
 
 integrations.forEach(function(filename){
   if ('slugs.json' == filename) return;
+  if ('clicktale.js' == filename) return;
 
   describe(filename, function(){
     it('should be in component.json', function(){
