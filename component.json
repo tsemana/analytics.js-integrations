@@ -78,7 +78,6 @@
     "lib/bugsnag.js",
     "lib/chartbeat.js",
     "lib/churnbee.js",
-    "lib/clicktale.js",
     "lib/clicky.js",
     "lib/comscore.js",
     "lib/crazy-egg.js",

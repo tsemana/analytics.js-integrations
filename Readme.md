@@ -19,7 +19,6 @@ If you ever need any help, feel free to email [friends@segment.io](mailto:friend
 - [Bugsnag](http://bugsnag.com/)
 - [Chartbeat](https://chartbeat.com/dashboard/)
 - [ChurnBee](http://churnbee.com)
-- [ClickTale](http://www.clicktale.com/)
 - [Clicky](http://clicky.com/)
 - [comScore](http://www.comscore.com/)
 - [Crazy Egg](crazyegg.com)
