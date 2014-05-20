@@ -86,6 +86,7 @@ describe('KISSmetrics', function () {
       // set back to defaults
       kissmetrics.options.trackNamedPages = true;
       kissmetrics.options.trackCategorizedPages = true;
+      kissmetrics.options.prefixProperties = true;
     });
 
     it('should track named pages by default', function () {
@@ -127,6 +128,19 @@ describe('KISSmetrics', function () {
     it('should track both named and categorized page when options are on', function () {
       test(kissmetrics).page('Category', 'Page');
       assert(window._kmq.push.calledTwice);
+    });
+
+    it('should not prefixProperties if option is off', function () {
+      kissmetrics.options.prefixProperties = false;
+      test(kissmetrics).page(null, 'Name', {
+        title : document.title,
+        url : window.location.href
+      });
+      assert(window._kmq.push.calledWith(['record', 'Viewed Name Page', {
+        'title': document.title,
+        'url'  : window.location.href,
+        'name' : 'Name'
+      }]));
     });
   });
 
