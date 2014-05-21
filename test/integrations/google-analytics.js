@@ -308,9 +308,21 @@ describe('Google Analytics', function () {
 
       it('should send a stored category', function () {
         test(ga).page('category');
-        test(ga).track('event', { category: 'category' });
+        test(ga).track('event', {});
         assert(window.ga.calledWith('send', 'event', {
           eventCategory: 'category',
+          eventAction: 'event',
+          eventLabel: undefined,
+          eventValue: 0,
+          nonInteraction: undefined
+        }));
+      });
+
+      it('should send a category property even if there is a stored category', function () {
+        test(ga).page('category(page)');
+        test(ga).track('event', { category: 'category(track)' });
+        assert(window.ga.calledWith('send', 'event', {
+          eventCategory: 'category(track)',
           eventAction: 'event',
           eventLabel: undefined,
           eventValue: 0,
@@ -491,6 +503,24 @@ describe('Google Analytics', function () {
         }]));
 
         assert(equal(window.ga.args[4], ['ecommerce:send']));
+      })
+
+      it('should fallback to revenue', function(){
+        test(ga).track('completed order', {
+          orderId: '5d4c7cb5',
+          revenue: 99.9,
+          shipping: 13.99,
+          tax: 20.99,
+          products: []
+        });
+
+        assert(equal(window.ga.args[1], ['ecommerce:addTransaction', {
+          id: '5d4c7cb5',
+          revenue: 99.9,
+          shipping: 13.99,
+          affiliation: undefined,
+          tax: 20.99
+        }]));
       })
     })
   });
@@ -759,7 +789,28 @@ describe('Google Analytics', function () {
           24.75,
           3
         ]]));
-        // assert(equal(window._gaq.push.args[0]))
+      })
+
+      it('should fallback to revenue', function(){
+        test(ga).track('completed order', {
+          orderId: 'f2ffee5c',
+          revenue: 9,
+          shipping: 3,
+          tax: 2,
+          products: []
+        });
+
+        assert(equal(window._gaq.push.args[0], [[
+          '_addTrans',
+          'f2ffee5c',
+          undefined,
+          9,
+          2,
+          3,
+          undefined,
+          undefined,
+          undefined
+        ]]));
       })
     })
   });
