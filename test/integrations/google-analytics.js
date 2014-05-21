@@ -308,9 +308,21 @@ describe('Google Analytics', function () {
 
       it('should send a stored category', function () {
         test(ga).page('category');
-        test(ga).track('event', { category: 'category' });
+        test(ga).track('event', {});
         assert(window.ga.calledWith('send', 'event', {
           eventCategory: 'category',
+          eventAction: 'event',
+          eventLabel: undefined,
+          eventValue: 0,
+          nonInteraction: undefined
+        }));
+      });
+
+      it('should send a category property even if there is a stored category', function () {
+        test(ga).page('category(page)');
+        test(ga).track('event', { category: 'category(track)' });
+        assert(window.ga.calledWith('send', 'event', {
+          eventCategory: 'category(track)',
           eventAction: 'event',
           eventLabel: undefined,
           eventValue: 0,
