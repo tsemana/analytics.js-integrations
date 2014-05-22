@@ -26,7 +26,20 @@ describe('Woopra', function () {
       .name('Woopra')
       .readyOnLoad()
       .global('woopra')
-      .option('domain', '');
+      .option('domain', '')
+      .option('cookieName', 'wooTracker')
+      .option('cookieDomain', null)
+      .option('cookiePath', '/')
+      .option('ping', true)
+      .option('pingInterval', 12000)
+      .option('idleTimeout', 300000)
+      .option('downloadTracking', true)
+      .option('outgoingTracking', true)
+      .option('outgoingIgnoreSubdomain', true)
+      .option('downloadPause', 200)
+      .option('outgoingPause', 400)
+      .option('ignoreQueryUrl', true)
+      .option('hideCampaign', false);
   });
 
   describe('#loaded', function () {
@@ -65,6 +78,42 @@ describe('Woopra', function () {
       woopra.initialize();
       assert(window.woopra);
     });
+
+    it('should configure woopra', function(){
+      woopra.initialize();
+      assert.deepEqual(window.woopra._e, [
+        ['config', 'domain', 'x'],
+        ['config', 'cookie_name', 'wooTracker'],
+        ['config', 'cookie_path', '/'],
+        ['config', 'ping', true],
+        ['config', 'ping_interval', 12000],
+        ['config', 'idle_timeout', 300000],
+        ['config', 'download_tracking', true],
+        ['config', 'outgoing_tracking', true],
+        ['config', 'outgoing_ignore_subdomain', true],
+        ['config', 'download_pause', 200],
+        ['config', 'outgoing_pause', 400],
+        ['config', 'ignore_query_url', true],
+      ]);
+    })
+
+    it('should not send options if they are null, or empty', function(){
+      var opts = woopra.options;
+      opts.domain = '';
+      opts.cookieName = '';
+      opts.cookiePath = null;
+      opts.ping = null;
+      opts.pingInterval = null;
+      opts.idleTimeout = null;
+      opts.downloadTracking = null;
+      opts.outgoingTracking = null;
+      opts.outgoingIgnoreSubdomain = null;
+      opts.downloadPause = '';
+      opts.outgoingPause = '';
+      opts.ignoreQueryUrl = null;
+      woopra.initialize();
+      assert.deepEqual([], window.woopra._e);
+    })
 
     it('should call #load', function () {
       woopra.initialize();

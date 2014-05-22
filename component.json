@@ -20,6 +20,7 @@
     "component/type": "1.0.0",
     "component/url": "0.1.0",
     "ianstormtaylor/callback": "0.0.1",
+    "ianstormtaylor/to-snake-case": "0.1.2",
     "ianstormtaylor/bind": "0.0.2",
     "ianstormtaylor/is": "0.1.0",
     "ianstormtaylor/is-empty": "0.0.1",
