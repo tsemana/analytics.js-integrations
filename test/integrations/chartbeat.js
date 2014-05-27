@@ -11,7 +11,8 @@ describe('Chartbeat', function () {
   var chartbeat;
   var settings = {
     uid: 'x',
-    domain: 'example.com'
+    domain: 'example.com',
+    useCanonical: false
   };
 
   beforeEach(function () {
@@ -33,7 +34,8 @@ describe('Chartbeat', function () {
       .global('_sf_endpt')
       .global('pSUPERFLY')
       .option('domain', '')
-      .option('uid', null);
+      .option('uid', null)
+      .option('useCanonical', true);
   });
 
   describe('#initialize', function () {
