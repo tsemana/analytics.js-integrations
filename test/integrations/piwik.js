@@ -29,7 +29,6 @@ describe('Piwik', function () {
       .global('_paq')
       .option('siteId', '')
       .option('url', null)
-      .assumesPageview()
       .readyOnInitialize();
   });
 
