@@ -16,7 +16,6 @@ describe('Piwik', function () {
   beforeEach(function () {
     analytics.use(Piwik);
     piwik = new Piwik.Integration(settings);
-    piwik.initialize(); // noop
   });
 
   afterEach(function () {
@@ -29,8 +28,8 @@ describe('Piwik', function () {
       .global('_paq')
       .option('siteId', '')
       .option('url', null)
-      .assumesPageview()
-      .readyOnInitialize();
+      .readyOnInitialize()
+      .mapping('goals');
   });
 
   describe('#initialize', function () {
@@ -80,4 +79,28 @@ describe('Piwik', function () {
       test(piwik).page();
     });
   });
+
+  describe('#track', function(){
+    beforeEach(function(){
+      piwik.initialize();
+    })
+
+    it('should track goals', function(){
+      piwik.options.goals = [{ key: 'goal', value: 1 }];
+      test(piwik).track('goal');
+      assert.deepEqual(window._paq[3], ['trackGoal', 1, 0]);
+    })
+
+    it('should send .revenue()', function(){
+      piwik.options.goals = [{ key: 'goal', value: 2 }];
+      test(piwik).track('goal', { revenue: 10 });
+      assert.deepEqual(window._paq[3], ['trackGoal', 2, 10]);
+    })
+
+    it('should send .total()', function(){
+      piwik.options.goals = [{ key: 'completed order', value: 10 }];
+      test(piwik).track('Completed Order', { total: 20 });
+      assert.deepEqual(window._paq[3], ['trackGoal', 10, 20]);
+    })
+  })
 });
