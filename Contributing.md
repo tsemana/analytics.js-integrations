@@ -44,13 +44,13 @@ Then when you call `analytics.initialize`, it will create a new instance of all 
 To get started, inside your integration file, just require the [analytics.js-integration](https://github.com/segmentio/analytics.js-integration) factory like so:
 
 ```js
-var createIntegration = require('integration');
+var integration = require('integration');
 ```
 
 And then you can make your own integration constructor by passing it a `name`:
 
 ```js
-var createIntegration = require('integration');
+var integration = require('integration');
 var MyIntegration = integration('My Integration');
 ```
 
@@ -63,7 +63,7 @@ var MyIntegration = integration('My Integration')
 
 /**
  * Initialize.
- * 
+ *
  * @param {Object} page
  */
 
@@ -74,7 +74,7 @@ MyIntegration.prototype.initialize = function (page) {
 
 /**
  * Identify.
- * 
+ *
  * @param {String} id (optional)
  * @param {Object} traits (optional)
  * @param {Object} options (optional)
