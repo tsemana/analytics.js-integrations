@@ -1,5 +1,5 @@
 
-describe('Awesomatic', function () {
+describe.skip('Awesomatic', function () {
 
   var analytics = require('analytics');
   var assert = require('assert');
