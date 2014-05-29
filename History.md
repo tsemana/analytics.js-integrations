@@ -1,4 +1,18 @@
 
+0.9.0 / 2014-05-29 
+==================
+
+ * errorception: update key
+ * awesomatic: skip tests
+ * piwik: add goals / ecommerce, closes #161
+ * piwik: remove .assumesPageview()
+ * docs: Small fix to example [appcues]
+ * errorception: update key
+ * woopra: add all options, closes #153
+ * kissmetrics: add isMobile
+ * ga: pass through category on track
+ * ga: set `siteSpeedSampleRate` to `1`
+
 0.8.2 / 2014-05-21 
 ==================
 
