@@ -12,6 +12,7 @@ If you ever need any help, feel free to email [friends@segment.io](mailto:friend
 - [AdRoll](http://www.adroll.com/)
 - [AdWords](http://adwords.google.com)
 - [Amplitude](https://amplitude.com/)
+- [Appcues](http://appcues.com/)
 - [awe.sm](http://awe.sm)
 - [Awesomatic](https://www.awesomatic.com/)
 - [Bing Ads](http://advertise.bingads.microsoft.com/)
