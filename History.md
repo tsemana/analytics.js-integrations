@@ -1,5 +1,10 @@
 
-0.9.0 / 2014-05-29 
+0.9.1 / 2014-05-30
+==================
+
+ * adroll: fixing user_id issue and adding tests
+
+0.9.0 / 2014-05-29
 ==================
 
  * errorception: update key
@@ -13,7 +18,7 @@
  * ga: pass through category on track
  * ga: set `siteSpeedSampleRate` to `1`
 
-0.8.2 / 2014-05-21 
+0.8.2 / 2014-05-21
 ==================
 
  * ga-ecommerce: fallback to .revenue()
