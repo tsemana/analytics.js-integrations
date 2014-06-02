@@ -1,4 +1,12 @@
 
+0.9.2 / 2014-06-02
+==================
+
+ * errorception: update testing api key
+ * curebit: debug removing iframe for curebit on multiple .page() calls
+ * curebit: change default for iframeId
+ * facebook ads: migrate facebook ads to new javascript api
+
 0.9.1 / 2014-05-30
 ==================
 
