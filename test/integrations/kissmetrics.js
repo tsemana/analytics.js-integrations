@@ -37,7 +37,6 @@ describe('KISSmetrics', function () {
   it('should have the right settings', function () {
     test(kissmetrics)
       .name('KISSmetrics')
-      .assumesPageview()
       .readyOnInitialize()
       .global('_kmq')
       .global('KM')
