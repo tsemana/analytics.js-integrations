@@ -34,7 +34,7 @@ describe('Curebit', function(){
   it('should have the correct settings', function(){
     test(curebit)
       .name('Curebit')
-      .readyOnInitialize()
+      .readyOnLoad()
       .global('_curebitq')
       .global('curebit')
       .option('siteId', '')
