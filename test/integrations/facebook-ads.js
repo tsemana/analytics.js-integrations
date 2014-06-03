@@ -30,6 +30,15 @@ describe('Facebook Ads', function(){
       .option('events', {});
   })
 
+  it('should load', function(done){
+    window._fbq = [];
+    assert(!facebook.loaded());
+    facebook.load(function(){
+      assert(facebook.loaded());
+      done();
+    });
+  })
+
   describe('#track', function(){
     beforeEach(function(){
       sinon.stub(window._fbq, 'push');
