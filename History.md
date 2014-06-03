@@ -1,4 +1,9 @@
 
+0.9.3 / 2014-06-02
+==================
+
+ * curebit: make ready on load so iframes have a chance to be rendered
+
 0.9.2 / 2014-06-02
 ==================
 
