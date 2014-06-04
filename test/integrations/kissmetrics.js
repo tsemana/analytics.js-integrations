@@ -22,22 +22,23 @@ describe('KISSmetrics', function () {
 
     analytics.use(KISSmetrics);
     kissmetrics = new KISSmetrics.Integration(settings);
-    kissmetrics.initialize(); // noop
 
     // initialize only once because kissmetrics has a bunch of timeouts
     kissmetrics.once('load', done);
     kissmetrics.initialize();
+    kissmetrics.page();
   });
 
   afterEach(function(){
     intervals();
     timeouts();
-  })
+  });
 
   it('should have the right settings', function () {
     test(kissmetrics)
       .name('KISSmetrics')
-      .readyOnInitialize()
+      .assumesPageview()
+      .readyOnLoad()
       .global('_kmq')
       .global('KM')
       .global('_kmil')
@@ -83,9 +84,17 @@ describe('KISSmetrics', function () {
 
     afterEach(function(){
       // set back to defaults
+      window.KM_SKIP_PAGE_VIEW = 1;
       kissmetrics.options.trackNamedPages = true;
       kissmetrics.options.trackCategorizedPages = true;
       kissmetrics.options.prefixProperties = true;
+    });
+
+    it('should record normal kissmetrics page views when the option is set', function () {
+      window.KM_SKIP_PAGE_VIEW = false;
+      test(kissmetrics).page();
+      assert(window._kmq.push.calledOnce);
+      assert(window._kmq.push.args[0][0][1] == 'Page View');
     });
 
     it('should track named pages by default', function () {
@@ -110,6 +119,7 @@ describe('KISSmetrics', function () {
       kissmetrics.options.trackNamedPages = false;
       test(kissmetrics).page('Category', 'Name');
       assert(window._kmq.push.calledOnce);
+      assert(window._kmq.push.args[0][0][1] == 'Viewed Category Page');
     });
 
     it('should not track a categorized page when the option is off', function () {
@@ -118,15 +128,18 @@ describe('KISSmetrics', function () {
       assert(!window._kmq.push.called);
     });
 
-    it('should not track a categorized page when the option is off, but should track page', function () {
+    it('should not track a categorized page when the option is off, but should track name', function () {
       kissmetrics.options.trackCategorizedPages = false;
-      test(kissmetrics).page('Category', 'Page');
+      test(kissmetrics).page('Category', 'Name');
       assert(window._kmq.push.calledOnce);
+      assert(window._kmq.push.args[0][0][1] == 'Viewed Category Name Page');
     });
 
     it('should track both named and categorized page when options are on', function () {
-      test(kissmetrics).page('Category', 'Page');
+      test(kissmetrics).page('Category', 'Name');
       assert(window._kmq.push.calledTwice);
+      assert(window._kmq.push.args[0][0][1] == 'Viewed Category Name Page');
+      assert(window._kmq.push.args[1][0][1] == 'Viewed Category Page');
     });
 
     it('should not prefixProperties if option is off', function () {
