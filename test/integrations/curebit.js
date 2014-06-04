@@ -162,18 +162,14 @@ describe('Curebit', function(){
       }]));
     });
 
-    it('should remove an iframe that was loaded earlier', function(){
-      var container = domify('<div id="curebit-container"></div>');
-      document.body.appendChild(container);
+    it('should throttle', function(){
       curebit.options.campaigns = { '/' : 'share,test' };
       curebit.page();
-      // stub, to pretend content was loaded
-      container.innerHTML = '<iframe id="curebit_integration" src="about:blank"></iframe>';
-      assert(document.getElementById('curebit_integration'));
-      // now call again and it should be removed (or at least different).
       curebit.page();
-      assert(!document.getElementById('curebit_integration'));
-      assert(document.getElementById('curebit-container'));
+      curebit.page();
+      curebit.page();
+      curebit.page();
+      assert(1 == window._curebitq.length);
     });
   });
 
