@@ -6,12 +6,12 @@ describe('Appcues', function() {
   var assert = require('assert');
   var Appcues = require('integrations/lib/appcues');
 
-  var appcues,
-      settings = {
-        appcuesId: 'test',
-        userId: 'test',
-        userEmail: 'test@testification.com'
-      };
+  var appcues;
+  var settings = {
+    appcuesId: 'test',
+    userId: 'test',
+    userEmail: 'test@testification.com'
+  };
 
   // Disable AMD for these browser tests.
   var _define = window.define;
