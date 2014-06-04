@@ -9,6 +9,7 @@ describe('KISSmetrics', function () {
   var intervals = require('clear-intervals');
   var timeouts = require('clear-timeouts');
   var equals = require('equals');
+  var Page = require('facade').Page;
 
   var kissmetrics;
   var settings = {
@@ -26,7 +27,7 @@ describe('KISSmetrics', function () {
     // initialize only once because kissmetrics has a bunch of timeouts
     kissmetrics.once('load', done);
     kissmetrics.initialize();
-    kissmetrics.page();
+    kissmetrics.page(new Page({}));
   });
 
   afterEach(function(){
