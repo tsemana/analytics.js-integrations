@@ -79,13 +79,17 @@ describe('KISSmetrics', function () {
   });
 
   describe('#page', function () {
+    var originalPageView = KM.pageView;
+
     beforeEach(function () {
       window._kmq.push = sinon.spy();
+      window.KM.pageView = sinon.spy();
     });
 
     afterEach(function(){
       // set back to defaults
       window.KM_SKIP_PAGE_VIEW = 1;
+      window.KM.pageView = originalPageView;
       kissmetrics.options.trackNamedPages = true;
       kissmetrics.options.trackCategorizedPages = true;
       kissmetrics.options.prefixProperties = true;
@@ -96,6 +100,18 @@ describe('KISSmetrics', function () {
       test(kissmetrics).page();
       assert(window._kmq.push.calledOnce);
       assert(window._kmq.push.args[0][0][1] == 'Page View');
+    });
+
+    it('should call `KM.pageView()` when KM_SKIP_PAGE_VIEW is not set', function () {
+      window.KM_SKIP_PAGE_VIEW = false;
+      test(kissmetrics).page();
+      assert(window.KM.pageView.calledOnce);
+    });
+
+    it('should not call `KM.pageView()` when KM_SKIP_PAGE_VIEW is set', function () {
+      window.KM_SKIP_PAGE_VIEW = 1;
+      test(kissmetrics).page();
+      assert(!window.KM.pageView.calledOnce);
     });
 
     it('should track named pages by default', function () {
