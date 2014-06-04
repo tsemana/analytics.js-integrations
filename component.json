@@ -74,6 +74,7 @@
     "lib/adwords.js",
     "lib/alexa.js",
     "lib/amplitude.js",
+    "lib/appcues.js",
     "lib/awesm.js",
     "lib/awesomatic.js",
     "lib/bing-ads.js",
