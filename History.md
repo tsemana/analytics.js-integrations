@@ -1,4 +1,17 @@
 
+0.9.5 / 2014-06-04
+==================
+
+ * kissmetrics: test internal kissmetrics pageView is being called
+ * kissmetrics: fix page calling logic in initialize
+ * kissmetrics: fix kissmetrics to properly handle page views and assumes
+ * woopra: fix woopra config
+ * adwords: add remarketing to adwords
+ * curebit: fix curebit double iframe issue
+ * kissmetrics: fix kissmetrics page tracking
+ * appcues: Adding Appcues integration.
+ * google-analytics: fix custom metrics, remove from page/track/group, closes #177
+
 0.9.4 / 2014-06-03
 ==================
 
