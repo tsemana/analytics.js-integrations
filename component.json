@@ -13,10 +13,12 @@
   ],
   "dependencies": {
     "avetisk/defaults": "0.0.1",
+    "component/bind": "1.0.0",
     "component/clone": "0.1.1",
     "component/domify": "1.2.0",
     "component/each": "0.0.1",
     "component/once": "0.0.1",
+    "component/throttle": "0.0.2",
     "component/type": "1.0.0",
     "component/url": "0.1.0",
     "ianstormtaylor/callback": "0.0.1",
