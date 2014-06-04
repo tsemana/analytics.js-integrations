@@ -79,9 +79,10 @@ describe('KISSmetrics', function () {
   });
 
   describe('#page', function () {
-    var originalPageView = KM.pageView;
+    var originalPageView;
 
     beforeEach(function () {
+      originalPageView = window.KM.pageView;
       window._kmq.push = sinon.spy();
       window.KM.pageView = sinon.spy();
     });
@@ -98,8 +99,7 @@ describe('KISSmetrics', function () {
     it('should record normal kissmetrics page views when the option is set', function () {
       window.KM_SKIP_PAGE_VIEW = false;
       test(kissmetrics).page();
-      assert(window._kmq.push.calledOnce);
-      assert(window._kmq.push.args[0][0][1] == 'Page View');
+      assert(!window._kmq.push.called);
     });
 
     it('should call `KM.pageView()` when KM_SKIP_PAGE_VIEW is not set', function () {
