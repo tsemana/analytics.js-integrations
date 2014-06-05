@@ -239,7 +239,18 @@ describe('Intercom', function () {
         app_id: settings.appId,
         user_id: 'id',
         id: 'id',
-        company: {}
+        company: {
+          name: 'string'
+        }
+      }));
+    });
+
+    it('should not fail when the company trait is a number', function () {
+      test(intercom).identify('id', { company: 97 });
+      assert(window.Intercom.calledWith('boot', {
+        app_id: settings.appId,
+        user_id: 'id',
+        id: 'id'
       }));
     });
 
