@@ -238,10 +238,7 @@ describe('Intercom', function () {
       assert(window.Intercom.calledWith('boot', {
         app_id: settings.appId,
         user_id: 'id',
-        id: 'id',
-        company: {
-          name: 'string'
-        }
+        id: 'id'
       }));
     });
 
@@ -254,14 +251,15 @@ describe('Intercom', function () {
       }));
     });
 
-    it('should carry over company traits set in group', function() {
-      analytics.group().traits({foo: 'bar'});
-      test(intercom).identify('id');
+    it('should carry over company traits set in group if a company trait exists', function() {
+      analytics.group().traits({ foo: 'bar' });
+      test(intercom).identify('id', { company: { name: 'name' }});
       assert(window.Intercom.calledWith('boot', {
         app_id: settings.appId,
         user_id: 'id',
         id: 'id',
         company: {
+          name: 'name',
           foo: 'bar'
         }
       }));
