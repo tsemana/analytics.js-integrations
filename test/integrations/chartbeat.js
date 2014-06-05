@@ -4,20 +4,33 @@ describe('Chartbeat', function () {
   var analytics = require('analytics');
   var assert = require('assert');
   var Chartbeat = require('integrations/lib/chartbeat');
+  var defaults = require('defaults');
   var equal = require('equals');
   var sinon = require('sinon');
   var test = require('integration-tester');
 
   var chartbeat;
+
+  // Custom settings passed to constructor.
   var settings = {
     uid: 'x',
-    domain: 'example.com'
+    domain: 'example.com',
+    useCanonical: false
   };
+
+  // Pre-existing config.
+  window._sf_async_config = {
+    sponsorName: 'exampleSponsor',
+    authors: 'exampleAuthors'
+  };
+
+  // What we expect at the end.
+  var expected = defaults(settings, window._sf_async_config);
 
   beforeEach(function () {
     analytics.use(Chartbeat);
     chartbeat = new Chartbeat.Integration(settings);
-    chartbeat.initialize(); // noop
+    chartbeat.initialize();
   });
 
   afterEach(function () {
@@ -33,7 +46,8 @@ describe('Chartbeat', function () {
       .global('_sf_endpt')
       .global('pSUPERFLY')
       .option('domain', '')
-      .option('uid', null);
+      .option('uid', null)
+      .option('useCanonical', true);
   });
 
   describe('#initialize', function () {
@@ -43,7 +57,7 @@ describe('Chartbeat', function () {
 
     it('should create window._sf_async_config', function () {
       chartbeat.initialize();
-      assert(equal(window._sf_async_config, settings));
+      assert(equal(window._sf_async_config, expected));
     });
 
     it('should create window._sf_endpt', function () {
