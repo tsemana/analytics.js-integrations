@@ -233,6 +233,16 @@ describe('Intercom', function () {
       }));
     });
 
+    it('should not fail when the company trait is a string', function () {
+      test(intercom).identify('id', { company: 'string' });
+      assert(window.Intercom.calledWith('boot', {
+        app_id: settings.appId,
+        user_id: 'id',
+        id: 'id',
+        company: {}
+      }));
+    });
+
     it('should carry over company traits set in group', function() {
       analytics.group().traits({foo: 'bar'});
       test(intercom).identify('id');
