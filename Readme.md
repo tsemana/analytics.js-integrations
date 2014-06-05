@@ -18,7 +18,7 @@ If you ever need any help, feel free to email [friends@segment.io](mailto:friend
 - [Bing Ads](http://advertise.bingads.microsoft.com/)
 - [BugHerd](http://bugherd.com/)
 - [Bugsnag](http://bugsnag.com/)
-- [Chartbeat](https://chartbeat.com/dashboard/)
+- [Chartbeat](https://chartbeat.com/)
 - [ChurnBee](http://churnbee.com)
 - [Clicky](http://clicky.com/)
 - [comScore](http://www.comscore.com/)
