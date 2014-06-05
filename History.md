@@ -1,4 +1,16 @@
 
+0.9.8 / 2014-06-05
+==================
+
+ * kenshoo: refactor
+ * mixpanel: delete ip property too
+ * mixpanel: delete reserved properties to avoid conflicts
+ * quantcast: fix exception in identify()
+ * chartbeat: fix issue where Chartbeat script loads and executes before document.body exists
+ * chartbeat: replace obsolete protocol-specific script load URLs with protocol-agnostic URL
+ * chartbeat: Preserve existing _sf_async_config values unless overridden by via settings/defaults
+ * chartbeat: Add useCanonical to options and _sf_async_config with default value true
+
 0.9.7 / 2014-06-04
 ==================
 
