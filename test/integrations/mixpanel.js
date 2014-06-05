@@ -314,6 +314,7 @@ describe('Mixpanel', function () {
     it('should remove mixpanel\'s reserved properties', function(){
       test(mixpanel).track('event', {
         distinct_id: 'string',
+        ip: 'string',
         mp_name_tag: 'string',
         mp_note: 'string',
         token: 'string'
