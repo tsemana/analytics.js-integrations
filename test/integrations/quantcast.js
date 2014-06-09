@@ -9,7 +9,7 @@ describe('Quantcast', function () {
 
   var quantcast;
   var settings = {
-    pCode: 'x'
+    pCode: 'p-ZDsjJUtp583Se'
   };
 
   beforeEach(function () {
