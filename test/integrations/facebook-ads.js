@@ -20,7 +20,7 @@ describe('Facebook Ads', function(){
     analytics.use(Facebook);
     facebook = new Facebook.Integration(settings);
     facebook.initialize();
-  })
+  });
 
   it('should have the correct settings', function(){
     test(facebook)
@@ -28,7 +28,7 @@ describe('Facebook Ads', function(){
       .readyOnInitialize()
       .option('currency', 'USD')
       .option('events', {});
-  })
+  });
 
   it('should load', function(done){
     window._fbq = [];
@@ -37,35 +37,36 @@ describe('Facebook Ads', function(){
       assert(facebook.loaded());
       done();
     });
-  })
+  });
 
   describe('#track', function(){
     beforeEach(function(){
       sinon.stub(window._fbq, 'push');
-    })
+    });
 
     afterEach(function(){
       window._fbq = [];
-    })
+    });
 
-    it('should not send if event is not define', function(){
-      test(facebook).track('toString', {});
-      assert(!_fbq.push.called);
-    })
+    it('should send custom event even if event is not defined', function(){
+      test(facebook)
+        .track('event', { x: 10 })
+        .called(_fbq.push)
+        .with([ 'track', 'event', { x: 10 } ]);
+    });
 
     it('should send event if found', function(){
       test(facebook)
         .track('signup', {})
         .called(_fbq.push)
         .with([ 'track', 0, { currency: 'USD', value: '0.00' } ]);
-    })
+    });
 
     it('should send revenue', function(){
       test(facebook)
         .track('login', { revenue: '$50' })
         .called(_fbq.push)
         .with([ 'track', 1, { value: '50.00', currency: 'USD' } ]);
-    })
-  })
-
-})
+    });
+  });
+});
