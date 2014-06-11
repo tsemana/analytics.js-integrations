@@ -1,4 +1,16 @@
 
+0.9.9 / 2014-06-11
+==================
+
+ * add ability to specify custom integration for `make test`
+ * bugherd: fix test - cant load bugherd unless logged in on browser
+ * facebook-ads: add support for custom events
+ * adroll: add `.page` and make `.track` only send revenue when conversion events are defined
+ * quantcast: adjust pCode
+ * intercom: fix intercom company handling to guarantee an id
+ * fix logic to work for all non-objects, and preserve strings
+ * intercom: fix company when its a string
+
 0.9.8 / 2014-06-05
 ==================
 
