@@ -63,6 +63,7 @@
     "segmentio/analytics.js": "*",
     "segmentio/analytics.js-integration-tester": "*",
     "segmentio/when": "*",
+    "visionmedia/mocha": "*",
     "yields/clear-timeouts": "*",
     "yields/clear-intervals": "*",
     "yields/coverage": "*",

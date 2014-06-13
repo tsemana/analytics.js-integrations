@@ -1,6 +1,6 @@
 
 SRC= $(wildcard *.js lib/*/*.js test/*.js)
-REQUIRES= integrations.js test/tests.js
+REQUIRES= integrations.js test/index.js
 tests ?= *
 BINS= node_modules/.bin
 DUO= $(BINS)/duo
@@ -8,15 +8,15 @@ TEST= http://localhost:4202
 PHANTOM= $(BINS)/mocha-phantomjs \
 	--setting local-to-remote-url-access=true \
 	--setting web-security=false
-
+BROWSERS= ie10
 
 build: node_modules $(SRC) $(REQUIRES)
-	@$(DUO) --development test/tests.js build/build.js
+	@$(DUO) --development test/index.js build/build.js
 
 integrations.js:
 	@node bin/integrations
 
-test/tests.js:
+test/index.js:
 	@node bin/tests
 
 kill:
@@ -39,6 +39,9 @@ test-browser: build server
 
 test-coverage: build server
 	@open $(TEST)/coverage
+
+test-sauce: build server
+	@BROWSERS=$(BROWSERS) node bin/gravy --url $(TEST)
 
 clean:
 	rm -rf components build integrations.js test/tests.js

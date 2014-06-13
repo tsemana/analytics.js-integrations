@@ -1,5 +1,3 @@
-
-require('./index.js');
 require('../lib/adroll/test.js');
 require('../lib/adwords/test.js');
 require('../lib/alexa/test.js');
