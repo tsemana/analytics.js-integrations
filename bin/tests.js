@@ -26,5 +26,5 @@ var requires = slugs.map(function(slug, i){
  * Write `test/tests.js`
  */
 
-var js = '\nrequire(\'./index.js\');\n' + requires.join('') + '\n';
+var js = requires.join('') + '\n';
 write(__dirname + '/../test/tests.js', js);

@@ -26,24 +26,6 @@
   <div id="mocha"></div>
   <!-- TODO: depend on mocha instead -->
   <script src="test/mocha.js"></script>
-  <script>
-
-    // TODO: don't ignore leaks
-    // instead include all globals via `.global(whatever)`.
-    mocha.setup({
-      ui: 'bdd',
-      ignoreLeaks: true,
-      slow: 300,
-      timeout: 10000
-    });
-  </script>
   <script src="build/build.js"></script>
-  <script>
-    if (window.mochaPhantomJS) {
-      mochaPhantomJS.run();
-    } else {
-      mocha.run();
-    }
-  </script>
 </body>
 </html>
