@@ -1,6 +1,6 @@
 
 SRC= $(wildcard *.js lib/*/*.js test/*.js)
-REQUIRES= integrations.js test/index.js
+REQUIRES= integrations.js test/tests.js
 tests ?= *
 BINS= node_modules/.bin
 DUO= $(BINS)/duo
@@ -16,7 +16,7 @@ build: node_modules $(SRC) $(REQUIRES)
 integrations.js:
 	@node bin/integrations
 
-test/index.js:
+test/tests.js:
 	@node bin/tests
 
 kill:
