@@ -44,7 +44,7 @@ test-sauce: build server
 	@BROWSERS=$(BROWSERS) node bin/gravy --url $(TEST)
 
 clean:
-	rm -rf components build integrations.js test/tests.js
+	rm -rf components build
 
 .PHONY: clean server test test-browser
 .PHONY: test-sauce test-coverage
