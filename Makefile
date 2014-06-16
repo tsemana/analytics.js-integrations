@@ -5,10 +5,12 @@ tests ?= *
 BINS= node_modules/.bin
 DUO= $(BINS)/duo
 TEST= http://localhost:4202
+BROWSERS= ie10
+
 PHANTOM= $(BINS)/mocha-phantomjs \
 	--setting local-to-remote-url-access=true \
-	--setting web-security=false
-BROWSERS= ie10
+	--setting web-security=false \
+	--path $(BINS)/phantomjs
 
 build: node_modules $(SRC) $(REQUIRES)
 	@$(DUO) --development test/index.js build/build.js
@@ -44,7 +46,7 @@ test-sauce: build server
 	@BROWSERS=$(BROWSERS) node bin/gravy --url $(TEST)
 
 clean:
-	rm -rf components build integrations.js test/tests.js
+	rm -rf components build
 
 .PHONY: clean server test test-browser
 .PHONY: test-sauce test-coverage
