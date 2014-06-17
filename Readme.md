@@ -18,9 +18,7 @@ To get started with development, clone the repository and then inside of it run:
 
     $ make
 
-That will build the `analytics.js` file, downloading all of the dependencies required to build it automatically.
-
-Then, edit as you please, adding new integrations or editing the logic of an existing integration. When you are ready to test run:
+That will downloaded all of the dependencies needed, and build the test-ready files. Then, edit as you please, adding new integrations or editing the logic of an existing integration. When you are ready to test run:
 
     $ make test
 
