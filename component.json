@@ -54,7 +54,7 @@
     "component/indexof": "0.0.3",
     "component/object": "0.0.3",
     "segmentio/obj-case": "0.0.7"
-},
+  },
   "development": {
     "component/jquery": "*",
     "component/object": "*",
@@ -62,14 +62,15 @@
     "ianstormtaylor/sinon": "duo",
     "jkroso/equals": "*",
     "matthewp/keys": "*",
-    "segmentio/analytics.js": "*",
-    "segmentio/analytics.js-integration-tester": "*",
+    "segmentio/analytics.js": "refactor/initialize",
+    "segmentio/analytics.js-integration-tester": "1.0.0",
     "segmentio/spy": "*",
     "segmentio/when": "*",
     "visionmedia/mocha": "*",
     "yields/clear-timeouts": "*",
     "yields/clear-intervals": "*",
     "yields/coverage": "*",
+    "yields/eql": "*",
     "yields/gravy": "*",
     "yields/fmt": "*"
   }

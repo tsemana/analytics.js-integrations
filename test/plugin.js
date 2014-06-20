@@ -5,6 +5,7 @@
 
 var indexOf = require('indexof');
 var assert = require('assert');
+var stub = require('./stub');
 var each = require('each');
 var keys = require('keys');
 var fmt = require('fmt');
@@ -35,6 +36,20 @@ function plugin(analytics) {
 
   analytics.spy = function(object, method){
     var s = spy(object, method);
+    this.spies.push(s);
+    return this;
+  };
+
+  /**
+   * Stub a `method` of host `object`.
+   *
+   * @param {Object} object
+   * @param {String} method
+   * @return {Analytics}
+   */
+
+  analytics.stub = function(object, method){
+    var s = stub(object, method);
     this.spies.push(s);
     return this;
   };
@@ -79,6 +94,39 @@ function plugin(analytics) {
       , args
       , spy.args[0])
     );
+
+    return this;
+  };
+
+  /**
+   * Assert that a `spy` was not called with `args...`.
+   *
+   * @param {Spy} spy
+   * @param {Mixed} args... (optional)
+   * @return {Analytics}
+   */
+
+  analytics.didNotCall = function(spy){
+    assert(
+      ~indexOf(this.spies, spy), 
+      'You must call `.spy(object, method)` prior to calling `.didntCall()`.'
+    );
+
+    var args = [].slice.call(arguments, 1);
+    if (!args.length) {
+      assert(
+        !spy.called, 
+        fmt('Expected "%s" not to have been called.', spy.name)
+      );
+    } else {
+      assert(!spy.got.apply(spy, args), fmt(''
+        + 'Expected "%s" not to be called with "%o", '
+        + 'but it was called with "%o".'
+        , spy.name
+        , args
+        , spy.args[0])
+      );
+    }
 
     return this;
   };
