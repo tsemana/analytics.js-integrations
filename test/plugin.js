@@ -144,13 +144,65 @@ function plugin(analytics) {
   };
 
   /**
-   * TODO: add to analytics.js
+   * Validate `int` against `test`.
    *
-   * @param {String} name
+   * @param {Function} a actual integration constructor
+   * @param {Function} b test integration constructor
    */
 
-  analytics.integration = function(name){
-    return this._integrations[name];
+  analytics.validate = function(a, b){
+    a = new a;
+    b = new b;
+    // name
+    assert(
+      a.name === b.name,
+      fmt('Expected name to be "%s", but it was "%s".', b.name, a.name)
+    );
+
+    // options
+    var x = a.defaults;
+    var y = b.defaults;
+    for (var key in y) {
+      assert(
+        x.hasOwnProperty(key),
+        fmt('The integration does not have an option named "%s".', key)
+      );
+      assert.deepEqual(
+        x[key], y[key],
+        fmt(
+          'Expected option "%s" to default to "%s", but it defaults to "%s".', 
+          key, y[key], x[key]
+        )
+      );
+    }
+
+    // globals
+    var x = a.globals;
+    var y = b.globals;
+    each(y, function(key){
+      assert(
+        indexOf(x, key) !== -1,
+        fmt('Expected global "%s" to be registered.', key)
+      );
+    });
+
+    // assumesPageview
+    assert(
+      a._assumesPageview == b._assumesPageview,
+      'Expected the integration to assume a pageview.'
+    );
+
+    // readyOnInitialize
+    assert(
+      a._readyOnInitialize == b._readyOnInitialize,
+      'Expected the integration to be ready on initialize.'
+    );
+
+    // readyOnLoad
+    assert(
+      a._readyOnLoad == b._readyOnLoad,
+      'Expected integration to be ready on load.'
+    );
   };
 
   /**
@@ -166,7 +218,7 @@ function plugin(analytics) {
   };
 
   /**
-   * Expose all of the methods own `assert`.
+   * Expose all of the methods on `assert`.
    *
    * @param {Mixed} args...
    * @return {Tester}
