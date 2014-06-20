@@ -132,6 +132,48 @@ function plugin(analytics) {
   };
 
   /**
+   * Assert that a `spy` returned `value`.
+   *
+   * @param {Spy} spy
+   * @param {Mixed} value
+   * @return {Tester}
+   */
+
+  analytics.returned = function(spy, value){
+    assert(
+      ~indexOf(this.spies, spy),
+      'You must call `.spy(object, method)` prior to calling `.returned()`.'
+    );
+    assert(
+      spy.returned(value),
+      fmt('Expected "%s" to have returned "%o".', spy.name, value)
+    );
+
+    return this;
+  };
+
+  /**
+   * Assert that a `spy` did not return `value`.
+   *
+   * @param {Spy} spy
+   * @param {Mixed} value
+   * @return {Tester}
+   */
+
+  analytics.didNotReturn = function(spy, value){
+    assert(
+      ~indexOf(this.spies, spy),
+      'You must call `.spy(object, method)` prior to calling `.didntReturn()`.'
+    );
+    assert(
+      !spy.returned(value),
+      fmt('Expected "%s" not to have returned "%o".', spy.name, value)
+    );
+
+    return this;
+  };
+
+  /**
    * Call `reset` on the integration.
    *
    * @return {Analytics}
