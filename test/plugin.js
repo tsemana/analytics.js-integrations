@@ -88,11 +88,11 @@ function plugin(analytics) {
 
     assert(
       spy.got.apply(spy, args), fmt(''
-      + 'Expected "%s" to be called with "%o", '
-      + 'but it was called with "%o".'
+      + 'Expected "%s" to be called with "%s", \n'
+      + 'but it was called with "%s".'
       , spy.name
-      , args
-      , spy.args[0])
+      , JSON.stringify(args, null, 2)
+      , JSON.stringify(spy.args[0], null, 2))
     );
 
     return this;
@@ -130,6 +130,54 @@ function plugin(analytics) {
 
     return this;
   };
+
+  /**
+   * Assert that a `spy` was not called 1 time.
+   *
+   * @param {Spy} spy
+   * @return {Analytics}
+   */
+
+  analytics.calledOnce = calledTimes(1);
+
+  /**
+   * Assert that a `spy` was called 2 times.
+   *
+   * @param {Spy} spy
+   * @return {Analytics}
+   */
+
+  analytics.calledTwice = calledTimes(2);
+
+  /**
+   * Assert that a `spy` was called 3 times.
+   *
+   * @param {Spy} spy
+   * @return {Analytics}
+   */
+
+  analytics.calledThrice = calledTimes(2);
+
+  /**
+   * Generate a function for asserting a spy
+   * was called `n` times.
+   *
+   * @param {Number} n
+   * @return {Function}
+   */
+
+  function calledTimes(n) {
+    return function(spy) {
+      var m = spy.args.length;
+      assert(
+        n == m,
+        fmt(''
+          + 'Expected "%s" to have been called %s time%s, '
+          + 'but it was only called %s time%s.'
+          , spy.name, n, 1 != n ? 's' : '', m, 1 != m ? 's' : '')
+      );
+    }
+  }
 
   /**
    * Assert that a `spy` returned `value`.
@@ -245,6 +293,29 @@ function plugin(analytics) {
       a._readyOnLoad == b._readyOnLoad,
       'Expected integration to be ready on load.'
     );
+  };
+
+  /**
+   * Assert the integration being tested loads.
+   *
+   * @param {Integration} integration
+   * @param {Function} done
+   */
+  
+  analytics.load = function(integration, done){
+    analytics.assert(!integration.loaded());
+    analytics.initialize();
+    analytics.page();
+    analytics.once('ready', function(){
+      analytics.assert(integration.loaded());
+      done();
+    });
+    // integration.load(function(err){
+    //   console.log(err)
+    //   if (err) return done(err);
+    //   analytics.assert(integration.loaded());
+    //   done();
+    // });
   };
 
   /**

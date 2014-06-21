@@ -23,12 +23,15 @@ var eql = require('eql');
 
 module.exports = function(obj, method){
   var fn = toFunction(arguments, stub);
-  return merge(stub, proto);
+  merge(stub, proto);
+  stub.reset();
+  stub.name = method;
+  return stub;
 
   function stub(){
     var args = [].slice.call(arguments);
     var ret = fn(arguments);
-    stub.returns || stub.reset();
+    //stub.returns || stub.reset();
     stub.args.push(args);
     stub.returns.push(ret);
     stub.update();
@@ -162,18 +165,18 @@ proto.update = function(){
 function toFunction(args, stub){
   var obj = args[0];
   var method = args[1];
+  var fn = args[2] || function(){};
 
   switch (args.length) {
     case 0: return function noop(){};
     case 1: return function(args){ return obj.apply(null, args); };
     case 2:
+    case 3:
     var m = obj[method];
     stub.method = method;
     stub.fn = m;
     stub.obj = obj;
     obj[method] = stub;
-    return function(args){
-      // stubbed
-    };
+    return fn;
   }
 }
