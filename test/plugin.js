@@ -310,12 +310,6 @@ function plugin(analytics) {
       analytics.assert(integration.loaded());
       done();
     });
-    // integration.load(function(err){
-    //   console.log(err)
-    //   if (err) return done(err);
-    //   analytics.assert(integration.loaded());
-    //   done();
-    // });
   };
 
   /**
