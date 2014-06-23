@@ -62,7 +62,7 @@
     "ianstormtaylor/sinon": "duo",
     "jkroso/equals": "*",
     "matthewp/keys": "*",
-    "segmentio/analytics.js": "refactor/initialize",
+    "segmentio/analytics.js": "*",
     "segmentio/analytics.js-integration-tester": "1.0.0",
     "segmentio/spy": "*",
     "segmentio/when": "*",
