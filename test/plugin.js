@@ -106,6 +106,7 @@ function plugin(analytics) {
    * @return {Analytics}
    */
 
+  analytics.notCalled =
   analytics.didNotCall = function(spy){
     assert(
       ~indexOf(this.spies, spy), 
@@ -208,6 +209,7 @@ function plugin(analytics) {
    * @return {Tester}
    */
 
+  analytics.notReturned =
   analytics.didNotReturn = function(spy, value){
     assert(
       ~indexOf(this.spies, spy),
@@ -304,12 +306,12 @@ function plugin(analytics) {
   
   analytics.load = function(integration, done){
     analytics.assert(!integration.loaded());
-    analytics.initialize();
-    analytics.page();
     analytics.once('ready', function(){
       analytics.assert(integration.loaded());
       done();
     });
+    analytics.initialize();
+    analytics.page();
   };
 
   /**
