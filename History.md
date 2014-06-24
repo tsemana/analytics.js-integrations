@@ -1,4 +1,31 @@
 
+1.1.0 / 2014-06-24
+==================
+
+ * bronto: fix email conversion tracking and port tests
+ * bing: use javascript api, get working, and port tests
+ * bump load-script to 0.1.2
+ * bugherd: port tests, fix loading problem
+ * adwords: port tests
+ * drip: refactor tests
+ * crazy-egg: port tests
+ * rename settings to options to match integration constructor
+ * facebook-ads: port to new test api
+ * navilytics: port to new test api
+ * kissmetrics: port to new test api
+ * alexa: port to new test api
+ * mixpanel: port to new test api
+ * add test stub
+ * add template test file
+ * adroll migrate to new testing api
+ * adroll: snake-case event names, resolves #226
+ * bronto: rename addConversion to addOrder according to their docs
+ * update readme with development instructions
+ * updating makefile, bumping component/queue for ie8 compat
+ * make-test: make sure we use installed phantomjs(1)
+ * make-clean: never remove integrations.js or test/tests.js
+ * refactor tests for duo, and add saucelabs + gravy!
+
 1.0.2 / 2014-06-13
 ==================
 
