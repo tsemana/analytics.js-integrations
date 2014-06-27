@@ -1,4 +1,10 @@
 
+1.1.1 / 2014-06-26
+==================
+
+ * bing: rename goals to events to match ui
+ * woopra: adding name fix, fixes #234
+
 1.1.0 / 2014-06-24
 ==================
 
