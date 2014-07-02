@@ -64,7 +64,7 @@
     "jkroso/equals": "*",
     "matthewp/keys": "*",
     "segmentio/analytics.js": "*",
-    "segmentio/analytics.js-integration-tester": "1.0.0",
+    "segmentio/analytics.js-integration-tester": "*",
     "segmentio/spy": "*",
     "segmentio/when": "*",
     "visionmedia/mocha": "*",
