@@ -9,60 +9,33 @@ var write = require('fs').writeFileSync;
  */
 
 var app = express()
-  .set('views', __dirname)
-  .get('/coverage', coverage)
   .use(rebuild)
-  .use(statics)
+  .get('/coverage', coverage)
+  .use(express.static(join(__dirname, '..')))
   .use(tests);
 
 /**
  * Listen.
  */
 
-app.listen(4202, function(){
+app.listen(process.env.port, function(){
   var file = join(__dirname, 'pid.txt');
   write(file, process.pid);
-  console.log('Started testing server on port 4202...');
+  console.log();
+  console.log('  Testing server running at http://localhost:%s ...', process.env.port);
+  console.log();
 });
 
 /**
  * Rebuild.
- */
-
-function rebuild(_, _, next){
-  exec('make', next);
-}
-
-/**
- * Static files. We don't just use `express.static` because we also want to let
- * people just test a few integrations by passing an environment variable of
- * the integration slugs.
  *
  * @param {Request} req
  * @param {Response} res
  * @param {Function} next
  */
 
-function statics(req, res, next){
-  function done(){
-    var middleware = express.static(join(__dirname, '..'));
-    middleware(req, res, next);
-  }
-
-  // not an integration test file
-  if (!~req.url.indexOf('test.js')) return done();
-
-  // all integrations allowed
-  var slugs = (process.env.TESTS || '').split(/\s*,\s*/);
-  if ('*' == slugs[0]) return done();
-
-  // specific integration is permitted
-  var slug = req.url.match(/\/lib\/([\w-]+)\/test\.js/)[1];
-  if (~slugs.indexOf(slug)) return done();
-
-  // send back an empty javascript response, skipping the integration's tests
-  res.type('text/javascript');
-  res.send(';');
+function rebuild(req, res, next){
+  exec('make', next);
 }
 
 /**
@@ -74,7 +47,7 @@ function statics(req, res, next){
  */
 
 function coverage(req, res, next){
-  res.sendfile(__dirname + '/coverage.html');
+  res.sendfile(join(__dirname, '/coverage.html'));
 }
 
 /**
@@ -86,5 +59,5 @@ function coverage(req, res, next){
  */
 
 function tests(req, res, next){
-  res.sendfile(__dirname + '/index.html');
+  res.sendfile(join(__dirname, '/index.html'));
 }
