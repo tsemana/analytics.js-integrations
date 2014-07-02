@@ -15,6 +15,14 @@ var readdir = fs.readdirSync;
 var slugs = readdir(__dirname + '/../lib');
 
 /**
+ * Filter
+ */
+
+if (process.env.integration) {
+  slugs = slugs.filter(function(slug){ return slug == process.env.integration; });
+}
+
+/**
  * Build requires for tests
  */
 
