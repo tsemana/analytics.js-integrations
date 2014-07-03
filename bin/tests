@@ -22,7 +22,7 @@ write(__dirname + '/../test/tests.js', [
   "",
   readdir(__dirname + '/../lib')
     .filter(function(slug){ return i ? slug == i : true; })
-    .map(function(slug) { return "require('../lib/" +  slug + "/test.js');"; })
+    .map(function(slug){ return "require('../lib/" +  slug + "/test.js');"; })
     .join('\n'),
   ""
 ].join('\n'));
