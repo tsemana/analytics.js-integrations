@@ -1,3 +1,8 @@
+
+/**
+ * DON'T EDIT THIS FILE. It's automatically generated!
+ */
+
 require('../lib/adroll/test.js');
 require('../lib/adwords/test.js');
 require('../lib/alexa/test.js');
