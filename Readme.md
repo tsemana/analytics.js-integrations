@@ -1,7 +1,7 @@
 
 # analytics.js-integrations [![Build Status](https://travis-ci.org/segmentio/analytics.js-integrations.png)](https://travis-ci.org/segmentio/analytics.js-integrations)
 
-This repository houses all of the integrations that get built into [Analytics.js](https://github.com/segmentio/analytics.js). 
+This repository houses all of the integrations that get built into [Analytics.js](https://github.com/segmentio/analytics.js).
 
 All new integrations are added by pull requests, just read the [contribution docs](/Contributing.md) to get started and submit your own! If you ever need any help, feel free to email [friends@segment.io](mailto:friends@segment.io).
 
@@ -14,7 +14,12 @@ This repository relies on a couple dependencies that help make our lives easier 
 
   - [`analytics.js-integration-tester`](https://github.com/segmentio/analytics.js-integration-tester), which is a testing helper that wraps an integration and simplifies lots of the testing logic. It's similar to how [`supertest`](https://github.com/visionmedia/supertest) works for [Superagent](https://github.com/visionmedia/superagent).
 
-To get started with development, clone the repository and then inside of it run:
+To get started with development, you need to be running node 0.11.x, an easy way to get it is
+
+    $ npm install -g n
+    $ n 0.11
+
+Then clone the repository and then inside of it run:
 
     $ make
 
