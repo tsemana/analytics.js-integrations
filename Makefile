@@ -24,19 +24,19 @@ phantomjs = node_modules/.bin/mocha-phantomjs \
 default: build/build.js
 
 test: node_modules build/build.js server
-	@node bin/tests.js
+	@node bin/tests
 	@$(phantomjs) http://localhost:$(port)
 
 test-browser: build/build.js server
-	@node bin/tests.js
+	@node bin/tests
 	@open http://localhost:$(port)
 
 test-coverage: build/build.js server
-	@node bin/tests.js
+	@node bin/tests
 	@open http://localhost:$(port)/coverage
 
 test-sauce: node_modules build/build.js server
-	@node bin/tests.js
+	@node bin/tests
 	@node bin/gravy --url http://localhost:$(port)
 
 clean:
@@ -59,10 +59,11 @@ server: kill node_modules
 #
 
 build/build.js: node_modules integrations.js $(wildcard *.js lib/*/*.js test/*.js)
+	@node bin/tests
 	@$(duo) --development test/index.js build/build.js
 
 integrations.js: $(wildcard lib/*)
-	@node bin/integrations.js
+	@node bin/integrations
 
 node_modules: package.json
 	@npm install

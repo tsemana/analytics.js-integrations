@@ -1,4 +1,8 @@
 
+/**
+ * DON'T EDIT THIS FILE. It's automatically generated!
+ */
+
 require('../lib/adroll/test.js');
 require('../lib/adwords/test.js');
 require('../lib/alexa/test.js');
@@ -73,4 +77,3 @@ require('../lib/visual-website-optimizer/test.js');
 require('../lib/webengage/test.js');
 require('../lib/woopra/test.js');
 require('../lib/yandex-metrica/test.js');
-
