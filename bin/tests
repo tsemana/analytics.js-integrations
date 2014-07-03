@@ -27,12 +27,12 @@ if (process.env.integration) {
  */
 
 var requires = slugs.map(function(slug, i){
-  return 'require(\'../lib/' +  slug + '/test.js\');\n'
+  return "require('../lib/" +  slug + "/test.js');"
 });
 
 /**
  * Write `test/tests.js`
  */
 
-var js = requires.join('') + '\n';
+var js = requires.join('\n') + '\n';
 write(__dirname + '/../test/tests.js', js);

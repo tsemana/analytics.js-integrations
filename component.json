@@ -1,15 +1,9 @@
 {
   "name": "integrations",
   "repo": "segmentio/analytics.js-integrations",
-  "description": "All of the third-party analytics.js integrations.",
+  "description": "All of the third-party Analytics.js integrations.",
   "version": "1.1.1",
   "license": "MIT",
-  "keywords": [
-    "analytics.js",
-    "integrations",
-    "analytics",
-    "custom"
-  ],
   "dependencies": {
     "avetisk/defaults": "0.0.1",
     "component/bind": "1.0.0",
