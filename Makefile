@@ -11,8 +11,9 @@ port ?= 4202
 # Binaries.
 #
 
+tests = /test
 duo = node_modules/.bin/duo
-phantomjs = node_modules/.bin/mocha-phantomjs \
+phantomjs = node_modules/.bin/duo-test phantomjs $(tests) args: \
 	--setting local-to-remote-url-access=true \
 	--setting web-security=false \
 	--path node_modules/.bin/phantomjs
@@ -25,19 +26,17 @@ default: build/build.js
 
 test: node_modules build/build.js server
 	@node bin/tests
-	@$(phantomjs) http://localhost:$(port)
+	@$(phantomjs)
 
 test-browser: build/build.js server
 	@node bin/tests
-	@open http://localhost:$(port)
-
-test-coverage: build/build.js server
-	@node bin/tests
-	@open http://localhost:$(port)/coverage
+	@node_modules/.bin/duo-test browser --commands "make default" $(tests) default
 
 test-sauce: node_modules build/build.js server
 	@node bin/tests
-	@node bin/gravy --url http://localhost:$(port)
+	@node_modules/.bin/duo-test saucelabs $(tests) \
+		--name analytics.js-integrations \
+		--browser $(browser)
 
 clean:
 	@rm -rf build components integrations.js node_modules test/tests.js

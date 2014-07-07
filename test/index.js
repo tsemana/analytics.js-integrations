@@ -41,8 +41,8 @@ if ('undefined' != typeof window) {
   if (window.mochaPhantomJS) {
     mochaPhantomJS.run();
   } else {
-    if (window.location.search.match(/\?cloud=true/)) {
-      gravy(mocha.run());
+    if (window.saucelabs) {
+      saucelabs(mocha.run());
     } else {
       mocha.run();
     }
