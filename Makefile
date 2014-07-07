@@ -5,7 +5,6 @@
 
 integration ?= *
 browser ?= ie10
-port ?= 4202
 
 #
 # Binaries.
@@ -24,15 +23,15 @@ phantomjs = node_modules/.bin/duo-test phantomjs $(tests) args: \
 
 default: build/build.js
 
-test: node_modules build/build.js server
+test: node_modules build/build.js
 	@node bin/tests
 	@$(phantomjs)
 
-test-browser: build/build.js server
+test-browser: build/build.js
 	@node bin/tests
 	@node_modules/.bin/duo-test browser --commands "make default" $(tests) default
 
-test-sauce: node_modules build/build.js server
+test-sauce: node_modules build/build.js
 	@node bin/tests
 	@node_modules/.bin/duo-test saucelabs $(tests) \
 		--name analytics.js-integrations \
@@ -40,18 +39,6 @@ test-sauce: node_modules build/build.js server
 
 clean:
 	@rm -rf build components integrations.js node_modules test/tests.js
-
-kill:
-	@if [ -a test/pid.txt ]; \
-		then if ps -p `cat test/pid.txt` > /dev/null; \
-			then kill `cat test/pid.txt` &> /dev/null; \
-		fi; \
-		rm -f test/pid.txt; \
-	fi;
-
-server: kill node_modules
-	@port=$(port) node test/server.js &> /dev/null &
-	@sleep 1
 
 #
 # Targets.
@@ -72,8 +59,6 @@ node_modules: package.json
 #
 
 .PHONY: clean
-.PHONY: kill
-.PHONY: server
 .PHONY: test
 .PHONY: test-browser
 .PHONY: test-coverage
