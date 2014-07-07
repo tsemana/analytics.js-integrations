@@ -19,6 +19,14 @@ To get started with development, you need to be running node 0.11.x, an easy way
     $ npm install -g n
     $ n 0.11
 
+Make sure you have `~/.netrc` setup like:
+
+```text
+machine api.github.com
+  user <user>
+  password <token>
+```
+
 Then clone the repository and then inside of it run:
 
     $ make
