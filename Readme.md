@@ -27,6 +27,8 @@ machine api.github.com
   password <token>
 ```
 
+  [Here's how you can create a token](https://help.github.com/articles/creating-an-access-token-for-command-line-use).
+
 Then clone the repository and then inside of it run:
 
     $ make
