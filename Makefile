@@ -29,7 +29,7 @@ test: node_modules build/build.js
 
 test-browser: build/build.js
 	@node bin/tests
-	@node_modules/.bin/duo-test browser --commands "make default" $(tests) default
+	@node_modules/.bin/duo-test browser --commands "make default" $(tests)
 
 test-sauce: node_modules build/build.js
 	@node bin/tests
