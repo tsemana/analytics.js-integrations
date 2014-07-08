@@ -1,4 +1,18 @@
 
+1.1.2 / 2014-07-08
+==================
+
+ * docs: add token link
+ * docs: add netrc
+ * update: readme to use 0.11
+ * update bin/tests to auto generated notice
+ * cleanup bin, plus json and makefile
+ * Adds optional page support to frontleaf integration
+ * fix tests when url gets a hash appended to it
+ * unpin analytics.js-integration-tester
+ * change .notCalled() to .didNotCall()
+ * port rest of tests to new api
+
 1.1.1 / 2014-06-26
 ==================
 
