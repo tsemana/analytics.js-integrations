@@ -62,10 +62,6 @@
     "segmentio/when": "*",
     "visionmedia/mocha": "*",
     "yields/clear-timeouts": "*",
-    "yields/clear-intervals": "*",
-    "yields/coverage": "*",
-    "yields/eql": "*",
-    "yields/gravy": "*",
-    "yields/fmt": "*"
+    "yields/clear-intervals": "*"
   }
 }
