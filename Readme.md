@@ -23,7 +23,7 @@ Make sure you have `~/.netrc` setup like:
 
 ```text
 machine api.github.com
-  user <user>
+  login <username>
   password <token>
 ```
 
