@@ -11,6 +11,6 @@ var plugins = require('./integrations.js');
  */
 
 each(plugins, function(plugin){
-  var name = plugin.Integration.prototype.name;
+  var name = (plugin.Integration || plugin).prototype.name;
   exports[name] = plugin;
 });

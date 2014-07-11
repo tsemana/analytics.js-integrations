@@ -3,6 +3,7 @@ var assert = require('assert');
 var Integrations = require('../index.js');
 var object = require('object');
 var gravy = require('gravy');
+var sandbox = require('./sandbox');
 
 /**
  * Initialize mocha.
