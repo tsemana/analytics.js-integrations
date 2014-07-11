@@ -54,3 +54,9 @@ exports.unbind = function(){
   window.addEventListener = addEventListener;
   window.removeEventListener = removeEventListener;
 };
+
+/**
+ * Automatically override.
+ */
+
+exports.bind();
