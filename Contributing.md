@@ -92,7 +92,7 @@ _Note: if you wanted to add your own private integration, you'd do exactly the s
 
 ## Writing Tests
 
-Every contribution you make to **analytics.js** should be accompanied by matching tests. If you look inside of our `/test` folder, you'll see we're pretty serious about this. That's because:
+Every contribution you make to **analytics.js** should be accompanied by matching tests. If you look inside of the `test.js` file of any integration, you'll see we're pretty serious about this. That's because:
 
 2. **analytics.js** runs on tons of different types of browsers, operating systems, etc. and we want to make sure it runs well everywhere.
 3. It lets us add new features much, much more quickly.
