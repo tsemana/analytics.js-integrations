@@ -85,7 +85,7 @@ MyIntegration.prototype.identify = function (id, traits, options) {
 };
 ```
 
-To get a good idea of how adding an integration works, check out some of our [existing](/lib/customerio.js) [integration](/lib/kissmetrics.js) [files](/lib/mixpanel.js).
+To get a good idea of how adding an integration works, check out some of our [existing](/lib/customerio/index.js) [integration](/lib/kissmetrics/index.js) [files](/lib/mixpanel/index.js).
 
 _Note: if you wanted to add your own private integration, you'd do exactly the same thing, just inside your own codebase! But public ones are way more awesome because everyone gets to share them and improve them..._
 
@@ -100,9 +100,9 @@ Every contribution you make to **analytics.js** should be accompanied by matchin
 
 When adding your own integration, the easiest way to figure out what major things to test is to look at everything you've added to the integration `prototype`. You'll want to write testing groups for `#initialize`, `#load`, `#identify`, `#track`, etc. And each group should test all of the expected functionality.
 
-The most important thing to writing clean, easy-to-manage integrations is to **keep them small** and **clean up after each test**, so that the environment is never polluted by an individual test. For example, in the [`/test/integrations/customerio.js`](/test/integrations/customerio.js) `#identify` tests you'll notice that we use the `beforeEach` and `afterEach` to make sure that user and sinon.spy state is cleared before and after each test. That way no individual test failing means all of the rest of the tests fail too. (Avoid domino situations!)
+The most important thing to writing clean, easy-to-manage integrations is to **keep them small** and **clean up after each test**, so that the environment is never polluted by an individual test. For example, in the [`/lib/customerio/test.js`](/lib/customerio/test.js) `#identify` tests you'll notice that we use the `beforeEach` and `afterEach` to make sure that user and sinon.spy state is cleared before and after each test. That way no individual test failing means all of the rest of the tests fail too. (Avoid domino situations!)
 
-If you run into any questions, check out a few of our [existing](/test/integrations/customerio.js) [test](/test/integrations/kissmetrics.js) [files](/test/integrations/mixpanel.js) to see how we've done it.
+If you run into any questions, check out a few of our [existing](/lib/customerio/test.js) [test](/lib/kissmetrics/test.js) [files](/lib/mixpanel/test.js) to see how we've done it.
 
 
 ## Contributing Checklist
