@@ -1,4 +1,13 @@
 
+1.2.0 / 2014-07-11
+==================
+
+ * cleanup unused modules
+ * abstract away plugin functionality
+ * create `clear-x` modules, to put into repos later
+ * add test sandbox that clears timeouts/intervals/eventListeners between tests
+ * move all script/img loading to .tag dsl method
+
 1.1.3 / 2014-07-08
 ==================
 
