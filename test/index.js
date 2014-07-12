@@ -3,7 +3,6 @@ var assert = require('assert');
 var Integrations = require('../index.js');
 var sandbox = require('./sandbox');
 var object = require('object');
-var gravy = require('gravy');
 
 /**
  * Initialize mocha.
@@ -42,8 +41,8 @@ if ('undefined' != typeof window) {
   if (window.mochaPhantomJS) {
     mochaPhantomJS.run();
   } else {
-    if (window.location.search.match(/\?cloud=true/)) {
-      gravy(mocha.run());
+    if (window.saucelabs) {
+      saucelabs(mocha.run());
     } else {
       mocha.run();
     }
