@@ -37,6 +37,7 @@ module.exports = [
   require('./lib/heap'),
   require('./lib/hellobar'),
   require('./lib/hittail'),
+  require('./lib/hublo'),
   require('./lib/hubspot'),
   require('./lib/improvely'),
   require('./lib/inspectlet'),
