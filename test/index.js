@@ -1,7 +1,7 @@
 
 var assert = require('assert');
 var Integrations = require('../index.js');
-var sandbox = require('./sandbox');
+var sandbox = require('clear-env');
 var object = require('object');
 
 /**
