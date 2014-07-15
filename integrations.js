@@ -40,6 +40,7 @@ module.exports = [
   require('./lib/hublo'),
   require('./lib/hubspot'),
   require('./lib/improvely'),
+  require('./lib/insidevault'),
   require('./lib/inspectlet'),
   require('./lib/intercom'),
   require('./lib/keen-io'),
