@@ -1,4 +1,11 @@
 
+1.2.2 / 2014-07-17
+==================
+
+ * deps: remove duo-package@0.2.13
+ * package.json: remove version
+ * bugsnag: use real api key
+
 1.2.1 / 2014-07-16
 ==================
 
