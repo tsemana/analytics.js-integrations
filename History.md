@@ -1,4 +1,12 @@
 
+1.2.3 / 2014-07-23
+==================
+
+ * force remove duo tmpdir
+ * Merge pull request #352 from segmentio/fix/requires
+ * fix: requires
+ * comment clarity
+
 1.2.2 / 2014-07-17
 ==================
 
