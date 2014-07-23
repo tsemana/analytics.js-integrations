@@ -47,6 +47,7 @@ clean:
 #
 
 build/build.js: node_modules integrations.js $(wildcard *.js lib/*/*.js test/*.js)
+	@-rm -rf $(TMPDIR)/duo
 	@node bin/tests
 	@$(duo) --development test/index.js build/build.js
 
