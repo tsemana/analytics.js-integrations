@@ -1,4 +1,10 @@
 
+1.2.4 / 2014-07-25
+==================
+
+ * Merge pull request #354 from segmentio/update/insidevault
+ * insidevault: add .page and event mapping
+
 1.2.3 / 2014-07-23
 ==================
 
