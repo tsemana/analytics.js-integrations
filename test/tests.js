@@ -25,7 +25,7 @@ require('../lib/customerio/test.js');
 require('../lib/drip/test.js');
 require('../lib/errorception/test.js');
 require('../lib/evergage/test.js');
-require('../lib/facebook-ads/test.js');
+require('../lib/facebook-conversion-tracking/test.js');
 require('../lib/foxmetrics/test.js');
 require('../lib/frontleaf/test.js');
 require('../lib/gauges/test.js');
