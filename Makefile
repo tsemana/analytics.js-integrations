@@ -40,6 +40,7 @@ test-sauce: node_modules build/build.js
 		--key $(SAUCE_ACCESS_KEY)
 
 clean:
+	@-rm -rf $(TMPDIR)/duo
 	@rm -rf build components integrations.js node_modules test/tests.js
 
 #
