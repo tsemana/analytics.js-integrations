@@ -26,7 +26,7 @@ module.exports = [
   require('./lib/drip'),
   require('./lib/errorception'),
   require('./lib/evergage'),
-  require('./lib/facebook-ads'),
+  require('./lib/facebook-conversion-tracking'),
   require('./lib/foxmetrics'),
   require('./lib/frontleaf'),
   require('./lib/gauges'),
