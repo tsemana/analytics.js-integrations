@@ -1,4 +1,12 @@
 
+1.2.6 / 2014-08-07
+==================
+
+ * keen-io: add support for addons! for #358
+ * keen-io: add test for both keen.min.js and keen-tracker.min.js
+ * keen: load keen-tracker by default, otherwise if they have a readKey then load the full 600kb keen
+ * keenio: upgrade to 3.0.5
+
 1.2.5 / 2014-08-07
 ==================
 
