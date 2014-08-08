@@ -1,4 +1,10 @@
 
+1.2.7 / 2014-08-07
+==================
+
+ * re-adding integrations.js
+ * deleting userfox, fixes #257
+
 1.2.6 / 2014-08-07
 ==================
 
