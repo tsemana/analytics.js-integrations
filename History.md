@@ -1,4 +1,29 @@
 
+1.2.5 / 2014-08-07
+==================
+
+ * google-analytics: update userId tests
+ * customer.io: use https endpoint
+ * errorception: new trial key...
+ * twitter-ads: change option name
+ * mixpanel: swap to using ianstormtaylor/is for type checking
+ * google-analytics: add currency support
+ * swap to facade
+ * convert arrays to a number length
+ * remove amplitude assuming a pageview
+ * merging facebook ad rename
+ * Fix userId field
+ * ignore tests
+ * remove tests file
+ * add extra options to yandex metrica
+ * facebook-ads: renaming to conversion-tracking
+ * update livechat to include a name and email
+ * fixing dot notation lookups for traits/properties that have dots in them
+ * twitter-ads: add option to track page views
+ * bronto: remove generic `track` method, for #361
+ * drip: remove email requirement for #identify
+ * drip: retrofit the #track method and add #identify support
+
 1.2.4 / 2014-07-25
 ==================
 
