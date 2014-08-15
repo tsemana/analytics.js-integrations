@@ -1,4 +1,10 @@
 
+1.2.8 / 2014-08-15
+==================
+
+ * fixing mixpanel date object passing
+ * fixing mixpanel array length conversion
+
 1.2.7 / 2014-08-07
 ==================
 
