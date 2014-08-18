@@ -10,6 +10,7 @@ browser ?= ie10
 # Binaries.
 #
 
+src = $(wildcard i*.js lib/*/*.js test/*.js)
 tests = /test
 duo = node_modules/.bin/duo
 phantomjs = node_modules/.bin/duo-test phantomjs $(tests) args: \
@@ -21,17 +22,17 @@ phantomjs = node_modules/.bin/duo-test phantomjs $(tests) args: \
 # Commands.
 #
 
-default: build/build.js
+default: build.js
 
-test: node_modules build/build.js
+test: node_modules build.js
 	@node bin/tests
 	@$(phantomjs)
 
-test-browser: build/build.js
+test-browser: build.js
 	@node bin/tests
 	@node_modules/.bin/duo-test browser --commands "make default" $(tests)
 
-test-sauce: node_modules build/build.js
+test-sauce: node_modules build.js
 	@node bin/tests
 	@node_modules/.bin/duo-test saucelabs $(tests) \
 		--name analytics.js-integrations \
@@ -41,16 +42,16 @@ test-sauce: node_modules build/build.js
 
 clean:
 	@-rm -rf $(TMPDIR)/duo
-	@rm -rf build components integrations.js node_modules test/tests.js
+	@rm -rf build.js components integrations.js node_modules test/tests.js
 
 #
 # Targets.
 #
 
-build/build.js: node_modules integrations.js $(wildcard *.js lib/*/*.js test/*.js)
+build.js: node_modules integrations.js $(src)
 	@-rm -rf $(TMPDIR)/duo
 	@node bin/tests
-	@$(duo) --development test/index.js build/build.js
+	@$(duo) --development test/index.js > build.js
 
 integrations.js: $(wildcard lib/*)
 	@node bin/integrations
