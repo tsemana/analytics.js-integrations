@@ -1,4 +1,9 @@
 
+1.2.10 / 2014-08-22
+==================
+
+ * adwords: pass remarketing option directly to google_remarketing_only
+
 1.2.9 / 2014-08-22
 ==================
 
