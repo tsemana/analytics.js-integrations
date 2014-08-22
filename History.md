@@ -1,4 +1,14 @@
 
+1.2.9 / 2014-08-22
+==================
+
+ * ga: fix ecommerce loading tests
+ * remove amd script for now so that bugsnag tests pass
+ * adwords: work on page load, switch to async version
+ * ga: removing ecommerce.js from require call
+ * deps: depend on duo-test@0.2
+ * deps: upgrade to duo 0.7
+
 1.2.8 / 2014-08-15
 ==================
 
