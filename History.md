@@ -1,4 +1,14 @@
 
+1.2.11 / 2014-08-28
+===================
+
+  * deps: duo 0.7
+  * Merge pull request #396 from segmentio/fix/adwords
+  * Merge pull request #392 from segmentio/olark/phantom-identify
+  * adding new test to prevent remarketing regression
+  * removing remarketing true from conversions
+  * fix olark phantom track/page calls
+
 1.2.10 / 2014-08-22
 ==================
 
