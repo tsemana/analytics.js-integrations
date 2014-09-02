@@ -1,4 +1,12 @@
 
+1.2.12 / 2014-09-02
+===================
+
+  * Merge pull request #399 from segmentio/fix/usercycle
+  * skipping hublo tests
+  * weird tests breaking nonsensically, something changed in facade from 1.4.3 to 1.4.4 to cause nulls to be undefined
+  * removing usercycle
+
 1.2.11 / 2014-08-28
 ===================
 
