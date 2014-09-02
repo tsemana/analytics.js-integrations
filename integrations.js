@@ -72,7 +72,6 @@ module.exports = [
   require('./lib/tapstream'),
   require('./lib/trakio'),
   require('./lib/twitter-ads'),
-  require('./lib/usercycle'),
   require('./lib/uservoice'),
   require('./lib/vero'),
   require('./lib/visual-website-optimizer'),
