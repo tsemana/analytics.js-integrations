@@ -1,4 +1,11 @@
 
+1.2.13 / 2014-09-04
+===================
+
+  * Merge pull request #401 from segmentio/remove/hublo
+  * only 73 now that we deleted one
+  * removing hublo since theyve pivoted
+
 1.2.12 / 2014-09-02
 ===================
 
