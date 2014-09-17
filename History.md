@@ -1,4 +1,17 @@
 
+1.2.14 / 2014-09-17
+===================
+
+  * errorception: update apiKey
+  * Merge pull request #418 from segmentio/fix/bugsnag
+  * bugsnag: use amd when possible
+  * Merge pull request #415 from segmentio/fix/inside-vault
+  * Merge pull request #417 from segmentio/fix/inspectlet
+  * update clear-env to support clear-ajax, which removes ajax requests in process between tests. fixes #416
+  * Fixes to IV
+  * Merge pull request #408 from chiplay/fix/keen
+  * Return cloned props for setGlobalProperties
+
 1.2.13 / 2014-09-04
 ===================
 
