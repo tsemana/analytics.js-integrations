@@ -1,4 +1,12 @@
 
+1.2.16 / 2014-09-26
+===================
+
+  * Merge pull request #421 from segmentio/fix/heap
+  * Changed terminology apiKey to appId
+  * Merge pull request #420 from segmentio/fix/google-analytics
+  * Fix: changed default domain to auto
+
 1.2.15 / 2014-09-22
 ===================
 
