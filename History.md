@@ -1,4 +1,12 @@
 
+1.2.17 / 2014-10-01
+===================
+
+  * Merge pull request #424 from segmentio/keen/addons
+  * Merge pull request #414 from segmentio/insidevault/multiple-events
+  * keen: send addons on .track() too
+  * insidevault: support multiple events
+
 1.2.16 / 2014-09-26
 ===================
 
