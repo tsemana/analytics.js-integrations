@@ -1,4 +1,12 @@
 
+1.2.18 / 2014-10-06
+===================
+
+  * Merge pull request #426 from segmentio/fix/inspectlet
+  * Update test.js
+  * Fix test expected method
+  * add support for inspectlet page
+
 1.2.17 / 2014-10-01
 ===================
 
