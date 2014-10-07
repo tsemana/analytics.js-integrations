@@ -1,4 +1,11 @@
 
+1.2.19 / 2014-10-07
+===================
+
+  * Merge pull request #430 from segmentio/fix/comscore
+  * Fix page method comment
+  * add support for SPAs in comscore
+
 1.2.18 / 2014-10-06
 ===================
 
