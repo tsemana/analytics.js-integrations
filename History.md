@@ -1,4 +1,11 @@
 
+1.2.22 / 2014-10-10
+==================
+
+  * Perfect Audience: Add support for ecommerce
+  * Added fullstory
+  * Update Amplitude to v1.3
+
 1.2.21 / 2014-10-09
 ==================
 
