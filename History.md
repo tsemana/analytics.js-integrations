@@ -1,4 +1,10 @@
 
+1.3.0 / 2014-10-17
+==================
+
+ * Added Enhanced Ecommerce support to GA integration
+ * tests: fix mocha-phantomjs
+
 1.2.22 / 2014-10-10
 ==================
 
