@@ -5,6 +5,7 @@
   "version": "1.3.0",
   "license": "MIT",
   "dependencies": {
+    "component/select": "0.0.1",
     "avetisk/defaults": "0.0.1",
     "component/bind": "1.0.0",
     "component/clone": "0.1.1",
