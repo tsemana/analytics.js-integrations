@@ -1,4 +1,17 @@
 
+1.3.2 / 2014-10-21
+==================
+
+  * saasquatch: updating tests, removing undefined
+  * uncommenting out the global referral images
+  * Adding unsubscribe capabilities to track
+  * ga: remove es5 filter use
+  * ga: add comments
+  * tests: fix mocha-phantomjs
+  * fixed fullstory integration
+  * Added Enhanced Ecommerce support to GA integration
+  * Fixed nonInteraction option in ga
+
 1.3.1 / 2014-10-17
 ==================
 
