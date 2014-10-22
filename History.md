@@ -1,4 +1,9 @@
 
+1.3.3 / 2014-10-22
+==================
+
+  * fixed intercom to properly set createdAt to created_at
+
 1.3.2 / 2014-10-21
 ==================
 
