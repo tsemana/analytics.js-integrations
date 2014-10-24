@@ -21,6 +21,24 @@ The commands you'll want to know for development are:
     $ make test          # runs all of the tests in your terminal
     $ make test-browser  # runs all of the tests in your browser, for nicer debugging
 
+## Getting Setup
+
+  To start, you need a couple of tools that will help you integrate as fast as possible:
+
+  - [Khaos](https://github.com/segmentio/khaos) (`npm i -g khaos`)
+  - [kahos-analytics.js-integration](https://github.com/segmentio/khaos-analytics.js-integration) (`khaos install segmentio/khaos-analytics.js-integration analytics.js-integration`)
+
+Once you have those tools installed, `cd` into your fork and run:
+
+  ```bash
+  $ khaos create analytics.js-integration lib/<slug>
+  ```
+
+Khaos will ask you a couple of question and create the integration skeleton for you!
+See our [tracking API](https://segment.io/docs/tracking-api/) to check what each method does.
+
+![khaos](https://dl.dropboxusercontent.com/u/8040/khaos-analytics.js-integration.png)
+
 
 ## Adding an Integration
 
