@@ -35,7 +35,7 @@ Once you have those tools installed, `cd` into your fork and run:
   ```
 
 Khaos will ask you a couple of question and create the integration skeleton for you!
-See our [tracking API](https://segment.io/docs/tracking-api/) to check what each method does.
+See our [tracking API](https://segment.com/docs/tracking-api/) to check what each method does.
 
 ![khaos](https://dl.dropboxusercontent.com/u/8040/khaos-analytics.js-integration.png)
 
@@ -136,4 +136,4 @@ To help make contributing easy, here's all the things you need to remember:
 - Run the tests and get everything passing.
 - Commit your changes with a nice commit message.
 - Submit your pull request.
-- Add a vector logo to the pull request comments if you want it merged into [Segment.io](https://segment.io) too!
+- Add a vector logo to the pull request comments if you want it merged into [Segment](https://segment.com) too!
