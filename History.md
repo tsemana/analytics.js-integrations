@@ -1,4 +1,11 @@
 
+1.3.4 / 2014-10-25
+==================
+
+  * contributing: segment.io -> segment.com
+  * Removing unnecessary temp variable
+  * update GoSquared w/ `identify` method
+
 1.3.3 / 2014-10-22
 ==================
 
