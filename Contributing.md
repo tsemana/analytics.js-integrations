@@ -26,7 +26,7 @@ The commands you'll want to know for development are:
   To start, you need a couple of tools that will help you integrate as fast as possible:
 
   - [Khaos](https://github.com/segmentio/khaos) (`npm i -g khaos`)
-  - [kahos-analytics.js-integration](https://github.com/segmentio/khaos-analytics.js-integration) (`khaos install segmentio/khaos-analytics.js-integration analytics.js-integration`)
+  - [khaos-analytics.js-integration](https://github.com/segmentio/khaos-analytics.js-integration) (`khaos install segmentio/khaos-analytics.js-integration analytics.js-integration`)
 
 Once you have those tools installed, `cd` into your fork and run:
 
@@ -72,7 +72,7 @@ var integration = require('analytics.js-integration');
 var MyIntegration = integration('My Integration');
 ```
 
-Once you have the prototype created, you just need to add any of the methods you can to add support for to the `prototype`. For example, an integration that implements `initialize` and `identify` might look like this:
+Once you have the prototype created, you just need to add any of the methods in our [Tracking API](https://segment.com/docs/api/tracking/) to the `prototype`. For example, an integration that implements `initialize` and `identify` might look like this:
 
 ```js
 var MyIntegration = integration('My Integration')
