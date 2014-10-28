@@ -1,4 +1,12 @@
 
+1.3.5 / 2014-10-28
+==================
+
+ * add GA support for explicitly passed campaign params
+ * Typo, language fixes
+ * add segment
+ * deps: update duo
+
 1.3.4 / 2014-10-25
 ==================
 
