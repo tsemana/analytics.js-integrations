@@ -66,6 +66,7 @@ module.exports = [
   require('./lib/quantcast'),
   require('./lib/rollbar'),
   require('./lib/saasquatch'),
+  require('./lib/segmentio'),
   require('./lib/sentry'),
   require('./lib/snapengage'),
   require('./lib/spinnakr'),
