@@ -12,6 +12,7 @@ module.exports = [
   require('./lib/awesm'),
   require('./lib/awesomatic'),
   require('./lib/bing-ads'),
+  require('./lib/blueshift'),
   require('./lib/bronto'),
   require('./lib/bugherd'),
   require('./lib/bugsnag'),
