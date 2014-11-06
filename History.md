@@ -1,4 +1,13 @@
 
+1.3.6 / 2014-11-06
+==================
+
+  * Amplitude: added setDomain and setGlobalUserProperties to init
+  * Adding documentation link at initialization section
+  * Fixing space issues in bsft test.js
+  * Integration with getblueshift.com
+  * piwik: add event tracking
+
 1.3.5 / 2014-10-28
 ==================
 
