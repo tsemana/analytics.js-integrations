@@ -1,4 +1,10 @@
 
+1.3.11 / 2014-11-22
+===================
+
+  * Amplitude: campaign names
+  * Perfect Audience: track fixes
+
 1.3.10 / 2014-11-21
 ==================
 
