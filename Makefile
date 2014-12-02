@@ -24,7 +24,7 @@ phantomjs = node_modules/.bin/duo-test phantomjs $(tests) args: \
 
 default: build.js
 
-test: node_modules build.js
+test: test-style build.js
 	@node bin/tests
 	@$(phantomjs)
 
@@ -39,6 +39,18 @@ test-sauce: node_modules build.js
 		--browser $(browser) \
 		--user $(SAUCE_USERNAME) \
 		--key $(SAUCE_ACCESS_KEY)
+
+test-cov:
+	@./node_modules/.bin/istanbul cover \
+		node_modules/.bin/_mocha $(TESTS) \
+		--report lcovonly \
+		-- -u exports \
+		--require should \
+		--timeout 20s \
+		--reporter dot
+
+test-style:
+	@node_modules/.bin/jscs lib
 
 clean:
 	@-rm -rf $(TMPDIR)/duo
@@ -68,3 +80,4 @@ node_modules: package.json
 .PHONY: test-browser
 .PHONY: test-coverage
 .PHONY: test-sauce
+.PHONY: test-style
