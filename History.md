@@ -1,4 +1,14 @@
 
+1.3.13 / 2014-12-04
+==================
+
+  * segment: use text/plain
+  * Styling fixes
+  * Re-adding build.js step to make test
+  * Updating tests with new linting, removing make-lint dependency
+  * Adding last bits of linting fixes
+  * Adding linting
+
 1.3.12 / 2014-11-25
 ===================
 
