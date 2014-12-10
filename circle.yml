@@ -1,0 +1,9 @@
+machine:
+  node:
+    version: 0.11
+dependencies:
+  pre:
+    - make
+test:
+  override:
+    - make test
