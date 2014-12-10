@@ -1,5 +1,5 @@
 
-# analytics.js-integrations [![Build Status](https://travis-ci.org/segmentio/analytics.js-integrations.png)](https://travis-ci.org/segmentio/analytics.js-integrations)
+# analytics.js-integrations [![Circle CI](https://circleci.com/gh/segmentio/analytics.js-integrations/tree/master.svg?style=svg)](https://circleci.com/gh/segmentio/analytics.js-integrations/tree/master)
 
 This repository houses all of the integrations that get built into [Analytics.js](https://github.com/segmentio/analytics.js).
 
