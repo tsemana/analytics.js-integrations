@@ -1,4 +1,13 @@
 
+1.3.14 / 2014-12-11
+===================
+
+  * Leadlander: removing integration
+  * Awesomatic: removing integration
+  * removing travisci and updating badge
+  * tweaking circle.yml
+  * Rollbar: updating to 1.1.0
+
 1.3.13 / 2014-12-04
 ==================
 
