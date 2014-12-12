@@ -1,4 +1,11 @@
 
+1.3.15 / 2014-12-12
+===================
+
+  * Adroll: adding custom params
+  * Google Analytics: add custom dims and metrics to track calls
+  * Chartbeat: adding basic implementation of authors and sections
+
 1.3.14 / 2014-12-11
 ===================
 
