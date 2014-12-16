@@ -1,4 +1,15 @@
 
+1.3.17 / 2014-12-16
+===================
+
+  * Add GitHub IP range to known_hosts to prevent Duo error
+
+1.3.16 / 2014-12-16
+===================
+
+  * Merge pull request #481 from segmentio/fix/duo-installs
+  * Add GitHub IP range to known_hosts to prevent Duo error
+
 1.3.15 / 2014-12-12
 ===================
 
