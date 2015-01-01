@@ -1,4 +1,14 @@
 
+1.3.19 / 2015-01-01
+==================
+
+  * livechat: LC_Invite is never defined
+  * fix: update yields/store
+  * make: depend on build.js before test-style
+  * changed to single quotes and removed toString
+  * fixed blank line
+  * fixing user id
+
 1.3.18 / 2014-12-17
 ===================
 
