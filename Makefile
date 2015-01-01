@@ -24,7 +24,7 @@ phantomjs = node_modules/.bin/duo-test phantomjs $(tests) args: \
 
 default: build.js
 
-test: test-style build.js
+test: build.js test-style
 	@node bin/tests
 	@$(phantomjs)
 
