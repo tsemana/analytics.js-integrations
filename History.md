@@ -1,4 +1,10 @@
 
+1.3.21 / 2015-01-07
+==================
+
+  * livechat: fix LC_Invite missing, and update key
+  * Removing assumed page view
+
 1.3.20 / 2015-01-05
 ==================
 
