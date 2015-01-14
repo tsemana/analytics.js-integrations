@@ -1,4 +1,12 @@
 
+1.3.23 / 2015-01-14
+===================
+
+  * Add Extole integration
+  * preact logger now backwards compatible (can log with _lnq or _preactq)
+  * Customerio: Updating test values
+  * Blueshift: shouldnt assume pageview
+
 1.3.22 / 2015-01-08
 ===================
 
