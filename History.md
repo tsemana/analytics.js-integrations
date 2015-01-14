@@ -1,4 +1,9 @@
 
+1.3.24 / 2015-01-14
+===================
+
+ * add support for bing ads universal event tracking
+
 1.3.23 / 2015-01-14
 ===================
 
