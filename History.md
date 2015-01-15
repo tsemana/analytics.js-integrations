@@ -1,4 +1,9 @@
 
+1.3.27 / 2015-01-15
+===================
+
+  * Centralize Extole into a single file to fix build error
+
 1.3.26 / 2015-01-15
 ===================
 
