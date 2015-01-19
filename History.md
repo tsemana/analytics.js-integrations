@@ -1,4 +1,12 @@
 
+1.3.28 / 2015-01-19
+==================
+
+  * mojn: fix tests
+  * changed analytics.gif to identify.gif
+  * mojn: add failing tests
+  * Add Nudgespot integration
+
 1.3.27 / 2015-01-15
 ===================
 
