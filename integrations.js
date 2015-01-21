@@ -79,5 +79,6 @@ module.exports = [
   require('./lib/visual-website-optimizer'),
   require('./lib/webengage'),
   require('./lib/woopra'),
-  require('./lib/yandex-metrica')
+  require('./lib/yandex-metrica'),
+  require('./lib/userlike')
 ];
