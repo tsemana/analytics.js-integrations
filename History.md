@@ -1,4 +1,12 @@
 
+1.3.36 / 2015-01-22
+===================
+
+  * Quantcast: Adding custom label support
+  * Vero: Implemented #alias
+  * Atatus: new integration.
+  * Satismeter: new integration
+
 1.3.35 / 2015-01-22
 ===================
 
