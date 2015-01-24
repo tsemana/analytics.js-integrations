@@ -10,6 +10,7 @@ module.exports = [
   require('./lib/amplitude'),
   require('./lib/appcues'),
   require('./lib/atatus'),
+  require('./lib/autosend'),
   require('./lib/awesm'),
   require('./lib/bing-ads'),
   require('./lib/blueshift'),
