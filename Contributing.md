@@ -138,4 +138,3 @@ To help make contributing easy, here's all the things you need to remember:
 - Run the tests and get everything passing.
 - Commit your changes with a nice commit message.
 - Submit your pull request.
-- Add a vector logo to the pull request comments if you want it merged into [Segment](https://segment.com) too!
