@@ -58,8 +58,7 @@
     "segmentio/replace-document-write": "1.0.1",
     "component/object": "0.0.3",
     "segmentio/obj-case": "0.0.7",
-    "segmentio/json": "^1.0.0",
-    "component/reduce": "1.0.1"
+    "segmentio/json": "^1.0.0"
   },
   "development": {
     "component/jquery": "*",
