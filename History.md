@@ -1,4 +1,12 @@
 
+1.3.38 / 2015-01-29
+===================
+
+  * Update Contributing.md
+  * Heap: remove assumes pageview
+  * Autosend: new integration
+  * Piwik: adding custom variable support
+
 1.3.37 / 2015-01-23
 ===================
 
