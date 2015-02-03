@@ -1,4 +1,10 @@
 
+1.3.39 / 2015-02-03
+==================
+
+  * segment: add .sentAt
+  * added identify method to google analytics
+
 1.3.38 / 2015-01-29
 ===================
 
