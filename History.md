@@ -1,4 +1,10 @@
 
+1.3.40 / 2015-02-04
+===================
+
+  * GA: Added event name and category for ecommerce
+  * Forward settings for Custom Ticket Fields
+
 1.3.39 / 2015-02-03
 ==================
 
