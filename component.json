@@ -59,7 +59,9 @@
     "component/object": "0.0.3",
     "segmentio/obj-case": "0.0.7",
     "segmentio/json": "^1.0.0",
-    "component/reduce": "1.0.1"
+    "component/reduce": "1.0.1",
+    "ianstormtaylor/pick": "~0.1.0",
+    "harrietgrace/omit": "~0.1.0"
   },
   "development": {
     "component/jquery": "*",
