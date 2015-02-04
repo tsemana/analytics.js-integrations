@@ -1,4 +1,9 @@
 
+1.3.41 / 2015-02-04
+===================
+
+  * update GoSquared integration to send correct traits
+
 1.3.40 / 2015-02-04
 ===================
 
