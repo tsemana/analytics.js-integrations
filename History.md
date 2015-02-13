@@ -1,4 +1,12 @@
 
+1.3.42 / 2015-02-13
+===================
+
+  * Heap: fix  id mess
+  * Adroll: adding custom params
+  * Quantcast: updated to send orderId with generic track event
+  * Drip: updated to new global
+
 1.3.41 / 2015-02-04
 ===================
 
