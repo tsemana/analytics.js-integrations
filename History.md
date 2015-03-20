@@ -1,4 +1,16 @@
 
+1.3.49 / 2015-03-20
+===================
+
+  * Merge pull request #558 from segmentio/fix/fb-conv
+  * Merge pull request #564 from segmentio/add/secureCookie
+  * added secureCookie option to mixpanel
+  * rm custom audience events from conversion tracking
+  * Merge pull request #555 from segmentio/ga/page-cd
+  * Merge pull request #547 from segmentio/fix/facebook-conversion-tracking
+  * added page() as a proxy to track() call in facebook conversions
+  * add dimension/metric support to #page
+
 1.3.48 / 2015-03-10
 ===================
 
