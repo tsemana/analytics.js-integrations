@@ -1,4 +1,13 @@
 
+1.3.50 / 2015-03-31
+===================
+
+  * FullStory: dont mutate iteratee
+  * Snapengage: use Snapengage cdn
+  * Amplitude: Update Amplitude to v2.1.0
+  * Adroll: send revenue with _all_ events, not just mapped
+  * Facebook: fix tests to reflect *conversions*, not custom data
+
 1.3.49 / 2015-03-20
 ===================
 
