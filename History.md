@@ -1,4 +1,9 @@
 
+1.3.51 / 2015-04-01
+===================
+
+  * upgrading `segmentio/obj-case` to fix build issues
+
 1.3.50 / 2015-03-31
 ===================
 
