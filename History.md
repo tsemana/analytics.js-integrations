@@ -1,4 +1,10 @@
 
+1.3.53 / 2015-04-09
+===================
+
+  * Merge pull request #581 from ryanjadhav/fix/optimizely-opt-out
+  * guard against optimizely.data.state being undefined
+
 1.3.52 / 2015-04-02
 ===================
 
