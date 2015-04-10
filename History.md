@@ -1,4 +1,41 @@
 
+1.3.53 / 2015-04-09
+===================
+
+  * Merge pull request #581 from ryanjadhav/fix/optimizely-opt-out
+  * guard against optimizely.data.state being undefined
+
+1.3.52 / 2015-04-02
+===================
+
+  * updated saasquatch
+
+1.3.51 / 2015-04-01
+===================
+
+  * upgrading `segmentio/obj-case` to fix build issues
+
+1.3.50 / 2015-03-31
+===================
+
+  * FullStory: dont mutate iteratee
+  * Snapengage: use Snapengage cdn
+  * Amplitude: Update Amplitude to v2.1.0
+  * Adroll: send revenue with _all_ events, not just mapped
+  * Facebook: fix tests to reflect *conversions*, not custom data
+
+1.3.49 / 2015-03-20
+===================
+
+  * Merge pull request #558 from segmentio/fix/fb-conv
+  * Merge pull request #564 from segmentio/add/secureCookie
+  * added secureCookie option to mixpanel
+  * rm custom audience events from conversion tracking
+  * Merge pull request #555 from segmentio/ga/page-cd
+  * Merge pull request #547 from segmentio/fix/facebook-conversion-tracking
+  * added page() as a proxy to track() call in facebook conversions
+  * add dimension/metric support to #page
+
 1.3.48 / 2015-03-10
 ===================
 
