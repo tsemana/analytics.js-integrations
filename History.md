@@ -1,4 +1,10 @@
 
+1.3.54 / 2015-04-16
+===================
+
+  * Merge pull request #530 from tikotzky/fix/VWO
+  * Merge pull request #584 from segmentio/pr/559
+
 1.3.53 / 2015-04-09
 ===================
 
