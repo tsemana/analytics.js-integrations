@@ -74,6 +74,7 @@ module.exports = [
   require('./lib/sentry'),
   require('./lib/snapengage'),
   require('./lib/spinnakr'),
+  require('./lib/supporthero'),
   require('./lib/tapstream'),
   require('./lib/trakio'),
   require('./lib/twitter-ads'),
