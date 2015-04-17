@@ -1,3 +1,19 @@
+1.3.54 / 2015-04-16
+===================
+  * Fix CDN
+
+
+1.3.54 / 2015-04-16
+===================
+
+  * Merge pull request #530 from tikotzky/fix/VWO
+  * Merge pull request #584 from segmentio/pr/559
+
+1.3.53 / 2015-04-09
+===================
+
+  * Merge pull request #581 from ryanjadhav/fix/optimizely-opt-out
+  * guard against optimizely.data.state being undefined
 
 1.3.52 / 2015-04-02
 ===================
